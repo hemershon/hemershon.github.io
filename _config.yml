@@ -95,7 +95,7 @@ analytics:
 # Site Author
 author:
   name             : "Hemershon Silva"
-  subtitle                 : "Desenvolvedor back-end"
+  subtitle         : "Desenvolvedor back-end"
   avatar           : "/assets/images/hemershon.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Ruby on Rails Backend Developer"
   location         : "Teresina, Piauí, Brazil"
