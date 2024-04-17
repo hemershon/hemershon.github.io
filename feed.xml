@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hemershon</title>
+    <description>Blog do Hemershon Silva, engenheiro de software Sênior a 7 anos desenvolvendo soluções web.</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 17 Apr 2024 18:04:42 -0300</pubDate>
+    <lastBuildDate>Wed, 17 Apr 2024 18:04:42 -0300</lastBuildDate>
+    <generator>Jekyll v3.6.3</generator>
+    
+      <item>
+        <title>Docker para Rails</title>
+        <description>&lt;h1 id=&quot;docker-com-ruby-on-rails&quot;&gt;Docker com Ruby on Rails&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Escrito por &lt;a href=&quot;https://hemershon.com/&quot;&gt;Hemershon Silva&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;como-dockerizar-sua-aplicação&quot;&gt;Como dockerizar sua aplicação&lt;/h2&gt;
+
+&lt;p&gt;Esse tutorial é para ajudar quem tem dificuldade em montar seu ambiente rails no docker, aqui vou abordar técnicas de como usar o docker e docker-compose que ambos trabalham em plena harmonia.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resumo sobre o docker&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Docker é um software contêiner da empresa Docker, Inc, que fornece uma camada de abstração e automação para virtualização de sistema operacional no Windows, Macos e Linux.&lt;/p&gt;
+
+&lt;p&gt;Requisitos:&lt;/p&gt;
+
+&lt;p&gt;Docker instalado na sua maquina &lt;a href=&quot;https://www.edivaldobrito.com.br/docker-no-ubuntu/&quot;&gt;Instalação do docker&lt;/a&gt;
+Docker-compose instalado&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt&quot;&gt;Instalação do docker-compose&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;definindo-um-projeto&quot;&gt;Definindo um projeto&lt;/h2&gt;
+
+&lt;p&gt;Comece configurando os arquivos necessários para construir o aplicativo que será executado dentro de um &lt;a href=&quot;https://www.redhat.com/pt-br/topics/containers/what-is-docker&quot;&gt;contêiner&lt;/a&gt; do Docker suas dependências.&lt;/p&gt;
+
+&lt;p&gt;Os arquivos são:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Dockerfile&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;docker-compose.yml&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Gemfile&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Gemfile.lock&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Primeiro passo vamos criar o arquivo &lt;a href=&quot;https://www.alura.com.br/artigos/desvendando-o-dockerfile&quot;&gt;Dockerfile&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;FROM ruby:3.0.0
+RUN apt-get update -qq &amp;amp;&amp;amp; apt-get install -y nodejs postgresql-client
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &amp;amp;&amp;amp; \
+  echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | tee /etc/apt/sources.list.d/yarn.list &amp;amp;&amp;amp; \
+  apt-get update -qq &amp;amp;&amp;amp; apt-get install -y nodejs postgresql-client vim &amp;amp;&amp;amp; \
+  apt-get install -y yarn &amp;amp;&amp;amp; \
+  apt-get install -y imagemagick &amp;amp;&amp;amp; \
+  apt-get install -y libvips-tools &amp;amp;&amp;amp; \
+  apt-get install -y locales
+
+# Instala nossas dependencias
+RUN apt-get update &amp;amp;&amp;amp; apt-get install -qq -y --no-install-recommends \
+nodejs yarn build-essential libpq-dev imagemagick git-all nano
+
+WORKDIR /seuapp
+COPY Gemfile /seuapp/Gemfile
+COPY Gemfile.lock /seuapp/Gemfile.lock
+RUN bundle update mimemagic
+RUN bundle install
+COPY . /seuapp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Isso colocará o código do seu aplicativo dentro de uma imagem que constrói um contêiner com Ruby, bundler e todas as suas dependências dentro dele.&lt;/p&gt;
+
+&lt;p&gt;agora vamos criar o &lt;a href=&quot;https://jtemporal.com/gemfile/&quot;&gt;Gemfile&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+source 'https://rubygems.org'
+gem 'rails', '~&amp;gt;6'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;como todo projeto rails precisamos também do Gemfile.lock&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;touch Gemfile.lock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://imasters.com.br/banco-de-dados/docker-compose-o-que-e-para-que-serve-o-que-come#:~:text=Docker%20Compose%20%C3%A9%20o%20orquestrador,mas%20os%20maestros%20somos%20n%C3%B3s!&quot;&gt;Docker-compose&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+version: &quot;3.9&quot;
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    command: bash -c &quot;rm -f tmp/pids/server.pid &amp;amp;&amp;amp; bundle exec rails s -p 3000 -b '0.0.0.0'&quot;
+    volumes:
+      - .:/seuapp
+    ports:
+      - &quot;3000:3000&quot;
+    depends_on:
+      - db
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora vamos montar o projeto&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-compose run --no-deps web rails new . --force --database=postgresql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Primeiro, o Compose cria a imagem para o webserviço usando o Dockerfile. O –no-deps diz ao Compose para não iniciar os serviços vinculados. Em seguida, ele é executado rails newdentro de um novo contêiner, usando essa imagem. Uma vez feito isso, você deve ter gerado um novo aplicativo.&lt;/p&gt;
+
+&lt;p&gt;Você irá precisar de uma permissão para manipular os arquivos&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo chown -R $USER:$USER .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora você está com a estrutura montada com todos os arquivos do rails, agora precisamos reconstruir a estrutura para usamos com o docker.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-compose build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Configurações de Banco de dados&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+default: &amp;amp;default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password
+  pool: 5
+
+development:
+  &amp;lt;&amp;lt;: *default
+  database: myapp_development
+
+
+test:
+  &amp;lt;&amp;lt;: *default
+  database: myapp_test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora você pode inicializar o aplicativo com&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker-compose up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;se estiver tudo ok, essa é a mensagem que vai aparecer no terminal&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+rails_db_1 is up-to-date
+Creating rails_web_1 ... done
+Attaching to rails_db_1, rails_web_1
+db_1   | PostgreSQL init process complete; ready for start up.
+db_1   |
+db_1   | 2018-03-21 20:18:37.437 UTC [1] LOG:  listening on IPv4 address &quot;0.0.0.0&quot;, port 5432
+db_1   | 2018-03-21 20:18:37.437 UTC [1] LOG:  listening on IPv6 address &quot;::&quot;, port 5432
+db_1   | 2018-03-21 20:18:37.443 UTC [1] LOG:  listening on Unix socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot;
+db_1   | 2018-03-21 20:18:37.726 UTC [55] LOG:  database system was shut down at 2018-03-21 20:18:37 UTC
+db_1   | 2018-03-21 20:18:37.772 UTC [1] LOG:  database system is ready to accept connections
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Agora vamos criar o banco de dados&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+docker-compose run web rake db:create
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;mensagem que vai aparecer&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+Starting rails_db_1... done
+Created database 'seuapp_development'
+Created database 'seuapp_test'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;depois vá para o navegador e digite&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+localhost:3000 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Referência estão nos links&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.redhat.com/pt-br/topics/containers/what-is-docker&quot;&gt;O que é Docker&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/get-docker/&quot;&gt;Docker&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://imasters.com.br/banco-de-dados/docker-compose-o-que-e-para-que-serve-o-que-come#:~:text=Docker%20Compose%20%C3%A9%20o%20orquestrador,mas%20os%20maestros%20somos%20n%C3%B3s!&quot;&gt;Docker-compose&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jtemporal.com/gemfile/&quot;&gt;Gemfile&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.alura.com.br/artigos/desvendando-o-dockerfile&quot;&gt;Dockerfile&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 17 Apr 2020 10:44:04 -0300</pubDate>
+        <link>http://localhost:4000/docker-para-rails</link>
+        <guid isPermaLink="true">http://localhost:4000/docker-para-rails</guid>
+        
+        <category>iniciante</category>
+        
+        <category>docker</category>
+        
+        <category>rails</category>
+        
+        
+        <category>Rails</category>
+        
+        <category>Docker</category>
+        
+        <category>Ruby</category>
+        
+      </item>
+    
+  </channel>
+</rss>
