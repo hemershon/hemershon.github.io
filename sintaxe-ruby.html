@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Hemershon</title>
-<meta name="description" content="Blog do Hemershon Silva, engenheiro de software Sênior a 7 anos desenvolvendo soluções web.">
+<title>Sintaxe Ruby</title>
+<meta name="description" content="A sintaxe Ruby é baseada em uma estrutura simples de comandos, métodos e expressões. A seguir, são apresentados alguns exemplos da sintaxe Ruby:">
 
 <link rel="stylesheet" href="/css/main.css">
-<link rel="canonical" href="http://localhost:4000/blog/">
+<link rel="canonical" href="http://localhost:4000/sintaxe-ruby">
 <link rel="alternate" type="application/rss+xml" title="Hemershon" href="http://localhost:4000/feed.xml" />
 
 <script>
@@ -51,91 +51,114 @@
 
 <main class="main-container">
   <div class="container">
-    <section class="post-list">
-  
-    <article class="post">
-  <figure class="post-thumbnail ">
-    <a href="/docker-para-rails">
-      
-        <img src="/images/img/docker.png" alt="Docker para Rails">
-      
-    </a>
-  </figure>
-  <div class="post-content">
+    <article role="article" class="post">
+
+  <div class="card">
     <header class="post-header">
-      <h1 class="post-title">
-        <a class="post-link" href="/docker-para-rails">Docker para Rails</a>
-      </h1>
+      <h1 class="post-title">Sintaxe Ruby</h1>
       <em class="post-meta">
-        <time>Apr 17, 2020</time>
+        <time>Mar 31, 2023</time>
       </em>
     </header>
-    <p><a href="/docker-para-rails" title="Permalink to: Docker para Rails">Docker com Ruby on Rails Escrito por Hemershon Silva Como dockerizar sua aplicação Esse tutorial é para ajudar quem tem dificuldade em montar seu ambiente rails no docker, aqui vou... <span class="read-more">[read more]</span></a></p>
+
+    <div class="post-content">
+      
+      <p>A sintaxe Ruby é baseada em uma estrutura simples de comandos, métodos e expressões. A seguir, são apresentados alguns exemplos da sintaxe Ruby:</p>
+
+<p>Declaração de variáveis:</p>
+<pre><code>nome = "Maria"
+idade = 25
+</code></pre>
+
+<p>Estruturas de controle:</p>
+<pre><code>if idade &gt;= 18
+  puts "Você é maior de idade"
+else
+  puts "Você é menor de idade"
+end
+</code></pre>
+
+<p>Laços de repetição:</p>
+<pre><code>for i in 1..10
+  puts i
+end
+
+10.times do |i|
+  puts i
+end
+Definindo funções:
+css
+Copy code
+def somar(a, b)
+  return a + b
+end
+
+resultado = somar(2, 3)
+puts resultado
+</code></pre>
+
+<p>Trabalhando com arrays:</p>
+
+<pre><code>numeros = [1, 2, 3, 4, 5]
+numeros.each do |numero|
+  puts numero
+end
+</code></pre>
+
+<p>Trabalhando com strings:</p>
+
+<pre><code>nome = "Maria"
+mensagem = "Olá, #{nome}!"
+puts mensagem
+</code></pre>
+
+<p>Trabalhando com classes:</p>
+
+<pre><code>class Pessoa
+  def initialize(nome, idade)
+    @nome = nome
+    @idade = idade
+  end
+  
+  def apresentar
+    puts "Meu nome é #{@nome} e tenho #{@idade} anos"
+  end
+end
+
+pessoa = Pessoa.new("Maria", 25)
+pessoa.apresentar
+</code></pre>
+
+<p>Esses são apenas alguns exemplos da sintaxe Ruby. A linguagem também oferece muitas outras ferramentas e recursos, como metaprogramação, expressões regulares, manipulação de arquivos e muito mais.</p>
+
+    </div>
+
+    
+<hr>
+
+<aside id="comments" class="disqus">
+  <h3><i class="icon icon-comments-o"></i> Comments</h3>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'http://localhost:4000/sintaxe-ruby';
+      this.page.identifier = '/sintaxe-ruby';
+    };
+    (function() {
+      var d = document,
+      s = d.createElement('script');
+      s.src = '//Hemershon.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+
   </div>
+
 </article>
-
-  
-    <article class="post">
-  <figure class="post-thumbnail ">
-    <a href="/metodos-para-tratar-array">
-      
-        <img src="/images/post/array.png" alt="MÉTODOS PARA TRATAR ARRAY">
-      
-    </a>
-  </figure>
-  <div class="post-content">
-    <header class="post-header">
-      <h1 class="post-title">
-        <a class="post-link" href="/metodos-para-tratar-array">MÉTODOS PARA TRATAR ARRAY</a>
-      </h1>
-      <em class="post-meta">
-        <time>Jan 20, 2023</time>
-      </em>
-    </header>
-    <p><a href="/metodos-para-tratar-array" title="Permalink to: MÉTODOS PARA TRATAR ARRAY">Recentemente me deparei em uma situação interessante, qual é o momento em que devemos usar map, select e o each, normalmente eu uso o each com frequência aí veio a... <span class="read-more">[read more]</span></a></p>
-  </div>
-</article>
-
-  
-    <article class="post">
-  <figure class="post-thumbnail ">
-    <a href="/o-basico-de-ruby">
-      
-        <img src="/images/post/obasicoderuby.png" alt="O Básico de Ruby">
-      
-    </a>
-  </figure>
-  <div class="post-content">
-    <header class="post-header">
-      <h1 class="post-title">
-        <a class="post-link" href="/o-basico-de-ruby">O Básico de Ruby</a>
-      </h1>
-      <em class="post-meta">
-        <time>Jan 21, 2023</time>
-      </em>
-    </header>
-    <p><a href="/o-basico-de-ruby" title="Permalink to: O Básico de Ruby">Continuando com a saga de como se tornar um programador, agora vou falar sobre o básico da linguagem ruby, não irei contar a história de ruby e nem como instalar,... <span class="read-more">[read more]</span></a></p>
-  </div>
-</article>
-
-  
-
-  
-<nav class="pagination" role="pagination">
-  <ul>
-    
-    
-      <li><span class="prev button button-ghost disabled">&laquo; Prev</span></li>
-    
-    <li><span class="page-number">Page 1 of 4</span></li>
-    
-      <li><a class="next button button-ghost" href="/blog/page/2" title="Articles old">Next &raquo;</a></li>
-    
-  </ul>
-</nav>
-
-
-</section>
 
   </div>
 </main>

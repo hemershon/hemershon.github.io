@@ -5,212 +5,727 @@
     <description>Blog do Hemershon Silva, engenheiro de software Sênior a 7 anos desenvolvendo soluções web.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 17 Apr 2024 18:04:42 -0300</pubDate>
-    <lastBuildDate>Wed, 17 Apr 2024 18:04:42 -0300</lastBuildDate>
+    <pubDate>Thu, 18 Apr 2024 07:55:43 -0300</pubDate>
+    <lastBuildDate>Thu, 18 Apr 2024 07:55:43 -0300</lastBuildDate>
     <generator>Jekyll v3.6.3</generator>
     
       <item>
-        <title>Docker para Rails</title>
-        <description>&lt;h1 id=&quot;docker-com-ruby-on-rails&quot;&gt;Docker com Ruby on Rails&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;Escrito por &lt;a href=&quot;https://hemershon.com/&quot;&gt;Hemershon Silva&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+        <title>Básico de TDD usando Ruby</title>
+        <description>&lt;h1 id=&quot;básico-de-tdd-usando-ruby&quot;&gt;Básico de TDD usando Ruby&lt;/h1&gt;
 
-&lt;h2 id=&quot;como-dockerizar-sua-aplicação&quot;&gt;Como dockerizar sua aplicação&lt;/h2&gt;
+&lt;p&gt;O Test-Driven Development (TDD) é uma abordagem de desenvolvimento de software que envolve escrever os testes antes de implementar o código. Aqui está um exemplo básico de como aplicar o TDD usando Ruby:&lt;/p&gt;
 
-&lt;p&gt;Esse tutorial é para ajudar quem tem dificuldade em montar seu ambiente rails no docker, aqui vou abordar técnicas de como usar o docker e docker-compose que ambos trabalham em plena harmonia.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Passo 1: Escrever o teste
+Comece escrevendo um teste que descreva o comportamento desejado do código que você irá implementar. Aqui está um exemplo de teste usando o framework RSpec:&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Resumo sobre o docker&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# arquivo: calculator_spec.rb&lt;/span&gt;
 
-&lt;p&gt;Docker é um software contêiner da empresa Docker, Inc, que fornece uma camada de abstração e automação para virtualização de sistema operacional no Windows, Macos e Linux.&lt;/p&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;rspec&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;require_relative&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;calculator&amp;#39;&lt;/span&gt;
 
-&lt;p&gt;Requisitos:&lt;/p&gt;
+&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Calculator&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;deve somar dois números corretamente&amp;#39;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;calculator&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Calculator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;calculator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Docker instalado na sua maquina &lt;a href=&quot;https://www.edivaldobrito.com.br/docker-no-ubuntu/&quot;&gt;Instalação do docker&lt;/a&gt;
-Docker-compose instalado&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt&quot;&gt;Instalação do docker-compose&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Nesse exemplo, estamos testando a funcionalidade de soma em uma classe Calculator. O teste espera que a soma de 2 e 3 seja igual a 5.&lt;/p&gt;
 
-&lt;h2 id=&quot;definindo-um-projeto&quot;&gt;Definindo um projeto&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Passo 2: Executar o teste (e falhar)
+Agora, execute o teste. Como você ainda não implementou o código, o teste irá falhar, o que é esperado neste ponto.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Comece configurando os arquivos necessários para construir o aplicativo que será executado dentro de um &lt;a href=&quot;https://www.redhat.com/pt-br/topics/containers/what-is-docker&quot;&gt;contêiner&lt;/a&gt; do Docker suas dependências.&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rspec&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;calculator_spec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;
 
-&lt;p&gt;Os arquivos são:&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Dockerfile&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;span class=&quot;no&quot;&gt;Failures&lt;/span&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;docker-compose.yml&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Calculator&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deve&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;somar&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dois&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;números&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;corretamente&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Failure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Gemfile&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;span class=&quot;w&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;expected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;             &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;got&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;compared&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Gemfile.lock&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;ul&gt;
+  &lt;li&gt;Passo 3: Implementar o código mínimo necessário
+Agora, implemente o código mínimo necessário para fazer o teste passar. Neste caso, crie um arquivo calculator.rb e defina a classe Calculator com o método sum:&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Primeiro passo vamos criar o arquivo &lt;a href=&quot;https://www.alura.com.br/artigos/desvendando-o-dockerfile&quot;&gt;Dockerfile&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# arquivo: calculator.rb&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;FROM ruby:3.0.0
-RUN apt-get update -qq &amp;amp;&amp;amp; apt-get install -y nodejs postgresql-client
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &amp;amp;&amp;amp; \
-  echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | tee /etc/apt/sources.list.d/yarn.list &amp;amp;&amp;amp; \
-  apt-get update -qq &amp;amp;&amp;amp; apt-get install -y nodejs postgresql-client vim &amp;amp;&amp;amp; \
-  apt-get install -y yarn &amp;amp;&amp;amp; \
-  apt-get install -y imagemagick &amp;amp;&amp;amp; \
-  apt-get install -y libvips-tools &amp;amp;&amp;amp; \
-  apt-get install -y locales
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Calculator&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-# Instala nossas dependencias
-RUN apt-get update &amp;amp;&amp;amp; apt-get install -qq -y --no-install-recommends \
-nodejs yarn build-essential libpq-dev imagemagick git-all nano
+&lt;ul&gt;
+  &lt;li&gt;Passo 4: Executar o teste novamente (e passar)
+Execute o teste novamente e verifique se ele passa agora:&lt;/li&gt;
+&lt;/ul&gt;
 
-WORKDIR /seuapp
-COPY Gemfile /seuapp/Gemfile
-COPY Gemfile.lock /seuapp/Gemfile.lock
-RUN bundle update mimemagic
-RUN bundle install
-COPY . /seuapp
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Isso colocará o código do seu aplicativo dentro de uma imagem que constrói um contêiner com Ruby, bundler e todas as suas dependências dentro dele.&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rspec&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;calculator_spec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;
 
-&lt;p&gt;agora vamos criar o &lt;a href=&quot;https://jtemporal.com/gemfile/&quot;&gt;Gemfile&lt;/a&gt;&lt;/p&gt;
+&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;failures&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;pre&gt;&lt;code&gt;
-source 'https://rubygems.org'
-gem 'rails', '~&amp;gt;6'
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;O teste deve passar sem erros. Isso significa que a implementação do método sum na classe Calculator está correta.&lt;/p&gt;
 
-&lt;p&gt;como todo projeto rails precisamos também do Gemfile.lock&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;touch Gemfile.lock
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+  &lt;li&gt;Passo 5: Refatorar e repetir&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://imasters.com.br/banco-de-dados/docker-compose-o-que-e-para-que-serve-o-que-come#:~:text=Docker%20Compose%20%C3%A9%20o%20orquestrador,mas%20os%20maestros%20somos%20n%C3%B3s!&quot;&gt;Docker-compose&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Agora que o teste passou, você pode refatorar o código se necessário. Refatoração envolve melhorar o design, legibilidade e desempenho do código sem alterar seu comportamento. Durante a refatoração, você pode executar os testes novamente para garantir que tudo continua funcionando corretamente.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;
-version: &quot;3.9&quot;
-services:
-  db:
-    image: postgres
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: password
-  web:
-    build: .
-    command: bash -c &quot;rm -f tmp/pids/server.pid &amp;amp;&amp;amp; bundle exec rails s -p 3000 -b '0.0.0.0'&quot;
-    volumes:
-      - .:/seuapp
-    ports:
-      - &quot;3000:3000&quot;
-    depends_on:
-      - db
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Repita esses passos para cada nova funcionalidade ou alteração que você desejar fazer no código. O ciclo de TDD é composto por escrever um teste, executá-lo (esperando uma falha), implementar o código mínimo necessário para fazer o teste passar e, em seguida, refatorar o código.&lt;/p&gt;
 
-&lt;p&gt;Agora vamos montar o projeto&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker-compose run --no-deps web rails new . --force --database=postgresql
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Primeiro, o Compose cria a imagem para o webserviço usando o Dockerfile. O –no-deps diz ao Compose para não iniciar os serviços vinculados. Em seguida, ele é executado rails newdentro de um novo contêiner, usando essa imagem. Uma vez feito isso, você deve ter gerado um novo aplicativo.&lt;/p&gt;
-
-&lt;p&gt;Você irá precisar de uma permissão para manipular os arquivos&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo chown -R $USER:$USER .
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Agora você está com a estrutura montada com todos os arquivos do rails, agora precisamos reconstruir a estrutura para usamos com o docker.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker-compose build
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Configurações de Banco de dados&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-default: &amp;amp;default
-  adapter: postgresql
-  encoding: unicode
-  host: db
-  username: postgres
-  password: password
-  pool: 5
-
-development:
-  &amp;lt;&amp;lt;: *default
-  database: myapp_development
-
-
-test:
-  &amp;lt;&amp;lt;: *default
-  database: myapp_test
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Agora você pode inicializar o aplicativo com&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker-compose up
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;se estiver tudo ok, essa é a mensagem que vai aparecer no terminal&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-rails_db_1 is up-to-date
-Creating rails_web_1 ... done
-Attaching to rails_db_1, rails_web_1
-db_1   | PostgreSQL init process complete; ready for start up.
-db_1   |
-db_1   | 2018-03-21 20:18:37.437 UTC [1] LOG:  listening on IPv4 address &quot;0.0.0.0&quot;, port 5432
-db_1   | 2018-03-21 20:18:37.437 UTC [1] LOG:  listening on IPv6 address &quot;::&quot;, port 5432
-db_1   | 2018-03-21 20:18:37.443 UTC [1] LOG:  listening on Unix socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot;
-db_1   | 2018-03-21 20:18:37.726 UTC [55] LOG:  database system was shut down at 2018-03-21 20:18:37 UTC
-db_1   | 2018-03-21 20:18:37.772 UTC [1] LOG:  database system is ready to accept connections
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Agora vamos criar o banco de dados&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-docker-compose run web rake db:create
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;mensagem que vai aparecer&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-Starting rails_db_1... done
-Created database 'seuapp_development'
-Created database 'seuapp_test'
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;depois vá para o navegador e digite&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-localhost:3000 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Referência estão nos links&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.redhat.com/pt-br/topics/containers/what-is-docker&quot;&gt;O que é Docker&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/get-docker/&quot;&gt;Docker&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://imasters.com.br/banco-de-dados/docker-compose-o-que-e-para-que-serve-o-que-come#:~:text=Docker%20Compose%20%C3%A9%20o%20orquestrador,mas%20os%20maestros%20somos%20n%C3%B3s!&quot;&gt;Docker-compose&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jtemporal.com/gemfile/&quot;&gt;Gemfile&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.alura.com.br/artigos/desvendando-o-dockerfile&quot;&gt;Dockerfile&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Essa é apenas uma introdução básica ao TDD usando Ruby. À medida que você ganha mais experiência, pode explorar recursos adicionais, como testes mais complexos, testes de borda, testes de integração e ferramentas auxiliares para testes, como mocks e stubs.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 17 Apr 2020 10:44:04 -0300</pubDate>
-        <link>http://localhost:4000/docker-para-rails</link>
-        <guid isPermaLink="true">http://localhost:4000/docker-para-rails</guid>
+        <pubDate>Wed, 07 Jun 2023 07:21:50 -0300</pubDate>
+        <link>http://localhost:4000/basico-de-tdd-usando-ruby</link>
+        <guid isPermaLink="true">http://localhost:4000/basico-de-tdd-usando-ruby</guid>
         
-        <category>iniciante</category>
+        <category>ruby</category>
         
-        <category>docker</category>
+        <category>rspec</category>
+        
+        <category>tdd</category>
+        
+        
+        <category>Ruby</category>
+        
+        <category>Code</category>
+        
+        <category>rspec</category>
+        
+        <category>tdd</category>
+        
+        <category>test</category>
+        
+      </item>
+    
+      <item>
+        <title>Fundamentos do Rspec</title>
+        <description>&lt;p&gt;O RSpec é uma biblioteca de teste de comportamento (behavior-driven testing) para a linguagem de programação Ruby. O seu objetivo é facilitar a escrita de testes legíveis e expressivos, fornecendo uma sintaxe clara e concisa que descreve o comportamento esperado de um sistema.&lt;/p&gt;
+
+&lt;p&gt;O fundamento básico do RSpec é o uso de uma sintaxe de domínio específica (DSL - Domain Specific Language) que permite que os testes sejam escritos de forma semelhante à especificação do comportamento do sistema. Isso ajuda a criar uma documentação viva dos requisitos e comportamentos esperados, além de facilitar a leitura e manutenção dos testes.&lt;/p&gt;
+
+&lt;p&gt;O RSpec segue uma abordagem chamada “describe-it”, onde os testes são organizados em blocos descritivos chamados “describe” que agrupam os cenários de teste relacionados. Dentro de cada bloco “describe”, são definidos os testes individuais utilizando a palavra-chave “it”. Cada teste deve ter uma expectativa (expectation) que define o resultado esperado.&lt;/p&gt;
+
+&lt;p&gt;Além disso, o RSpec fornece uma série de “matchers” que são utilizados para verificar se um resultado é igual ao esperado. Esses matchers incluem comparações de igualdade, verificação de tipos, comparação de coleções, entre outros.&lt;/p&gt;
+
+&lt;p&gt;A estrutura básica de um teste RSpec é a seguinte:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Nome do objeto em teste&amp;quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;descrição do cenário de teste&amp;quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Configuração do ambiente de teste&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Ação a ser testada&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Verificação do resultado esperado usando os matchers&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Essa é apenas uma visão geral do fundamento básico do RSpec. A biblioteca oferece muitos recursos adicionais, como “before” e “after” hooks para configuração prévia e limpeza posterior dos testes, uso de “context” para definir diferentes cenários, uso de “mocks” e “stubs” para simular comportamentos, entre outros. Esses recursos permitem que os testes sejam escritos de forma mais eficiente e flexível.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 29 May 2023 11:17:51 -0300</pubDate>
+        <link>http://localhost:4000/fundamentos-do-rspec</link>
+        <guid isPermaLink="true">http://localhost:4000/fundamentos-do-rspec</guid>
+        
+        <category>ruby</category>
+        
+        <category>rspec</category>
+        
+        <category>tdd</category>
+        
+        
+        <category>Ruby</category>
+        
+        <category>Code</category>
+        
+        <category>rspec</category>
+        
+        <category>tdd</category>
+        
+        <category>test</category>
+        
+      </item>
+    
+      <item>
+        <title>Um olhar simples para a buscar Linear</title>
+        <description>&lt;p&gt;O algoritmo de busca linear é muito simples e intuitivo. A ideia é percorrer todos os elementos do array um por um, verificando se cada elemento é igual ao valor de destino que estamos procurando. Se encontrarmos o elemento que estamos procurando, retornamos o índice do elemento no array. Se não encontrarmos o elemento, retornamos nil para indicar que o valor não foi encontrado.&lt;/p&gt;
+
+&lt;p&gt;Na implementação em Ruby, a função linear_search recebe dois argumentos: o array a ser pesquisado e o valor de destino que estamos procurando. Em seguida, a função usa um laço each_with_index para iterar por todos os elementos do array. A cada iteração, o laço passa o elemento atual e o índice desse elemento para um bloco que usa as variáveis item e index.&lt;/p&gt;
+
+&lt;p&gt;Dentro do bloco, verificamos se o elemento atual é igual ao valor de destino que estamos procurando. Se o elemento atual for igual ao valor de destino, retornamos o índice do elemento usando a palavra-chave return. Isso significa que a função termina imediatamente e não executa nenhuma iteração adicional do laço.&lt;/p&gt;
+
+&lt;p&gt;Se chegarmos ao final do laço sem encontrar o valor de destino, isso significa que o valor não está presente no array e a função retorna nil.&lt;/p&gt;
+
+&lt;p&gt;Aqui está um exemplo de como usar a função linear_search para procurar o valor 42 no array [1, 2, 3, 4, 5, 42, 43, 44]:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;linear_search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each_with_index&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;alert&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;pre&gt;&lt;code&gt;array = [2, 3, 4, 9, 19, 20]
+target = 20
+
+index = linear_search(array, target)
+ if index 
+  puts &quot;O valor #{target} foi encontrado no índece #{index} do array&quot;
+ else
+  puts &quot;O valor #{target} não foi encontrado no array&quot;
+ end
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Neste exemplo, a função linear_search é usada para procurar o valor 42 no array. A função retorna o índice 5, que é o índice do valor 42 no array. Em seguida, uma mensagem é exibida informando que o valor foi encontrado no índice 5 do array.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 11 Apr 2023 13:22:55 -0300</pubDate>
+        <link>http://localhost:4000/um-olhar-simples-para-a-buscar-linear</link>
+        <guid isPermaLink="true">http://localhost:4000/um-olhar-simples-para-a-buscar-linear</guid>
+        
+        <category>ruby</category>
+        
+        <category>linux</category>
+        
+        <category>algoritmo</category>
+        
+        
+        <category>Ruby</category>
+        
+        <category>Code</category>
+        
+        <category>algoritmo</category>
+        
+      </item>
+    
+      <item>
+        <title>Sintaxe Ruby</title>
+        <description>&lt;p&gt;A sintaxe Ruby é baseada em uma estrutura simples de comandos, métodos e expressões. A seguir, são apresentados alguns exemplos da sintaxe Ruby:&lt;/p&gt;
+
+&lt;p&gt;Declaração de variáveis:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nome = &quot;Maria&quot;
+idade = 25
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Estruturas de controle:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if idade &amp;gt;= 18
+  puts &quot;Você é maior de idade&quot;
+else
+  puts &quot;Você é menor de idade&quot;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Laços de repetição:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for i in 1..10
+  puts i
+end
+
+10.times do |i|
+  puts i
+end
+Definindo funções:
+css
+Copy code
+def somar(a, b)
+  return a + b
+end
+
+resultado = somar(2, 3)
+puts resultado
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Trabalhando com arrays:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;numeros = [1, 2, 3, 4, 5]
+numeros.each do |numero|
+  puts numero
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Trabalhando com strings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nome = &quot;Maria&quot;
+mensagem = &quot;Olá, #{nome}!&quot;
+puts mensagem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Trabalhando com classes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Pessoa
+  def initialize(nome, idade)
+    @nome = nome
+    @idade = idade
+  end
+  
+  def apresentar
+    puts &quot;Meu nome é #{@nome} e tenho #{@idade} anos&quot;
+  end
+end
+
+pessoa = Pessoa.new(&quot;Maria&quot;, 25)
+pessoa.apresentar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Esses são apenas alguns exemplos da sintaxe Ruby. A linguagem também oferece muitas outras ferramentas e recursos, como metaprogramação, expressões regulares, manipulação de arquivos e muito mais.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 31 Mar 2023 13:49:00 -0300</pubDate>
+        <link>http://localhost:4000/sintaxe-ruby</link>
+        <guid isPermaLink="true">http://localhost:4000/sintaxe-ruby</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>O QUE VOCÊ PRECISA SABER SOBRE RUBY</title>
+        <description>&lt;h3 id=&quot;aqui-estão-alguns-tópicos-interessantes-sobre-a-linguagem-ruby&quot;&gt;Aqui estão alguns tópicos interessantes sobre a linguagem Ruby:&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ruby é uma linguagem de programação orientada a objetos, o que significa que todos os objetos em Ruby têm métodos e propriedades. Isso torna a linguagem muito flexível e permite que os desenvolvedores escrevam código mais legível e fácil de entender.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A sintaxe de Ruby é muito limpa e elegante, o que torna a linguagem fácil de ler e escrever. Além disso, a linguagem suporta muitas construções de programação funcionais e inspiradas em linguagens como Lisp e Smalltalk.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ruby é uma linguagem que suporta metaprogramação, o que significa que os desenvolvedores podem escrever código que pode modificar outros códigos em tempo de execução. Isso permite a criação de bibliotecas e frameworks poderosos, como o Rails.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ruby tem uma biblioteca padrão muito rica, o que significa que há muitas ferramentas e recursos disponíveis para os desenvolvedores usarem sem ter que instalar bibliotecas adicionais. Isso economiza tempo e torna a linguagem mais acessível para iniciantes.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Embora Ruby seja uma linguagem orientada a objetos, ela também suporta programação funcional. Isso permite que os desenvolvedores escrevam código mais conciso e legível, especialmente em tarefas que envolvem transformações de dados.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ruby on Rails é um framework popular para a criação de aplicativos web. É conhecido por sua simplicidade e facilidade de uso, bem como sua capacidade de criar aplicativos robustos e escaláveis em um curto período de tempo.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A comunidade Ruby é grande e ativa, com muitos recursos disponíveis para ajudar os desenvolvedores a aprender e usar a linguagem. Há também muitos eventos e conferências de Ruby em todo o mundo.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Fri, 31 Mar 2023 12:20:40 -0300</pubDate>
+        <link>http://localhost:4000/o-que-voce-precisa-saber-sobre-ruby</link>
+        <guid isPermaLink="true">http://localhost:4000/o-que-voce-precisa-saber-sobre-ruby</guid>
         
         <category>rails</category>
+        
+        <category>ruby</category>
+        
+        <category>linux</category>
+        
+        <category>metodos</category>
         
         
         <category>Rails</category>
         
-        <category>Docker</category>
+        <category>Ruby</category>
+        
+        <category>Code</category>
+        
+      </item>
+    
+      <item>
+        <title>Problemas encontrado para estudar programação</title>
+        <description>&lt;p&gt;Quais são os problemas mais frequentes quando resolvemos estudar programação?&lt;/p&gt;
+
+&lt;p&gt;Vou relatar alguns problemas que passei durante minha vida de estudante da programação, esse post faz parte de como eu estudei errado.&lt;/p&gt;
+
+&lt;p&gt;Quando comecei não tinha toda essa estrutura que temos hoje de google, stack overflow, e outros.&lt;/p&gt;
+
+&lt;p&gt;A primeira dúvida era o que estudar, como começa?&lt;/p&gt;
+
+&lt;p&gt;Tutorial de html e css
+Procurei na internet alguns tutoriais que ensinava a criar sites, daí fui logo pro fogo sem saber de nada sem entender o que é html e sem entender qual era o impacto do css dentro de um site, então veio as primeiras caneladas como não sabia o que estava fazendo eu ia fazendo de qualquer jeito esperando resultados iguais do tutoriais.&lt;/p&gt;
+
+&lt;p&gt;Dicas: 
+antes de ir para o fogo, estude o básico, não saia dele antes de entender como o ecossistema funciona, não importa se é uma linguagem simples. 
+Procure alguém para pegar referência, alguém mais experiente vai te dar dicas importantes.
+Crie uma rotina de estudos com foco e disciplina.
+Estudar o que está no Hype?
+Fiquei meio perdido quando comecei, por não ter uma direção, eu estudava tudo que aparecia, então não aprendia nada.&lt;/p&gt;
+
+&lt;p&gt;Dicas:
+Separe um material, curso ou livro ou post de blog, estude, entenda e depois vá para o próximo.
+Tenha disciplina ao estudar esse material, separe um horário para aquela rotina de estudos, no começo é difícil mas com foco e disciplina você consegue.&lt;/p&gt;
+
+&lt;p&gt;Organização?
+Como relatado acima, estava perdido e não tinha um pingo de organização, 
+Não sabia o que estudava e nem sabia organizar meus estudos e meus materiais então quando pulava para outro tutorial ou livro ou curso, quase sempre me via estudando o mesmo conteúdo.&lt;/p&gt;
+
+&lt;p&gt;Dicas:
+Quando você separar o material, faça um cronograma do que você vai estudar, se for por meio de vídeos, primeiro assista e anote pontos importantes depois execute, não entendeu o processo, reveja o vídeo novamente, na sua cabeça rever o vídeo vai deixar você pra trás, acredite isso vai ajudar você lá na frente.
+Dúvidas?
+É natural quando você está estudando ter dúvidas relacionadas ao conteúdo, quando estava com dúvidas simplesmente não tinha com quem tirar, então pulava para a próxima parte do conteúdo, pois achava que tinha uma explicação no próximo capítulo ou vídeo.&lt;/p&gt;
+
+&lt;p&gt;Dicas:
+Procure um mentor, alguém que possa tirar suas dúvidas e orientar seu processo de aprendizagem.&lt;/p&gt;
+
+&lt;p&gt;Faça perguntas inteligentes.
+Confesso que hoje está mais fácil tirar dúvidas, stack overflow, google, comunidades e outros.
+Peguei algumas patadas no começo de algumas pessoas, por simplesmente não saber perguntar para ela, ou o problema era simples e não tinha lido direito, e não tinha sequer pesquisado algo antes para ver se conseguia resolver.&lt;/p&gt;
+
+&lt;p&gt;Dicas:
+Se você sentir que precisar de uma abordagem “one to one”, faça o seguinte;
+Pesquise antes no google, o problema que você está passando hoje já foi problema de alguém no passado.
+Não conseguiu entender ou não conseguiu achar, elabore sua pergunta e deixe ela o mais claro possível e deixe visível para a pessoa a parte que você não entendeu.
+Na abordagem, lembra que a pessoa que você irá pedir ajuda tem compromisso, então não faça ela perder tempo.
+Seja direto e claro.&lt;/p&gt;
+
+&lt;p&gt;Esse post foi para dar dicas para melhorar seu desempenho nos estudos da programação.
+Espero ter ajudado com esse conteúdo.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 21 Jan 2023 14:39:02 -0300</pubDate>
+        <link>http://localhost:4000/problemas-encontrado-para-estudar-programacao</link>
+        <guid isPermaLink="true">http://localhost:4000/problemas-encontrado-para-estudar-programacao</guid>
+        
+        <category>rails</category>
+        
+        <category>ruby</category>
+        
+        <category>linux</category>
+        
+        <category>metodos</category>
+        
+        
+        <category>Rails</category>
         
         <category>Ruby</category>
+        
+        <category>Code</category>
+        
+      </item>
+    
+      <item>
+        <title>Estudando Programação</title>
+        <description>&lt;p&gt;Estudando Programação&lt;/p&gt;
+
+&lt;p&gt;Como identifiquei que sempre estudei errado.&lt;/p&gt;
+
+&lt;p&gt;Mais uma história dessa saga de se tornar um programador.
+Quando comecei na programação há alguns anos atrás, fiquei muito perdido, como assim tem um caminho a seguir, lógica de programação, depois… ai que está o depois que é o obstáculo.
+Você não sabe o que estudar, o que é relevante para sua carreira, por isso que muitos iniciantes desistem ou até mesmo demoram a encontrar o caminho relevante.
+Imagina um iniciante estudando tudo pela frente ou pior, seguindo um passo a passo sem entender muito bem o que é o que faz e quais problemas você consegue resolver com a ferramenta.
+Então essa era minha rotina diária de estudos, depois de um certo tempo conversando com meu irmão ele me mostrou uma tecnologia nova gostei dela e fui estudar-lá.
+Só que tinha um problema, eu não tinha autogestão, então como ia estudar sem os controles principais foco e persistência, foi assim que fiquei por anos sem entender direito sobre o assunto, aí me tornei um programador mediano, não sabia usar a ferramenta direito e não conhecia todo o poder que a ferramenta tinha, nisso ficava bastante frustrado em minha capacidade técnica, passei por algumas empresas que pioraram minha frustração, e tinha o lado que não conseguia identificar meus erros, sempre me dedicando bastante para melhorar, depois do trabalho eu estudava bastante  e nada de evoluir. 
+Fui entrando e saindo das empresas com a mesma frustração de não conseguir entregar algo de valor para empresa. 
+Na minha saga de melhorar como programador, fui para em uma entrevista com tech lead Marco, que isso é assunto para outro post.
+Foi aí que descobri que meus estudos estavam errados, não tinha base lógica, nem soft skill e nem hard skill, fui descobrindo isso quando comecei a acompanhar sua mentoria, nela descobri que um programador precisa ter uma caixa de ferramenta para melhorar como profissional, depois de muito tempo que fui entender o verdadeiro caminho das pedras.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 21 Jan 2023 14:33:52 -0300</pubDate>
+        <link>http://localhost:4000/estudando-programacao</link>
+        <guid isPermaLink="true">http://localhost:4000/estudando-programacao</guid>
+        
+        <category>rails</category>
+        
+        <category>ruby</category>
+        
+        <category>linux</category>
+        
+        <category>metodos</category>
+        
+        
+        <category>Rails</category>
+        
+        <category>Ruby</category>
+        
+        <category>Code</category>
+        
+      </item>
+    
+      <item>
+        <title>Descobrindo o caminho das pedras</title>
+        <description>&lt;p&gt;Continuando com a história de como sempre estudei errado, essa parte vou falar como melhorei meus estudos e desempenho na programação, como falei no post anterior comecei a melhorar depois da mentoria do DesenvolvendoMe.&lt;/p&gt;
+
+&lt;p&gt;Lá aprendi a usar novas técnicas de desenvolvimento de software, e o que é preciso para melhorar como programador.&lt;/p&gt;
+
+&lt;p&gt;Estudando de maneira correta.&lt;/p&gt;
+
+&lt;p&gt;vamos dizer que você está empolgado com a área de TI, são várias linguagem, vários framework, vários influenciadores, aí você começa a estudar uma tecnologia que está no hype do mercado e algumas pessoas estão comentando sobre ela, você passa uma semana ou mais estudando ela sem entender direito o que está fazendo, aí você vê o lançamento de um framework, você pensar deve ser mais fácil aprender esse framework, e você vai e muda e começa a estudar só que sem entender nada.&lt;/p&gt;
+
+&lt;p&gt;Chega uma hora que você se pergunta porque não estou entendendo e não consigo aprender.&lt;/p&gt;
+
+&lt;p&gt;Sabe porque sua lógica pode está com falhas, mais você leu em algum lugar que não precisa de lógica de programação para aprender a programar, eu sempre penso assim, pra você fritar um ovo você precisa entender o processo e seguir passo a passo, até deixar o ovo pronto, na  programação não é diferente, você vai precisar entender o processo, regras de negócios e entender sobre o próprio negócio, a lógica vai facilitar pra você esse processo.&lt;/p&gt;
+
+&lt;p&gt;O que você precisar para fixar o estudos&lt;/p&gt;
+
+&lt;p&gt;além de estudar o básico da linguagem, aconselho a você ir nesses sites de teste lógicos para que você comece a exercitar formas de resolver um problema, como Uri, Hackerrank, esses sites ajuda bastante, eles disponibilizar exercícios básicos ao avançado para todo os níveis, vale a pena separar uma hora diária para praticar.&lt;/p&gt;
+
+&lt;p&gt;Aconselho a separar 30 minutos diários para praticar o básico da linguagem.&lt;/p&gt;
+
+&lt;p&gt;E o mais importante, leia a documentação, é ali que você vai entender tudo da linguagem.&lt;/p&gt;
+
+&lt;p&gt;Planejar um projeto e executar ele também vai ajudar na evolução.&lt;/p&gt;
+
+&lt;p&gt;Bom essa foi  a parte do Hard Skill, só entenda o seguinte, aprender requer determinação e foco sem isso você vai continuar rodando em círculo, use um pomodoro para ajudar no foco, determine um tempo que você achar melhor para praticar o foco, geralmente uso uma hora focado sem distrações.&lt;/p&gt;
+
+&lt;p&gt;Agora tem a parte do soft skill.&lt;/p&gt;
+
+&lt;p&gt;Soft skill é a arte de saber perguntar, quando você está começando no mundo da programação, você tem que perguntar muito, poder parece engraçado, mas na realidade você não entender como aquilo vai funcionar não fique com vergonha mesmo sabendo que a pessoa que vai te explicar é grossa e arrogante.&lt;/p&gt;
+
+&lt;p&gt;Tinha um conhecido que ele era uma pessoa muito arrogante, toda vez que eu ia perguntar uma coisa simples ele me respondia com grosseria mais respondia, mais não seja um petelho, aprender fazer perguntas inteligentes, mais como assim perguntas inteligentes, antes de perguntar para outra pessoa vá no google que lá vai ter alguma coisa explicando de uma forma que você possivelmente não entender de cara, então anote os pontos principais e o que você não entendeu e tenta resumir de uma forma objetiva para que a pessoa que vai ouvir ou ler sua pergunta entenda, porque eu falo isso, porque a pessoa vai parar o que ela está fazendo para te ajudar, então mastiga o máximo que você puder para facilitar a resposta ou até mesmo irem juntos procurar uma solução.&lt;/p&gt;
+
+&lt;p&gt;Nas suas conversas aprender a ser objetivo, fazer rodeio mesmo sabendo o que está falando pode ser cansativo para quem está ouvindo, bateu a dúvida anote, geralmente eu anoto tudo no keep do google, depois vou lá e organizo minhas dúvidas e perguntas, antes de fazer a pergunta eu dou uma revisada e tento resumir e se bem objetivo, se caso a pessoa que está ouvindo não entender eu explico de uma forma mais detalhada.&lt;/p&gt;
+
+&lt;p&gt;Tenha sempre foco e determinação, pense assim seus estudos são como uma construção de um prédio, se você não fizer uma estrutura forte na sua base, ele vai sempre balançar.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 21 Jan 2023 14:30:40 -0300</pubDate>
+        <link>http://localhost:4000/descobrindo-o-caminho-das-pedras</link>
+        <guid isPermaLink="true">http://localhost:4000/descobrindo-o-caminho-das-pedras</guid>
+        
+        <category>rails</category>
+        
+        <category>ruby</category>
+        
+        <category>linux</category>
+        
+        <category>metodos</category>
+        
+        
+        <category>Rails</category>
+        
+        <category>Ruby</category>
+        
+        <category>Code</category>
+        
+      </item>
+    
+      <item>
+        <title>Gem para projetos</title>
+        <description>&lt;h2 id=&quot;gem-fundamentais-para-um-projeto-rails&quot;&gt;Gem Fundamentais Para Um Projeto Rails&lt;/h2&gt;
+
+&lt;h3 id=&quot;gem-jbuilder&quot;&gt;Gem Jbuilder&lt;/h3&gt;
+
+&lt;p&gt;O Jbuilder oferece uma DSL simples para declarar estruturas JSON que superam a manipulação de estruturas hash gigantes. Isso é particularmente útil quando o processo de geração está repleto de condicionais e loops. Aqui está um exemplo simples:&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-rack-cors&quot;&gt;Gem rack-cors&lt;/h3&gt;
+
+&lt;p&gt;Rack::Cors fornece suporte para Cross-Origin Resource Sharing (CORS) para aplicativos da web compatíveis com Rack.
+A especificação CORS permite que aplicativos da web façam chamadas AJAX de domínio cruzado sem usar soluções alternativas como JSONP. Consulte Ajax entre domínios com compartilhamento de recursos entre origens&lt;/p&gt;
+&lt;h3 id=&quot;gem-dry-configurable&quot;&gt;Gem dry-configurable&lt;/h3&gt;
+
+&lt;p&gt;dry-configurableé um mixin simples para adicionar comportamento de configuração seguro com thread às suas classes. Existem muitas bibliotecas que fazem uso de configuração, e cada uma parecia ter sua própria implementação com uma interface semelhante ou duplicada, por isso achamos estranho que esse comportamento ainda não tivesse sido encapsulado em uma gema reutilizável, daí dry-configurablenasceu.&lt;/p&gt;
+&lt;h3 id=&quot;gem-ransack&quot;&gt;Gem ransack&lt;/h3&gt;
+
+&lt;p&gt;Ransack permite a criação de formulários de pesquisa simples e avançados para seu aplicativo Ruby on Rails ( código-fonte de demonstração aqui ). Se você está procurando por algo que simplifica a geração de consultas no modelo ou na camada do controlador, provavelmente não está procurando pelo Ransack (ou MetaSearch, nesse caso). Em vez disso, tente Squeel .&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-faraday&quot;&gt;Gem faraday&lt;/h3&gt;
+
+&lt;p&gt;Faraday é uma biblioteca cliente HTTP que fornece uma interface comum sobre muitos adaptadores (como Net :: HTTP) e adota o conceito de middleware Rack ao processar o ciclo de solicitação / resposta.&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-rspec_api_documentation&quot;&gt;Gem rspec_api_documentation&lt;/h3&gt;
+
+&lt;p&gt;Generate pretty API docs for your Rails APIs&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-apitome&quot;&gt;Gem apitome&lt;/h3&gt;
+
+&lt;p&gt;Apitome é uma ferramenta de documentação API para Rails construída sobre o excelente RSpec DSL incluído em rspec_api_documentation (RAD). Ele foi projetado para exibir a documentação gerada pelo RAD em uma única página ou em páginas individuais e usa Bootstrap para a maior parte do estilo básico e o highlight.js para realçar o código. Você pode fornecer um arquivo markdown que será exibido como a página README e, aproveitando a vantagem de sua estrutura de visualização modular, você pode substituir qualquer número de visualizações e parciais para personalizar a saída. Você também pode especificar CSS e javascript personalizados se quiser fazer coisas mais sofisticadas ou alterar sua aparência.&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-jwt&quot;&gt;Gem jwt&lt;/h3&gt;
+
+&lt;p&gt;A ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard.
+If you have further questions related to development or usage, join us: ruby-jwt google group.&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-devise_invitable&quot;&gt;Gem devise_invitable&lt;/h3&gt;
+&lt;p&gt;Adiciona suporte ao Devise para envio de convites por e-mail (requer autenticação) e aceita o convite configurando a senha.&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-devise-token-auth&quot;&gt;Gem devise token auth&lt;/h3&gt;
+
+&lt;p&gt;Autenticação simples, multi-cliente e segura baseada em tokens para Rails.
+Se você estiver criando um SPA ou um aplicativo móvel e quiser autenticação, precisará de tokens, não de cookies. Esta gema atualiza os tokens em cada solicitação e os expira em um curto período de tempo, para que o aplicativo esteja seguro. Além disso, ele mantém uma sessão para cada cliente / dispositivo, para que você possa ter quantas sessões quiser.&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-sentry-ruby&quot;&gt;Gem sentry-ruby&lt;/h3&gt;
+
+&lt;p&gt;O software ruim está em toda parte, e estamos cansados ​​disso. O Sentry tem a missão de ajudar os desenvolvedores a escrever software melhor com mais rapidez, para que possamos voltar a aproveitar a tecnologia. Se você quiser se juntar a nósCheck out our open positions&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-sentry-rails&quot;&gt;Gem sentry-rails&lt;/h3&gt;
+&lt;p&gt;O SDK Ruby do Sentry permite que os usuários relatem mensagens, exceções e eventos de rastreamento.
+O SDK suporta Ruby 2.4+ e as versões mais recentes do JRuby. Ele também se integra a estruturas e bibliotecas populares por meio de gemas específicas da biblioteca.&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-redis&quot;&gt;Gem redis&lt;/h3&gt;
+&lt;p&gt;Um cliente Ruby que tenta corresponder à API do Redis um a um, ao mesmo tempo que fornece uma interface idiomática.
+Veja RubyDoc.info para a documentação da API da última gem publicada.&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-groupdate&quot;&gt;Gem groupdate&lt;/h3&gt;
+&lt;p&gt;A maneira mais simples de agrupar por:
+Dia, semana, hora do dia, e mais (lista completa abaixo)
+Fusos horários - incluindo horário de verão - com suporte !! a melhor parte
+Obtenha a série inteira - a outra melhor parte
+Suporta PostgreSQL, MySQL e Redshift, além de matrizes e hashes (e suporte limitado para SQLite )
+Anda de mãos dadas com o Chartkick&lt;/p&gt;
+
+&lt;h1 id=&quot;desenvolvimento&quot;&gt;Desenvolvimento&lt;/h1&gt;
+
+&lt;h3 id=&quot;gem-rspec-rails&quot;&gt;Gem rspec-rails&lt;/h3&gt;
+
+&lt;p&gt;rspec-railstraz a estrutura de teste RSpec para Ruby on Rails como uma alternativa drop-in para sua estrutura de teste padrão, Minitest.
+No RSpec, os testes não são apenas scripts que verificam o código do seu aplicativo. Eles também são especificações (ou especificações, para abreviar): explicações detalhadas de como o aplicativo deve se comportar, expressas em inglês simples.
+De acordo com o uso da nova estratégia de versão do RSpec Rails :&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-shoulda&quot;&gt;Gem shoulda&lt;/h3&gt;
+&lt;p&gt;O Shoulda ajuda você a escrever testes específicos de Rails mais compreensíveis e fáceis de manter em Minitest e Test :: Unit.&lt;/p&gt;
+
+&lt;h3 id=&quot;gem-shoulda-matchers&quot;&gt;Gem shoulda-matchers&lt;/h3&gt;
+
+&lt;p&gt;O Shoulda Matchers fornece uma linha compatível com RSpec e Minitest para testar a funcionalidade Rails comum que, se escrita à mão, seria muito mais longa, mais complexa e sujeita a erros.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 21 Jan 2023 14:24:17 -0300</pubDate>
+        <link>http://localhost:4000/gem-para-projetos</link>
+        <guid isPermaLink="true">http://localhost:4000/gem-para-projetos</guid>
+        
+        <category>rails</category>
+        
+        <category>ruby</category>
+        
+        <category>linux</category>
+        
+        <category>metodos</category>
+        
+        
+        <category>Rails</category>
+        
+        <category>Ruby</category>
+        
+        <category>Code</category>
+        
+      </item>
+    
+      <item>
+        <title>O Básico de Ruby</title>
+        <description>&lt;p&gt;Continuando com a saga de &lt;em&gt;como se tornar um programador&lt;/em&gt;, agora vou falar sobre o básico da linguagem ruby, não irei contar a história de ruby e nem como instalar, vou adicionar links que vai ajudar você a lê e instalar.&lt;/p&gt;
+
+&lt;p&gt;Vamos entender primeiro o que é o básico do Ruby, o básico é o que serve como base, essencial e relevante e principalmente fundamental para sua carreira, entendido isso, não tenha dúvida que esse estudo é obrigatório para entender como funciona a linguagem.&lt;/p&gt;
+
+&lt;h2 id=&quot;tipos-de-dados&quot;&gt;Tipos de dados&lt;/h2&gt;
+
+&lt;p&gt;No ruby não existem tipos primitivos, todos os tipos são classes&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Object é a classe mãe de todas as outras classes em Ruby&lt;/li&gt;
+  &lt;li&gt;Numeric é uma classe abstrata que representa números&lt;/li&gt;
+  &lt;li&gt;Integer é uma classe que representa números inteiros&lt;/li&gt;
+  &lt;li&gt;Fixnum representa números inteiros de precisão fixa&lt;/li&gt;
+  &lt;li&gt;Bignum representa números inteiros de precisão infinita, dependente apenas da memória disponível&lt;/li&gt;
+  &lt;li&gt;Float é uma classe que representa números de ponto flutuante(números reais)&lt;/li&gt;
+  &lt;li&gt;String uma cadeia de caracteres. Pode ser delimitado por apóstrofes(‘)ou aspas(“). Tudo o que há entre apóstrofes literalmente, entres aspas o programador deve utilizar de símbolos para representar caracteres específicos, como C. Exemplo: ‘azul’, “a\nb\nc\”&lt;/li&gt;
+  &lt;li&gt;Symbol é semelhante a uma string, mas dois símbolos iguais possuem o mesmo endereço de memória, sendo assim é ótimo para se utilizar como índice numa Hash. Porém, devido à sua natureza, o coletor de lixo de ruby não os elimina. É definido com um sinal de dois pontos (:), por exemplo, :none&lt;/li&gt;
+  &lt;li&gt;Array são arrays dinâmicos, que podem ser usados para representar matrizes e vetores. É delimitado por colchetes([]) e cada valor é separado por vírgula. Exemplo: [4, ‘azul’, :termometro]&lt;/li&gt;
+  &lt;li&gt;Hash representa um vetor associativo, e, assim como as Arrays, é dinâmica. É delimitada por chaves ({}), e o índice precede o valor com um sinal ‘=&amp;gt;’. Exemplo: {:controller =&amp;gt;’user’, :action = ‘index’}.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Qualquer objeto pode ser índice, mas os mais usados são as Strings e os Symbols&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Regex representa expressões regulares, delimitadas por //.
+  Funciona de forma semelhante a Perl. Exemplo: 
+  /a|ae/&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Esses são os tipos de dados usados na linguagem desde o início.&lt;/p&gt;
+
+&lt;p&gt;Entenda isso e você vai entender a linguagem.&lt;/p&gt;
+
+&lt;p&gt;Um dos conceitos básicos da linguagem é a declaração das variáveis, que basta uma associação entre um nome e um valor que é pronto é criada uma variável.&lt;/p&gt;
+
+&lt;p&gt;Exemplo:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;Ano = 37
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Para você testar, vamos usar o interpretador do ruby que é o IRB(Interactive Ruby Shell).
+Vá no seu terminal e digite irb, veja que ele vai abrir&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;╰─ irb                       
+2.6.6 :001 &amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Um console que abre informando a versão do seu ruby e o número de vezes que ele foi usado.&lt;/p&gt;
+
+&lt;p&gt;No primeiro exemplo declaramos uma variável do tipo inteiro que ela vai ser chamada de ano e atribuímos o valor 37 nela, mais como o interpretador sabe que ali tem uma variável do tipo inteiro.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;ano = 37
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ruby tem um intérpretador que infere o tipo de variável durante a execução do código.&lt;/p&gt;
+
+&lt;p&gt;Uma forma interessante para você identificar o tipo da variável&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;ano = 37 
+puts ano.class
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Você pediu para o puts mostrar o tipo da variável ano.
+ Que o resultado vai ser :&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;╰─ irb                          
+2.6.6 :001 &amp;gt; 2.6.6 :001 &amp;gt; ano = 37 
+ =&amp;gt; 37 
+2.6.6 :002 &amp;gt; puts ano.class
+Integer
+ =&amp;gt; nil 
+2.6.6 :003 &amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Quando chamamos o &lt;strong&gt;.class&lt;/strong&gt; depois de qualquer variável ele trás o tipo de variável.&lt;/p&gt;
+
+&lt;h2 id=&quot;tipagem&quot;&gt;Tipagem&lt;/h2&gt;
+
+&lt;p&gt;Qual é a diferença entre tipagens;&lt;/p&gt;
+
+&lt;h3 id=&quot;estática&quot;&gt;Estática&lt;/h3&gt;
+
+&lt;p&gt;Tipagem estática é quando definimos explicitamente o tipo de variáveis de um software no código que na hora da compilação do código ele é conhecido e checado.&lt;/p&gt;
+
+&lt;p&gt;Linguagem que usam tipagem estáticas 
+Java, C#, F#, Kotlin, Go.&lt;/p&gt;
+
+&lt;p&gt;Essa análise ajuda na chamada de segurança de tipos na utilização dos dados pelo programador.&lt;/p&gt;
+
+&lt;h3 id=&quot;dinâmica&quot;&gt;Dinâmica&lt;/h3&gt;
+
+&lt;p&gt;A tipagem dinâmica também é verificada mais de uma maneira diferente, ela verifica direto os tipos de dados.&lt;/p&gt;
+
+&lt;p&gt;Linguagem que usam tipagens dinâmicas
+Ruby, Python, Clojure, Elixir.&lt;/p&gt;
+
+&lt;h3 id=&quot;forte&quot;&gt;Forte&lt;/h3&gt;
+&lt;p&gt;A tipagem forte não realiza conversões automaticamente.&lt;/p&gt;
+
+&lt;h3 id=&quot;fraca&quot;&gt;Fraca&lt;/h3&gt;
+
+&lt;p&gt;A tipagem fraca, vem da característica da linguagem de realizar conversões automaticamente entre diferentes tipos de dados.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 21 Jan 2023 13:57:32 -0300</pubDate>
+        <link>http://localhost:4000/o-basico-de-ruby</link>
+        <guid isPermaLink="true">http://localhost:4000/o-basico-de-ruby</guid>
+        
+        <category>rails</category>
+        
+        <category>ruby</category>
+        
+        <category>linux</category>
+        
+        <category>metodos</category>
+        
+        
+        <category>Rails</category>
+        
+        <category>Ruby</category>
+        
+        <category>Code</category>
         
       </item>
     
