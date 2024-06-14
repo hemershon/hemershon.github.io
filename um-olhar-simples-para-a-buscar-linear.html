@@ -9,8 +9,8 @@
 <meta name="description" content="O algoritmo de busca linear é muito simples e intuitivo. A ideia é percorrer todos os elementos do array um por um, verificando se cada elemento é igual ao v...">
 
 <link rel="stylesheet" href="/css/main.css">
-<link rel="canonical" href="http://localhost:4000/um-olhar-simples-para-a-buscar-linear">
-<link rel="alternate" type="application/rss+xml" title="Hemershon" href="http://localhost:4000/feed.xml" />
+<link rel="canonical" href="/um-olhar-simples-para-a-buscar-linear">
+<link rel="alternate" type="application/rss+xml" title="Hemershon" href="/feed.xml" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -39,6 +39,8 @@
         
           <li><a href="/about" title="Sobre">Sobre</a></li>
         
+          <li><a href="/project" title="Projeto">Projeto</a></li>
+        
           <li><a href="/blog" title="Blog">Blog</a></li>
         
         <li><a href="https://github.com/hemershon/archive/master.zip" title="Download">Download</a></li>
@@ -51,23 +53,23 @@
 
 <main class="main-container">
   <div class="container">
-    <article role="article" class="post">
+      <article role="article" class="post">
 
-  <div class="card">
-    <header class="post-header">
-      <h1 class="post-title">Um olhar simples para a buscar Linear</h1>
-      <em class="post-meta">
-        <time>Apr 11, 2023</time>
-      </em>
-    </header>
+    <div class="card">
+      <header class="post-header">
+        <h1 class="post-title">Um olhar simples para a buscar Linear</h1>
+        <em class="post-meta">
+          <time>Apr 11, 2023</time>
+        </em>
+      </header>
 
-    <div class="post-content">
-      
-        <figure class="post-thumbnail ">
-          <img src="https://dicionariotec.com/public_html/images/linear_search.jpg" alt="Um olhar simples para a buscar Linear">
-        </figure>
-      
-      <p>O algoritmo de busca linear é muito simples e intuitivo. A ideia é percorrer todos os elementos do array um por um, verificando se cada elemento é igual ao valor de destino que estamos procurando. Se encontrarmos o elemento que estamos procurando, retornamos o índice do elemento no array. Se não encontrarmos o elemento, retornamos nil para indicar que o valor não foi encontrado.</p>
+      <div class="post-content">
+        
+          <figure class="post-thumbnail ">
+            <img src="https://dicionariotec.com/public_html/images/linear_search.jpg" alt="Um olhar simples para a buscar Linear">
+          </figure>
+        
+        <p>O algoritmo de busca linear é muito simples e intuitivo. A ideia é percorrer todos os elementos do array um por um, verificando se cada elemento é igual ao valor de destino que estamos procurando. Se encontrarmos o elemento que estamos procurando, retornamos o índice do elemento no array. Se não encontrarmos o elemento, retornamos nil para indicar que o valor não foi encontrado.</p>
 
 <p>Na implementação em Ruby, a função linear_search recebe dois argumentos: o array a ser pesquisado e o valor de destino que estamos procurando. Em seguida, a função usa um laço each_with_index para iterar por todos os elementos do array. A cada iteração, o laço passa o elemento atual e o índice desse elemento para um bloco que usa as variáveis item e index.</p>
 
@@ -102,9 +104,9 @@ index = linear_search(array, target)
 </code></pre>
 <p>Neste exemplo, a função linear_search é usada para procurar o valor 42 no array. A função retorna o índice 5, que é o índice do valor 42 no array. Em seguida, uma mensagem é exibida informando que o valor foi encontrado no índice 5 do array.</p>
 
-    </div>
+      </div>
 
-    
+      
 <hr>
 
 <aside id="comments" class="disqus">
@@ -112,7 +114,7 @@ index = linear_search(array, target)
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function() {
-      this.page.url = 'http://localhost:4000/um-olhar-simples-para-a-buscar-linear';
+      this.page.url = '/um-olhar-simples-para-a-buscar-linear';
       this.page.identifier = '/um-olhar-simples-para-a-buscar-linear';
     };
     (function() {
@@ -127,10 +129,9 @@ index = linear_search(array, target)
 </aside>
 
 
-  </div>
+    </div>
 
-</article>
-
+  </article>
   </div>
 </main>
 

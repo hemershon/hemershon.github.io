@@ -3,10 +3,10 @@
   <channel>
     <title>Hemershon</title>
     <description>Blog do Hemershon Silva, engenheiro de software Sênior a 7 anos desenvolvendo soluções web.</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 18 Apr 2024 10:19:28 -0300</pubDate>
-    <lastBuildDate>Thu, 18 Apr 2024 10:19:28 -0300</lastBuildDate>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 13 Jun 2024 23:28:05 -0300</pubDate>
+    <lastBuildDate>Thu, 13 Jun 2024 23:28:05 -0300</lastBuildDate>
     <generator>Jekyll v3.6.3</generator>
     
       <item>
@@ -87,8 +87,8 @@ Execute o teste novamente e verifique se ele passa agora:&lt;/li&gt;
 &lt;p&gt;Essa é apenas uma introdução básica ao TDD usando Ruby. À medida que você ganha mais experiência, pode explorar recursos adicionais, como testes mais complexos, testes de borda, testes de integração e ferramentas auxiliares para testes, como mocks e stubs.&lt;/p&gt;
 </description>
         <pubDate>Wed, 07 Jun 2023 07:21:50 -0300</pubDate>
-        <link>http://localhost:4000/basico-de-tdd-usando-ruby</link>
-        <guid isPermaLink="true">http://localhost:4000/basico-de-tdd-usando-ruby</guid>
+        <link>/basico-de-tdd-usando-ruby</link>
+        <guid isPermaLink="true">/basico-de-tdd-usando-ruby</guid>
         
         <category>ruby</category>
         
@@ -135,8 +135,8 @@ Execute o teste novamente e verifique se ele passa agora:&lt;/li&gt;
 
 </description>
         <pubDate>Mon, 29 May 2023 11:17:51 -0300</pubDate>
-        <link>http://localhost:4000/fundamentos-do-rspec</link>
-        <guid isPermaLink="true">http://localhost:4000/fundamentos-do-rspec</guid>
+        <link>/fundamentos-do-rspec</link>
+        <guid isPermaLink="true">/fundamentos-do-rspec</guid>
         
         <category>ruby</category>
         
@@ -195,8 +195,8 @@ index = linear_search(array, target)
 &lt;p&gt;Neste exemplo, a função linear_search é usada para procurar o valor 42 no array. A função retorna o índice 5, que é o índice do valor 42 no array. Em seguida, uma mensagem é exibida informando que o valor foi encontrado no índice 5 do array.&lt;/p&gt;
 </description>
         <pubDate>Tue, 11 Apr 2023 13:22:55 -0300</pubDate>
-        <link>http://localhost:4000/um-olhar-simples-para-a-buscar-linear</link>
-        <guid isPermaLink="true">http://localhost:4000/um-olhar-simples-para-a-buscar-linear</guid>
+        <link>/um-olhar-simples-para-a-buscar-linear</link>
+        <guid isPermaLink="true">/um-olhar-simples-para-a-buscar-linear</guid>
         
         <category>ruby</category>
         
@@ -284,8 +284,8 @@ pessoa.apresentar
 &lt;p&gt;Esses são apenas alguns exemplos da sintaxe Ruby. A linguagem também oferece muitas outras ferramentas e recursos, como metaprogramação, expressões regulares, manipulação de arquivos e muito mais.&lt;/p&gt;
 </description>
         <pubDate>Fri, 31 Mar 2023 13:49:00 -0300</pubDate>
-        <link>http://localhost:4000/sintaxe-ruby</link>
-        <guid isPermaLink="true">http://localhost:4000/sintaxe-ruby</guid>
+        <link>/sintaxe-ruby</link>
+        <guid isPermaLink="true">/sintaxe-ruby</guid>
         
         
       </item>
@@ -323,8 +323,8 @@ pessoa.apresentar
 &lt;/blockquote&gt;
 </description>
         <pubDate>Fri, 31 Mar 2023 12:20:40 -0300</pubDate>
-        <link>http://localhost:4000/o-que-voce-precisa-saber-sobre-ruby</link>
-        <guid isPermaLink="true">http://localhost:4000/o-que-voce-precisa-saber-sobre-ruby</guid>
+        <link>/o-que-voce-precisa-saber-sobre-ruby</link>
+        <guid isPermaLink="true">/o-que-voce-precisa-saber-sobre-ruby</guid>
         
         <category>rails</category>
         
@@ -395,8 +395,8 @@ Espero ter ajudado com esse conteúdo.&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 21 Jan 2023 14:39:02 -0300</pubDate>
-        <link>http://localhost:4000/problemas-encontrado-para-estudar-programacao</link>
-        <guid isPermaLink="true">http://localhost:4000/problemas-encontrado-para-estudar-programacao</guid>
+        <link>/problemas-encontrado-para-estudar-programacao</link>
+        <guid isPermaLink="true">/problemas-encontrado-para-estudar-programacao</guid>
         
         <category>rails</category>
         
@@ -432,8 +432,8 @@ Na minha saga de melhorar como programador, fui para em uma entrevista com tech 
 Foi aí que descobri que meus estudos estavam errados, não tinha base lógica, nem soft skill e nem hard skill, fui descobrindo isso quando comecei a acompanhar sua mentoria, nela descobri que um programador precisa ter uma caixa de ferramenta para melhorar como profissional, depois de muito tempo que fui entender o verdadeiro caminho das pedras.&lt;/p&gt;
 </description>
         <pubDate>Sat, 21 Jan 2023 14:33:52 -0300</pubDate>
-        <link>http://localhost:4000/estudando-programacao</link>
-        <guid isPermaLink="true">http://localhost:4000/estudando-programacao</guid>
+        <link>/estudando-programacao</link>
+        <guid isPermaLink="true">/estudando-programacao</guid>
         
         <category>rails</category>
         
@@ -490,8 +490,8 @@ Foi aí que descobri que meus estudos estavam errados, não tinha base lógica, 
 
 </description>
         <pubDate>Sat, 21 Jan 2023 14:30:40 -0300</pubDate>
-        <link>http://localhost:4000/descobrindo-o-caminho-das-pedras</link>
-        <guid isPermaLink="true">http://localhost:4000/descobrindo-o-caminho-das-pedras</guid>
+        <link>/descobrindo-o-caminho-das-pedras</link>
+        <guid isPermaLink="true">/descobrindo-o-caminho-das-pedras</guid>
         
         <category>rails</category>
         
@@ -590,8 +590,8 @@ De acordo com o uso da nova estratégia de versão do RSpec Rails :&lt;/p&gt;
 &lt;p&gt;O Shoulda Matchers fornece uma linha compatível com RSpec e Minitest para testar a funcionalidade Rails comum que, se escrita à mão, seria muito mais longa, mais complexa e sujeita a erros.&lt;/p&gt;
 </description>
         <pubDate>Sat, 21 Jan 2023 14:24:17 -0300</pubDate>
-        <link>http://localhost:4000/gem-para-projetos</link>
-        <guid isPermaLink="true">http://localhost:4000/gem-para-projetos</guid>
+        <link>/gem-para-projetos</link>
+        <guid isPermaLink="true">/gem-para-projetos</guid>
         
         <category>rails</category>
         
@@ -709,8 +709,8 @@ Ruby, Python, Clojure, Elixir.&lt;/p&gt;
 &lt;p&gt;A tipagem fraca, vem da característica da linguagem de realizar conversões automaticamente entre diferentes tipos de dados.&lt;/p&gt;
 </description>
         <pubDate>Sat, 21 Jan 2023 13:57:32 -0300</pubDate>
-        <link>http://localhost:4000/o-basico-de-ruby</link>
-        <guid isPermaLink="true">http://localhost:4000/o-basico-de-ruby</guid>
+        <link>/o-basico-de-ruby</link>
+        <guid isPermaLink="true">/o-basico-de-ruby</guid>
         
         <category>rails</category>
         
