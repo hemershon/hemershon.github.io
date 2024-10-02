@@ -2,12 +2,124 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hemershon</title>
-    <description>Blog do Hemershon Silva, engenheiro de software Sênior a 7 anos desenvolvendo soluções web.</description>
+    <description>Blog do Hemershon Silva, engenheiro de software Sênior a 12 anos desenvolvendo soluções web.</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 13 Jun 2024 23:28:05 -0300</pubDate>
-    <lastBuildDate>Thu, 13 Jun 2024 23:28:05 -0300</lastBuildDate>
+    <pubDate>Wed, 02 Oct 2024 14:48:19 -0300</pubDate>
+    <lastBuildDate>Wed, 02 Oct 2024 14:48:19 -0300</lastBuildDate>
     <generator>Jekyll v3.6.3</generator>
+    
+      <item>
+        <title>Configurando o Vim com um IDE leve em 7 passos</title>
+        <description>&lt;h1 id=&quot;configurando-o-vim-como-um-ide-leve-em-7-passos&quot;&gt;Configurando o Vim como um IDE Leve em 7 Passos&lt;/h1&gt;
+
+&lt;h2 id=&quot;1-crie-um-vimrc-minimalista&quot;&gt;1. Crie um Vimrc Minimalista&lt;/h2&gt;
+
+&lt;p&gt;O primeiro arquivo encontrado será usado:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;$VIMINIT&lt;/code&gt; (variável de ambiente)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;$HOME/.vimrc&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;$HOME/.vim/vimrc&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;$EXINIT&lt;/code&gt; (variável de ambiente)&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;$HOME/.exrc&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;$VIMRUNTIME/defaults.vim&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Vimrc Minimalista:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;filetype plugin indent on
+syntax on
+set backspace=indent,eol,start
+set hidden
+set noswapfile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;2-corrija-a-formatação&quot;&gt;2. Corrija a Formatação&lt;/h2&gt;
+
+&lt;h3 id=&quot;exemplo-de-python-seguindo-os-padrões-pep-8&quot;&gt;Exemplo de Python (seguindo os padrões PEP 8):&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;4 espaços por nível de indentação&lt;/li&gt;
+  &lt;li&gt;Limite de 79 caracteres por linha&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Configuração:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;$HOME/.vim/after/ftplugin/python.vim
+set shiftwidth=4 tabstop=4 softtabstop=4 expandtab=4 autoindent smartindent
+set colorcolumn=80
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;3-ajuste-seu-caminho&quot;&gt;3. Ajuste seu Caminho&lt;/h2&gt;
+
+&lt;p&gt;Certifique-se de que seu diretório atual (:pwd) seja a raiz do projeto. Identifique quais partes do projeto serão frequentemente exploradas e adicione-as ao seu &lt;code&gt;:path&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Configuração:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;$HOME/.vim/vimrc
+set path=.,**
+
+$HOME/.vim/after/ftplugin/python.vim
+setlocal path=src/**,tests,bin/**
+setlocal wildignore=*/__pycache__/*,*.pyc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;4-configure-a-busca-de-inclusão&quot;&gt;4. Configure a Busca de Inclusão&lt;/h2&gt;
+
+&lt;p&gt;A busca de inclusão é muito poderosa e define comandos e padrões que permitem localizar instantaneamente definições de símbolos (como funções, variáveis e macros).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Configuração:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;$HOME/.vim/after/ftplugin/python.vim
+setlocal include=^\\s*import
+setlocal define=^\\s*\\&amp;lt;\\(def\\\|class\\)\\&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;5-configure-tags&quot;&gt;5. Configure Tags&lt;/h2&gt;
+
+&lt;p&gt;Quando a busca de inclusão falhar, as tags são a melhor opção. Basta criar um arquivo de tags para o seu projeto e mantê-lo sincronizado após fazer alterações.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Configuração:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;$HOME/.tags
+--langdef=Go
+--langmap=Go:.go
+--regex-Go=/func([ \t]+\([^)]+\))?[ \t]+([a-zA-Z0-9_]+)/\2/d,func/
+--regex-Go=/var[ \t]+([a-zA-Z_][a-zA-Z0-9_]+)/\1/d,var/
+--regex-Go=/type[ \t]+([a-zA-Z_][a-zA-Z0-9_]+)/\1/d,type/
+--regex-Go=/const[ \t]+([a-zA-Z_][a-zA-Z0-9_]+)/\1/d,const/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;6-adicione-suporte-ao-compilador&quot;&gt;6. Adicione Suporte ao Compilador&lt;/h2&gt;
+
+&lt;p&gt;Integre um compilador com &lt;code&gt;makeprg&lt;/code&gt; e &lt;code&gt;errorformat&lt;/code&gt; do Vim para fluxos de trabalho de compilação e edição contínuos.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Configuração:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;$HOME/.vim/compiler/go.vim
+let current_compiler = 'go'
+CompilerSet makeprg=go\ build\ ./...
+CompilerSet errorformat=%E%f:%l:%c:%m
+
+$HOME/.vim/after/ftplugin/go.vim
+compiler go
+nnoremap &amp;lt;buffer&amp;gt; &amp;lt;space&amp;gt; :silent make &amp;lt;bar&amp;gt; redraw!&amp;lt;CR&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;7-torne-a-configuração-portátil&quot;&gt;7. Torne a Configuração Portátil&lt;/h2&gt;
+
+&lt;p&gt;Utilize o GNU Stow - envie seus dotfiles para um repositório no GitHub e use o Stow para distribuição.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Agradecimentos!&lt;/strong&gt;
+&lt;strong&gt;Font:&lt;/strong&gt;
+&lt;strong&gt;Créditos:&lt;/strong&gt; Este modelo de apresentação foi criado pela Slidesgo, incluindo ícones da Flaticon e infográficos e imagens da Freepik.
+&lt;a href=&quot;https://www.youtube.com/c/leerentalks&quot;&gt;Lee Ren Talks&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;GitHub: leerenchang&lt;/li&gt;
+  &lt;li&gt;Twitter: leeren&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 06 Jul 2024 05:39:46 -0300</pubDate>
+        <link>/configurando-o-vim-com-um-ide-leve-em-7-passos</link>
+        <guid isPermaLink="true">/configurando-o-vim-com-um-ide-leve-em-7-passos</guid>
+        
+        
+      </item>
     
       <item>
         <title>Básico de TDD usando Ruby</title>
@@ -592,125 +704,6 @@ De acordo com o uso da nova estratégia de versão do RSpec Rails :&lt;/p&gt;
         <pubDate>Sat, 21 Jan 2023 14:24:17 -0300</pubDate>
         <link>/gem-para-projetos</link>
         <guid isPermaLink="true">/gem-para-projetos</guid>
-        
-        <category>rails</category>
-        
-        <category>ruby</category>
-        
-        <category>linux</category>
-        
-        <category>metodos</category>
-        
-        
-        <category>Rails</category>
-        
-        <category>Ruby</category>
-        
-        <category>Code</category>
-        
-      </item>
-    
-      <item>
-        <title>O Básico de Ruby</title>
-        <description>&lt;p&gt;Continuando com a saga de &lt;em&gt;como se tornar um programador&lt;/em&gt;, agora vou falar sobre o básico da linguagem ruby, não irei contar a história de ruby e nem como instalar, vou adicionar links que vai ajudar você a lê e instalar.&lt;/p&gt;
-
-&lt;p&gt;Vamos entender primeiro o que é o básico do Ruby, o básico é o que serve como base, essencial e relevante e principalmente fundamental para sua carreira, entendido isso, não tenha dúvida que esse estudo é obrigatório para entender como funciona a linguagem.&lt;/p&gt;
-
-&lt;h2 id=&quot;tipos-de-dados&quot;&gt;Tipos de dados&lt;/h2&gt;
-
-&lt;p&gt;No ruby não existem tipos primitivos, todos os tipos são classes&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Object é a classe mãe de todas as outras classes em Ruby&lt;/li&gt;
-  &lt;li&gt;Numeric é uma classe abstrata que representa números&lt;/li&gt;
-  &lt;li&gt;Integer é uma classe que representa números inteiros&lt;/li&gt;
-  &lt;li&gt;Fixnum representa números inteiros de precisão fixa&lt;/li&gt;
-  &lt;li&gt;Bignum representa números inteiros de precisão infinita, dependente apenas da memória disponível&lt;/li&gt;
-  &lt;li&gt;Float é uma classe que representa números de ponto flutuante(números reais)&lt;/li&gt;
-  &lt;li&gt;String uma cadeia de caracteres. Pode ser delimitado por apóstrofes(‘)ou aspas(“). Tudo o que há entre apóstrofes literalmente, entres aspas o programador deve utilizar de símbolos para representar caracteres específicos, como C. Exemplo: ‘azul’, “a\nb\nc\”&lt;/li&gt;
-  &lt;li&gt;Symbol é semelhante a uma string, mas dois símbolos iguais possuem o mesmo endereço de memória, sendo assim é ótimo para se utilizar como índice numa Hash. Porém, devido à sua natureza, o coletor de lixo de ruby não os elimina. É definido com um sinal de dois pontos (:), por exemplo, :none&lt;/li&gt;
-  &lt;li&gt;Array são arrays dinâmicos, que podem ser usados para representar matrizes e vetores. É delimitado por colchetes([]) e cada valor é separado por vírgula. Exemplo: [4, ‘azul’, :termometro]&lt;/li&gt;
-  &lt;li&gt;Hash representa um vetor associativo, e, assim como as Arrays, é dinâmica. É delimitada por chaves ({}), e o índice precede o valor com um sinal ‘=&amp;gt;’. Exemplo: {:controller =&amp;gt;’user’, :action = ‘index’}.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Qualquer objeto pode ser índice, mas os mais usados são as Strings e os Symbols&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Regex representa expressões regulares, delimitadas por //.
-  Funciona de forma semelhante a Perl. Exemplo: 
-  /a|ae/&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Esses são os tipos de dados usados na linguagem desde o início.&lt;/p&gt;
-
-&lt;p&gt;Entenda isso e você vai entender a linguagem.&lt;/p&gt;
-
-&lt;p&gt;Um dos conceitos básicos da linguagem é a declaração das variáveis, que basta uma associação entre um nome e um valor que é pronto é criada uma variável.&lt;/p&gt;
-
-&lt;p&gt;Exemplo:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;Ano = 37
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Para você testar, vamos usar o interpretador do ruby que é o IRB(Interactive Ruby Shell).
-Vá no seu terminal e digite irb, veja que ele vai abrir&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;╰─ irb                       
-2.6.6 :001 &amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Um console que abre informando a versão do seu ruby e o número de vezes que ele foi usado.&lt;/p&gt;
-
-&lt;p&gt;No primeiro exemplo declaramos uma variável do tipo inteiro que ela vai ser chamada de ano e atribuímos o valor 37 nela, mais como o interpretador sabe que ali tem uma variável do tipo inteiro.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;ano = 37
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ruby tem um intérpretador que infere o tipo de variável durante a execução do código.&lt;/p&gt;
-
-&lt;p&gt;Uma forma interessante para você identificar o tipo da variável&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;ano = 37 
-puts ano.class
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Você pediu para o puts mostrar o tipo da variável ano.
- Que o resultado vai ser :&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;╰─ irb                          
-2.6.6 :001 &amp;gt; 2.6.6 :001 &amp;gt; ano = 37 
- =&amp;gt; 37 
-2.6.6 :002 &amp;gt; puts ano.class
-Integer
- =&amp;gt; nil 
-2.6.6 :003 &amp;gt; 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Quando chamamos o &lt;strong&gt;.class&lt;/strong&gt; depois de qualquer variável ele trás o tipo de variável.&lt;/p&gt;
-
-&lt;h2 id=&quot;tipagem&quot;&gt;Tipagem&lt;/h2&gt;
-
-&lt;p&gt;Qual é a diferença entre tipagens;&lt;/p&gt;
-
-&lt;h3 id=&quot;estática&quot;&gt;Estática&lt;/h3&gt;
-
-&lt;p&gt;Tipagem estática é quando definimos explicitamente o tipo de variáveis de um software no código que na hora da compilação do código ele é conhecido e checado.&lt;/p&gt;
-
-&lt;p&gt;Linguagem que usam tipagem estáticas 
-Java, C#, F#, Kotlin, Go.&lt;/p&gt;
-
-&lt;p&gt;Essa análise ajuda na chamada de segurança de tipos na utilização dos dados pelo programador.&lt;/p&gt;
-
-&lt;h3 id=&quot;dinâmica&quot;&gt;Dinâmica&lt;/h3&gt;
-
-&lt;p&gt;A tipagem dinâmica também é verificada mais de uma maneira diferente, ela verifica direto os tipos de dados.&lt;/p&gt;
-
-&lt;p&gt;Linguagem que usam tipagens dinâmicas
-Ruby, Python, Clojure, Elixir.&lt;/p&gt;
-
-&lt;h3 id=&quot;forte&quot;&gt;Forte&lt;/h3&gt;
-&lt;p&gt;A tipagem forte não realiza conversões automaticamente.&lt;/p&gt;
-
-&lt;h3 id=&quot;fraca&quot;&gt;Fraca&lt;/h3&gt;
-
-&lt;p&gt;A tipagem fraca, vem da característica da linguagem de realizar conversões automaticamente entre diferentes tipos de dados.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 21 Jan 2023 13:57:32 -0300</pubDate>
-        <link>/o-basico-de-ruby</link>
-        <guid isPermaLink="true">/o-basico-de-ruby</guid>
         
         <category>rails</category>
         
