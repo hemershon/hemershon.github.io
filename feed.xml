@@ -5,9 +5,628 @@
     <description>Blog do Hemershon Silva, engenheiro de software Sênior a 12 anos desenvolvendo soluções web.</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 02 Oct 2024 14:48:19 -0300</pubDate>
-    <lastBuildDate>Wed, 02 Oct 2024 14:48:19 -0300</lastBuildDate>
+    <pubDate>Thu, 03 Oct 2024 16:21:59 -0300</pubDate>
+    <lastBuildDate>Thu, 03 Oct 2024 16:21:59 -0300</lastBuildDate>
     <generator>Jekyll v3.6.3</generator>
+    
+      <item>
+        <title>Active Record</title>
+        <description>&lt;p&gt;Entenda a teoria do Active Record no Ruby on Rails é um padrão de design que facilita a interação entre a aplicação e o banco de dados. Ele é parte da arquitetura MVC (Model-View-Controller) do Rails e serve como uma camada de abstração para o acesso a dados. Aqui estão os principais conceitos e características do Active Record:&lt;/p&gt;
+
+&lt;h3 id=&quot;1-modelo-como-representação-de-dados&quot;&gt;1. &lt;strong&gt;Modelo como Representação de Dados&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Cada classe de modelo no Rails representa uma tabela no banco de dados. Por exemplo, uma classe &lt;code&gt;User&lt;/code&gt; representa a tabela &lt;code&gt;users&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Os atributos da classe correspondem às colunas da tabela.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-crud-simplificado&quot;&gt;2. &lt;strong&gt;CRUD Simplificado&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;O Active Record fornece métodos para realizar operações CRUD (Create, Read, Update, Delete) de forma simples e intuitiva:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`User.create(name: &amp;quot;John Doe&amp;quot;)`&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Read&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`User.find(1)`&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ou&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`User.where(active: true)`&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`user.update(name: &amp;quot;Jane Doe&amp;quot;)`&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Delete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`user.destroy`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;3-associations-associações&quot;&gt;3. &lt;strong&gt;Associations (Associações)&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Active Record permite definir relações entre diferentes modelos, como &lt;code&gt;belongs_to&lt;/code&gt;, &lt;code&gt;has_many&lt;/code&gt; e &lt;code&gt;has_one&lt;/code&gt;. Essas associações facilitam a recuperação de dados relacionados.&lt;/li&gt;
+  &lt;li&gt;Exemplo:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:posts&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;4-validations-validações&quot;&gt;4. &lt;strong&gt;Validations (Validações)&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;O Active Record permite adicionar validações para garantir que os dados atendam a certos critérios antes de serem salvos no banco de dados.&lt;/li&gt;
+  &lt;li&gt;Exemplo:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;presence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;uniqueness&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;5-callbacks&quot;&gt;5. &lt;strong&gt;Callbacks&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Active Record permite definir métodos que são executados em pontos específicos do ciclo de vida do modelo, como antes ou depois de criar, atualizar ou destruir registros.&lt;/li&gt;
+  &lt;li&gt;Exemplo:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;before_save&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:capitalize_name&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;capitalize_name&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;         &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capitalize&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;6-migrations&quot;&gt;6. &lt;strong&gt;Migrations&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;As migrações são scripts que ajudam a modificar o esquema do banco de dados de forma controlada. O Active Record fornece um sistema de migrações que facilita a criação e alteração de tabelas.&lt;/li&gt;
+  &lt;li&gt;Exemplo:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;CreateUsers&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Migration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;change&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;         &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create_table&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:users&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;           &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;           &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;           &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timestamps&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;         &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;7-scopes&quot;&gt;7. &lt;strong&gt;Scopes&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Scopes são métodos que permitem definir consultas reutilizáveis que podem ser encadeadas.&lt;/li&gt;
+  &lt;li&gt;Exemplo:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;       &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;     &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Scopes&lt;/strong&gt; são uma funcionalidade do Active Record no Ruby on Rails que permitem definir consultas (queries) reutilizáveis e legíveis de maneira simples e eficaz. Eles são usados para encapsular lógicas de filtragem, tornando o código mais organizado e fácil de entender.&lt;/p&gt;
+
+&lt;h3 id=&quot;vantagens-dos-scopes&quot;&gt;Vantagens dos Scopes&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Reutilização de Código&lt;/strong&gt;: Se você precisa repetir uma consulta específica várias vezes em seu código, um scope encapsula essa lógica para que você não tenha que escrever a mesma consulta repetidamente.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Composição de Consultas&lt;/strong&gt;: Scopes podem ser encadeados, permitindo compor consultas complexas a partir de várias consultas menores.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Legibilidade&lt;/strong&gt;: Utilizar scopes torna o código mais legível, especialmente em projetos grandes.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;definição-de-scopes&quot;&gt;Definição de Scopes&lt;/h3&gt;
+
+&lt;p&gt;Os &lt;strong&gt;scopes&lt;/strong&gt; são definidos no modelo (&lt;code&gt;app/models/&lt;/code&gt;) e têm a seguinte estrutura básica:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ModelName&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name_of_scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;O scope é definido com &lt;code&gt;scope :name, -&amp;gt; { query }&lt;/code&gt;, onde &lt;code&gt;:name&lt;/code&gt; é o nome do scope, e &lt;code&gt;query&lt;/code&gt; é a condição que define a consulta.&lt;/p&gt;
+
+&lt;h3 id=&quot;exemplo-básico&quot;&gt;Exemplo Básico&lt;/h3&gt;
+
+&lt;p&gt;Vamos supor que temos um modelo &lt;code&gt;User&lt;/code&gt; com atributos &lt;code&gt;active&lt;/code&gt; e &lt;code&gt;created_at&lt;/code&gt;. Aqui estão alguns exemplos de como criar scopes para esse modelo:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Scope para encontrar usuários ativos&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Scope para encontrar usuários criados no último mês&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:created_last_month&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;created_at &amp;gt;= ?&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ago&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Scope para encontrar usuários com um email específico&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:with_email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;como-usar-scopes&quot;&gt;Como Usar Scopes&lt;/h4&gt;
+
+&lt;p&gt;Depois de definir os scopes no modelo, você pode usá-los nas consultas. Aqui estão alguns exemplos de uso:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Para listar todos os usuários ativos:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;active&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Para encontrar usuários que foram criados no último mês:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created_last_month&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Para encontrar usuários com um email específico:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;with_email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;example@example.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Encadeando Scopes&lt;/strong&gt;:
+Você pode combinar vários scopes juntos, o que resulta em consultas mais poderosas:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created_last_month&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Neste exemplo, o Rails gera uma consulta que encontra usuários ativos que também foram criados no último mês.&lt;/p&gt;
+
+&lt;h3 id=&quot;scopes-dinâmicos&quot;&gt;Scopes Dinâmicos&lt;/h3&gt;
+
+&lt;p&gt;Um scope pode receber parâmetros para tornar a consulta mais flexível. Por exemplo, podemos criar um scope que filtre usuários criados há mais de &lt;code&gt;n&lt;/code&gt; dias:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Scope dinâmico com parâmetro&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:created_more_than&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;days&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;created_at &amp;lt;= ?&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;days&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;days&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ago&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Agora, podemos usá-lo passando um valor como argumento:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created_more_than&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Isso retornaria todos os usuários criados há mais de 30 dias.&lt;/p&gt;
+
+&lt;h3 id=&quot;boas-práticas&quot;&gt;Boas Práticas&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Usar lambdas (&lt;code&gt;-&amp;gt;&lt;/code&gt;)&lt;/strong&gt;: Sempre defina scopes com lambdas para garantir que eles sejam avaliados no momento da execução, e não no momento da definição do código. Isso evita problemas com consultas que usam variáveis dinâmicas ou dependem de dados atuais.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Encadeamento de Scopes&lt;/strong&gt;: Aproveite o encadeamento de scopes para criar consultas mais refinadas de forma progressiva, mantendo cada scope simples e direto.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Evitar Lógica Complexa&lt;/strong&gt;: Se a consulta precisa de muita lógica condicional, considere se um &lt;strong&gt;método de classe&lt;/strong&gt; não seria mais adequado, uma vez que a intenção dos scopes é manter as consultas simples e reutilizáveis.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;métodos-de-classe-vs-scopes&quot;&gt;Métodos de Classe vs. Scopes&lt;/h3&gt;
+
+&lt;p&gt;Embora os scopes sejam convenientes, métodos de classe também podem ser usados quando há necessidade de consultas mais complexas ou quando a lógica não é facilmente expressa com Active Record:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;created_last_week&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;created_at &amp;gt;= ? AND created_at &amp;lt;= ?&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;week&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ago&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;beginning_of_week&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;week&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ago&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end_of_week&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Se a lógica condicional for muito grande, o uso de métodos de classe pode ser mais apropriado do que um scope.&lt;/p&gt;
+
+&lt;h3 id=&quot;scopes-com-ordens-e-limites&quot;&gt;Scopes Com Ordens e Limites&lt;/h3&gt;
+
+&lt;p&gt;Scopes também podem incluir ordenações e limites:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Scope que retorna os 5 posts mais recentes&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:recent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;created_at&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:desc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Agora, podemos chamar &lt;code&gt;Post.recent&lt;/code&gt; para obter os 5 posts mais recentes.&lt;/p&gt;
+
+&lt;p&gt;Scopes no Active Record são uma forma eficiente de encapsular consultas comuns e reutilizáveis no Rails. Eles tornam o código mais organizado e legível, permitindo consultas flexíveis e poderosas. Quando a lógica é mais complexa, métodos de classe podem ser usados para complementar o uso de scopes.&lt;/p&gt;
+
+&lt;h3 id=&quot;8-integração-com-sql&quot;&gt;8. &lt;strong&gt;Integração com SQL&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Embora o Active Record forneça uma abstração, ele ainda permite que os desenvolvedores escrevam consultas SQL quando necessário, usando o método &lt;code&gt;find_by_sql&lt;/code&gt; ou passando instruções SQL diretamente.
+A integração do &lt;strong&gt;Active Record&lt;/strong&gt; com SQL no Ruby on Rails oferece uma camada de abstração que permite realizar operações no banco de dados de forma simples, usando métodos Ruby. No entanto, o Active Record também fornece maneiras de interagir diretamente com SQL quando há necessidade de consultas mais complexas ou específicas.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Aqui estão alguns detalhes sobre como essa integração funciona:&lt;/p&gt;
+
+&lt;h3 id=&quot;1-consultas-básicas-com-active-record&quot;&gt;1. &lt;strong&gt;Consultas Básicas com Active Record&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Active Record permite executar operações SQL comuns (SELECT, INSERT, UPDATE, DELETE) de forma transparente. Alguns exemplos incluem:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;SELECT&lt;/strong&gt; (leitura de dados):&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# SELECT * FROM users WHERE active = true;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;INSERT&lt;/strong&gt; (inserção de dados):&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;John Doe&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;john@example.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# INSERT INTO users (name, email) VALUES (&amp;#39;John Doe&amp;#39;, &amp;#39;john@example.com&amp;#39;);&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;UPDATE&lt;/strong&gt; (atualização de dados):&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Jane Doe&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# UPDATE users SET name = &amp;#39;Jane Doe&amp;#39; WHERE id = 1;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;DELETE&lt;/strong&gt; (remoção de dados):&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;destroy&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# DELETE FROM users WHERE id = 1;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;2-consultas-sql-personalizadas-com-active-record&quot;&gt;2. &lt;strong&gt;Consultas SQL Personalizadas com Active Record&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Embora o Active Record permita realizar consultas usando métodos Ruby, às vezes você pode precisar de uma consulta SQL mais complexa ou personalizada. O Active Record permite que você execute SQL bruto diretamente:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code&gt;find_by_sql&lt;/code&gt;&lt;/strong&gt;: Permite executar consultas SQL completas e retornar objetos do modelo correspondente.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;find_by_sql&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;SELECT * FROM users WHERE active = true AND created_at &amp;gt;= &amp;#39;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ago&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Isso executa a consulta SQL e retorna uma coleção de objetos &lt;code&gt;User&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code&gt;connection.execute&lt;/code&gt;&lt;/strong&gt;: Permite executar consultas SQL que não retornam objetos do modelo, como consultas DDL (Data Definition Language), que criam ou alteram tabelas.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;DELETE FROM users WHERE last_login IS NULL&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Esse exemplo executa uma query &lt;code&gt;DELETE&lt;/code&gt; diretamente no banco de dados.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-raw-sql-com-where-e-order&quot;&gt;3. &lt;strong&gt;Raw SQL com &lt;code&gt;where&lt;/code&gt; e &lt;code&gt;order&lt;/code&gt;&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Você pode utilizar SQL bruto dentro dos métodos Active Record, como &lt;code&gt;where&lt;/code&gt; e &lt;code&gt;order&lt;/code&gt;, quando precisar de mais flexibilidade.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code&gt;where&lt;/code&gt; com SQL bruto&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at &amp;gt;= ?&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;week&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ago&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Aqui, o Active Record permite o uso de SQL no método &lt;code&gt;where&lt;/code&gt;, substituindo o &lt;code&gt;?&lt;/code&gt; pelo valor fornecido (&lt;code&gt;1.week.ago&lt;/code&gt;), protegendo automaticamente contra injeção de SQL.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code&gt;order&lt;/code&gt; com SQL bruto&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;LENGTH(name) DESC&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Nesse caso, usamos uma função SQL (LENGTH) para ordenar os usuários pelo comprimento do nome.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-joins-e-associação-com-sql&quot;&gt;4. &lt;strong&gt;Joins e Associação com SQL&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;O Active Record também facilita o uso de &lt;strong&gt;joins&lt;/strong&gt; (uniões) de tabelas, mas quando necessário, você pode escrever SQL para unir tabelas diretamente.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code&gt;joins&lt;/code&gt; com Active Record&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;joins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:posts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;published&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Isso gera uma consulta SQL com um &lt;code&gt;INNER JOIN&lt;/code&gt; entre as tabelas &lt;code&gt;users&lt;/code&gt; e &lt;code&gt;posts&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;SQL personalizado em &lt;code&gt;joins&lt;/code&gt;&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;joins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;INNER JOIN posts ON posts.user_id = users.id AND posts.published = true&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Você pode escrever um SQL &lt;code&gt;JOIN&lt;/code&gt; mais específico, passando uma string SQL diretamente.&lt;/p&gt;
+
+&lt;h3 id=&quot;5-execução-de-sql-de-manipulação-direta&quot;&gt;5. &lt;strong&gt;Execução de SQL de Manipulação Direta&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Se for necessário criar ou modificar diretamente o banco de dados (por exemplo, em scripts ou migrações), você pode usar SQL diretamente através da conexão do Active Record.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Criação de tabelas&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;s2&quot;&gt;    CREATE TABLE archived_users AS&lt;/span&gt;
+&lt;span class=&quot;s2&quot;&gt;    SELECT * FROM users WHERE active = false&lt;/span&gt;
+&lt;span class=&quot;s2&quot;&gt;  &amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Esse comando executa SQL para criar uma nova tabela &lt;code&gt;archived_users&lt;/code&gt;, copiando dados de &lt;code&gt;users&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;6-transações-com-sql&quot;&gt;6. &lt;strong&gt;Transações com SQL&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;O Active Record facilita o uso de transações, que garantem que uma série de operações SQL sejam executadas de maneira atômica (ou todas são bem-sucedidas, ou nenhuma é executada).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Usando transações&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transaction&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;John Doe&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Payment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Se qualquer uma das operações falhar (por exemplo, &lt;code&gt;Payment.create!&lt;/code&gt; lançar uma exceção), o Active Record reverte a transação, garantindo que nenhum dado seja inserido ou alterado.&lt;/p&gt;
+
+&lt;h3 id=&quot;7-scopes-e-sql&quot;&gt;7. &lt;strong&gt;Scopes e SQL&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Você pode combinar SQL personalizado dentro de &lt;strong&gt;scopes&lt;/strong&gt; no Active Record para criar consultas reutilizáveis e flexíveis.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Exemplo de scope com SQL&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:recent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at &amp;gt;= ?&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ago&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;active&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Encadeando scopes&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;active&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Esse código combina um scope que retorna usuários recentes com outro que retorna apenas os usuários ativos, usando SQL bruto dentro do scope.&lt;/p&gt;
+
+&lt;h3 id=&quot;8-injeção-de-sql-segura&quot;&gt;8. &lt;strong&gt;Injeção de SQL Segura&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Rails protege automaticamente contra &lt;strong&gt;injeção de SQL&lt;/strong&gt; ao substituir os valores nos métodos como &lt;code&gt;where&lt;/code&gt; ou &lt;code&gt;find_by&lt;/code&gt;. Por exemplo:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;email = ?&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Aqui, o Rails escapa e formata corretamente o valor de &lt;code&gt;params[:email]&lt;/code&gt;, evitando que comandos maliciosos sejam executados.&lt;/p&gt;
+
+&lt;h3 id=&quot;9-consultas-complexas-com-arel&quot;&gt;9. &lt;strong&gt;Consultas Complexas com &lt;code&gt;Arel&lt;/code&gt;&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Para consultas mais complexas, você pode usar o &lt;strong&gt;Arel&lt;/strong&gt;, que é a biblioteca por trás do Active Record que gera SQL. Ele permite criar consultas dinâmicas mais poderosas, mantendo a segurança e legibilidade.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Exemplo básico de Arel&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arel_table&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;                &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:active&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;connection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_sql&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Com o Arel, você tem mais controle sobre a construção das consultas SQL diretamente no Ruby, sem perder a abstração fornecida pelo Active Record.&lt;/p&gt;
+
+&lt;h3 id=&quot;integração&quot;&gt;integração&lt;/h3&gt;
+
+&lt;p&gt;A integração do Active Record com SQL é altamente flexível e permite que você trabalhe com abstrações de alto nível para a maioria das operações de banco de dados. Quando necessário, você também pode escrever consultas SQL personalizadas ou diretas, garantindo que tenha o controle total sobre as consultas mais complexas e específicas, sem abrir mão da segurança contra injeção de SQL.&lt;/p&gt;
+
+&lt;h3 id=&quot;9-convenções-sobre-configuração&quot;&gt;9. &lt;strong&gt;Convenções sobre Configuração&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;O Active Record segue a filosofia de “convenções sobre configuração”, o que significa que ele funciona automaticamente com base em convenções predefinidas (como nomes de tabelas e colunas), minimizando a necessidade de configuração adicional.
+Em Ruby on Rails, o princípio de “Convenção sobre Configuração” (Convention over Configuration, ou &lt;strong&gt;CoC&lt;/strong&gt;) é uma das filosofias centrais que torna o framework tão popular e eficiente. Ele se baseia na ideia de que, se o desenvolvedor seguir as convenções estabelecidas pelo Rails, não será necessário especificar muitos detalhes de configuração, pois o Rails já saberá como interpretar o código e suas intenções. Isso ajuda a reduzir o número de decisões que o desenvolvedor precisa tomar, o que resulta em maior produtividade e um código mais limpo e padronizado.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;como-funciona-o-convenção-sobre-configuração-no-rails&quot;&gt;Como Funciona o “Convenção sobre Configuração” no Rails?&lt;/h3&gt;
+
+&lt;p&gt;Ao invés de exigir que o desenvolvedor configure explicitamente todos os aspectos de uma aplicação, o Rails adota um conjunto de padrões e convenções predefinidos. Se você seguir essas convenções, o Rails cuidará automaticamente de muitas coisas nos bastidores. Caso você precise desviar dessas convenções, é possível configurar manualmente, mas o Rails assume que a maioria dos casos usará os padrões.&lt;/p&gt;
+
+&lt;p&gt;Aqui estão os principais exemplos de como o Rails aplica &lt;strong&gt;Convenção sobre Configuração&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;1-nomeação-de-arquivos-e-pastas&quot;&gt;1. &lt;strong&gt;Nomeação de Arquivos e Pastas&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;O Rails segue uma convenção rígida sobre onde os arquivos devem estar localizados e como eles devem ser nomeados. Ao seguir essas convenções, o Rails pode automaticamente carregar e associar classes, modelos, controladores e outros componentes sem necessidade de configurações extras.&lt;/p&gt;
+
+&lt;h4 id=&quot;exemplo&quot;&gt;Exemplo:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Modelos ficam em &lt;code&gt;app/models&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Controladores ficam em &lt;code&gt;app/controllers&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Arquivos de views (visões) ficam em &lt;code&gt;app/views&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Se você tem um controlador chamado &lt;code&gt;UsersController&lt;/code&gt;, o Rails automaticamente espera que:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;O arquivo do controlador seja chamado &lt;code&gt;users_controller.rb&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;O arquivo esteja localizado em &lt;code&gt;app/controllers/&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;O modelo associado seja &lt;code&gt;User&lt;/code&gt; (singular).&lt;/li&gt;
+  &lt;li&gt;O modelo esteja em &lt;code&gt;app/models/user.rb&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Essa convenção simplifica o fluxo de trabalho, porque o Rails já sabe onde procurar pelas classes e arquivos.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;2-nomenclatura-de-modelos-e-tabelas&quot;&gt;2. &lt;strong&gt;Nomenclatura de Modelos e Tabelas&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;No Rails, os modelos são nomeados no singular, enquanto as tabelas no banco de dados associadas a esses modelos são nomeadas no plural. Essa convenção elimina a necessidade de você configurar explicitamente o nome da tabela em um modelo, a menos que queira desviar dessa convenção.&lt;/p&gt;
+
+&lt;h4 id=&quot;exemplo-1&quot;&gt;Exemplo:&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Um modelo chamado &lt;code&gt;User&lt;/code&gt; se associa, por padrão, a uma tabela chamada &lt;code&gt;users&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Um modelo chamado &lt;code&gt;ProductCategory&lt;/code&gt; se associa, por padrão, a uma tabela chamada &lt;code&gt;product_categories&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Caso queira usar um nome de tabela diferente, você pode configurar isso manualmente no modelo:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;my_custom_table&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;3-convenções-de-rotas&quot;&gt;3. &lt;strong&gt;Convenções de Rotas&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;O Rails utiliza convenções ao criar rotas RESTful (Representational State Transfer) para recursos (resources). Quando você define um recurso no arquivo &lt;code&gt;config/routes.rb&lt;/code&gt;, o Rails automaticamente cria as rotas CRUD (Create, Read, Update, Delete) associadas ao recurso.&lt;/p&gt;
+
+&lt;h4 id=&quot;exemplo-2&quot;&gt;Exemplo:&lt;/h4&gt;
+
+&lt;p&gt;Ao adicionar uma linha no arquivo &lt;code&gt;config/routes.rb&lt;/code&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:users&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;O Rails automaticamente cria as seguintes rotas:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;HTTP Verbo&lt;/th&gt;
+      &lt;th&gt;URL&lt;/th&gt;
+      &lt;th&gt;Controller#Ação&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GET&lt;/td&gt;
+      &lt;td&gt;/users&lt;/td&gt;
+      &lt;td&gt;users#index&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GET&lt;/td&gt;
+      &lt;td&gt;/users/:id&lt;/td&gt;
+      &lt;td&gt;users#show&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;POST&lt;/td&gt;
+      &lt;td&gt;/users&lt;/td&gt;
+      &lt;td&gt;users#create&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;PATCH/PUT&lt;/td&gt;
+      &lt;td&gt;/users/:id&lt;/td&gt;
+      &lt;td&gt;users#update&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DELETE&lt;/td&gt;
+      &lt;td&gt;/users/:id&lt;/td&gt;
+      &lt;td&gt;users#destroy&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GET&lt;/td&gt;
+      &lt;td&gt;/users/new&lt;/td&gt;
+      &lt;td&gt;users#new&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GET&lt;/td&gt;
+      &lt;td&gt;/users/:id/edit&lt;/td&gt;
+      &lt;td&gt;users#edit&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Essas rotas são geradas automaticamente seguindo as convenções RESTful, sem que o desenvolvedor precise definir cada rota manualmente.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;4-conexão-de-modelos-com-o-banco-de-dados&quot;&gt;4. &lt;strong&gt;Conexão de Modelos com o Banco de Dados&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Por convenção, os campos da tabela de um modelo devem seguir uma nomenclatura pré-determinada para que o Rails saiba como trabalhar com eles. Por exemplo, o Rails já espera campos como:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;id&lt;/code&gt;: campo de chave primária (gerado automaticamente).&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;created_at&lt;/code&gt; e &lt;code&gt;updated_at&lt;/code&gt;: campos de timestamp (gerados automaticamente).&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;user_id&lt;/code&gt;: campo de chave estrangeira para associar com o modelo &lt;code&gt;User&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ao usar convenções como essas, o Rails consegue automaticamente fazer associações (&lt;code&gt;has_many&lt;/code&gt;, &lt;code&gt;belongs_to&lt;/code&gt;), criar timestamps, e gerir chaves primárias e estrangeiras, sem configurações extras.&lt;/p&gt;
+
+&lt;h4 id=&quot;exemplo-3&quot;&gt;Exemplo:&lt;/h4&gt;
+&lt;p&gt;Se você criar uma tabela &lt;code&gt;posts&lt;/code&gt; com uma coluna &lt;code&gt;user_id&lt;/code&gt;, o Rails já sabe que &lt;code&gt;user_id&lt;/code&gt; é a chave estrangeira que associa um &lt;code&gt;Post&lt;/code&gt; ao modelo &lt;code&gt;User&lt;/code&gt;. Então, você pode criar uma associação no modelo &lt;code&gt;Post&lt;/code&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;O Rails automaticamente associa &lt;code&gt;user_id&lt;/code&gt; à relação com o modelo &lt;code&gt;User&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;5-convenção-para-views-e-layouts&quot;&gt;5. &lt;strong&gt;Convenção para Views e Layouts&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Rails segue convenções para organizar as views dentro da pasta &lt;code&gt;app/views&lt;/code&gt;, baseando-se nos nomes dos controladores. Quando você cria um controlador chamado &lt;code&gt;UsersController&lt;/code&gt;, o Rails espera que as views associadas a esse controlador estejam na pasta &lt;code&gt;app/views/users&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;exemplo-4&quot;&gt;Exemplo:&lt;/h4&gt;
+&lt;p&gt;Se você tem uma ação &lt;code&gt;index&lt;/code&gt; no &lt;code&gt;UsersController&lt;/code&gt;, o Rails espera encontrar o arquivo da view correspondente em &lt;code&gt;app/views/users/index.html.erb&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Além disso, o Rails também segue convenções para layouts. Se você tem um layout padrão chamado &lt;code&gt;application.html.erb&lt;/code&gt; em &lt;code&gt;app/views/layouts/&lt;/code&gt;, o Rails automaticamente aplicará esse layout a todas as páginas, a menos que seja especificado um layout diferente.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;6-convenção-para-migrações&quot;&gt;6. &lt;strong&gt;Convenção para Migrações&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;As migrações no Rails seguem convenções para gerar mudanças no banco de dados. O Rails gera arquivos de migração nomeados de acordo com a tarefa que estão realizando. Além disso, o Rails usa nomes de tabelas e colunas baseados nos nomes dos modelos.&lt;/p&gt;
+
+&lt;h4 id=&quot;exemplo-5&quot;&gt;Exemplo:&lt;/h4&gt;
+
+&lt;p&gt;Ao rodar o comando:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rails&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;generate&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;migration&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;AddAgeToUsers&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;integer&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;O Rails gera uma migração com o nome &lt;code&gt;AddAgeToUsers&lt;/code&gt;, e o arquivo de migração incluirá automaticamente a instrução para adicionar a coluna &lt;code&gt;age&lt;/code&gt; do tipo &lt;code&gt;integer&lt;/code&gt; à tabela &lt;code&gt;users&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Essa convenção facilita a compreensão de migrações, já que o nome do arquivo reflete diretamente o que a migração faz.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;7-convenção-para-e-mails-e-mailers&quot;&gt;7. &lt;strong&gt;Convenção para E-mails e Mailers&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Quando você gera um mailer no Rails, ele segue convenções tanto para a estrutura de diretórios quanto para o nome dos templates de e-mail.&lt;/p&gt;
+
+&lt;h4 id=&quot;exemplo-6&quot;&gt;Exemplo:&lt;/h4&gt;
+
+&lt;p&gt;Ao criar um mailer chamado &lt;code&gt;UserMailer&lt;/code&gt; com uma ação &lt;code&gt;welcome_email&lt;/code&gt;, o Rails espera que o template correspondente esteja em:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;views&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_mailer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;welcome_email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erb&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;E que o nome da classe &lt;code&gt;UserMailer&lt;/code&gt; contenha um método chamado &lt;code&gt;welcome_email&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;8-convenção-de-testes&quot;&gt;8. &lt;strong&gt;Convenção de Testes&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;O Rails também impõe convenções sobre como os testes devem ser organizados. Testes de modelos ficam em &lt;code&gt;test/models&lt;/code&gt;, testes de controladores ficam em &lt;code&gt;test/controllers&lt;/code&gt;, e assim por diante. Além disso, Rails espera que os arquivos de teste correspondam aos seus respectivos modelos, controladores ou funcionalidades.&lt;/p&gt;
+
+&lt;h4 id=&quot;exemplo-7&quot;&gt;Exemplo:&lt;/h4&gt;
+
+&lt;p&gt;Se você tem um modelo chamado &lt;code&gt;User&lt;/code&gt;, o Rails espera encontrar um arquivo de teste para ele em &lt;code&gt;test/models/user_test.rb&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;benefícios-da-convenção-sobre-configuração&quot;&gt;Benefícios da Convenção sobre Configuração&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Produtividade&lt;/strong&gt;: O Rails elimina a necessidade de configurar manualmente muitos aspectos da aplicação, permitindo que o desenvolvedor foque mais na lógica do negócio.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Facilidade de Manutenção&lt;/strong&gt;: Seguindo convenções, o código Rails fica mais fácil de ler e manter, já que qualquer desenvolvedor familiar com Rails pode entender a estrutura e o fluxo da aplicação sem precisar de extensa documentação.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Redução de Erros&lt;/strong&gt;: Ao seguir padrões pré-definidos, o risco de introduzir erros de configuração é minimizado.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;quando-personalizar&quot;&gt;Quando Personalizar?&lt;/h3&gt;
+
+&lt;p&gt;Embora o Rails siga convenções que cobrem a maioria dos casos, há situações em que você pode precisar personalizar o comportamento. Felizmente, o Rails é flexível o suficiente para permitir que você altere as convenções quando necessário, através de configurações manuais.&lt;/p&gt;
+
+&lt;p&gt;Exemplo de personalização:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ApplicationRecord&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table_name&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;usuarios&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;O princípio de &lt;strong&gt;Convenção sobre Configuração&lt;/strong&gt; em Rails torna o desenvolvimento mais rápido, organizado e fácil de entender. Ao aderir às convenções do Rails, você reduz a necessidade de configuração explícita, aproveitando o framework ao máximo. No entanto, quando necessário, o Rails permite configurações personalizadas para cenários específicos, sem comprometer a flexibilidade.
+O Active Record é uma ferramenta poderosa que simplifica o desenvolvimento de aplicações Ruby on Rails ao permitir uma interação fácil e intuitiva com o banco de dados, promovendo uma estrutura organizada e facilitando o desenvolvimento ágil.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 03 Oct 2024 10:09:59 -0300</pubDate>
+        <link>/active-record</link>
+        <guid isPermaLink="true">/active-record</guid>
+        
+        
+      </item>
     
       <item>
         <title>Configurando o Vim com um IDE leve em 7 passos</title>
@@ -604,106 +1223,6 @@ Foi aí que descobri que meus estudos estavam errados, não tinha base lógica, 
         <pubDate>Sat, 21 Jan 2023 14:30:40 -0300</pubDate>
         <link>/descobrindo-o-caminho-das-pedras</link>
         <guid isPermaLink="true">/descobrindo-o-caminho-das-pedras</guid>
-        
-        <category>rails</category>
-        
-        <category>ruby</category>
-        
-        <category>linux</category>
-        
-        <category>metodos</category>
-        
-        
-        <category>Rails</category>
-        
-        <category>Ruby</category>
-        
-        <category>Code</category>
-        
-      </item>
-    
-      <item>
-        <title>Gem para projetos</title>
-        <description>&lt;h2 id=&quot;gem-fundamentais-para-um-projeto-rails&quot;&gt;Gem Fundamentais Para Um Projeto Rails&lt;/h2&gt;
-
-&lt;h3 id=&quot;gem-jbuilder&quot;&gt;Gem Jbuilder&lt;/h3&gt;
-
-&lt;p&gt;O Jbuilder oferece uma DSL simples para declarar estruturas JSON que superam a manipulação de estruturas hash gigantes. Isso é particularmente útil quando o processo de geração está repleto de condicionais e loops. Aqui está um exemplo simples:&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-rack-cors&quot;&gt;Gem rack-cors&lt;/h3&gt;
-
-&lt;p&gt;Rack::Cors fornece suporte para Cross-Origin Resource Sharing (CORS) para aplicativos da web compatíveis com Rack.
-A especificação CORS permite que aplicativos da web façam chamadas AJAX de domínio cruzado sem usar soluções alternativas como JSONP. Consulte Ajax entre domínios com compartilhamento de recursos entre origens&lt;/p&gt;
-&lt;h3 id=&quot;gem-dry-configurable&quot;&gt;Gem dry-configurable&lt;/h3&gt;
-
-&lt;p&gt;dry-configurableé um mixin simples para adicionar comportamento de configuração seguro com thread às suas classes. Existem muitas bibliotecas que fazem uso de configuração, e cada uma parecia ter sua própria implementação com uma interface semelhante ou duplicada, por isso achamos estranho que esse comportamento ainda não tivesse sido encapsulado em uma gema reutilizável, daí dry-configurablenasceu.&lt;/p&gt;
-&lt;h3 id=&quot;gem-ransack&quot;&gt;Gem ransack&lt;/h3&gt;
-
-&lt;p&gt;Ransack permite a criação de formulários de pesquisa simples e avançados para seu aplicativo Ruby on Rails ( código-fonte de demonstração aqui ). Se você está procurando por algo que simplifica a geração de consultas no modelo ou na camada do controlador, provavelmente não está procurando pelo Ransack (ou MetaSearch, nesse caso). Em vez disso, tente Squeel .&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-faraday&quot;&gt;Gem faraday&lt;/h3&gt;
-
-&lt;p&gt;Faraday é uma biblioteca cliente HTTP que fornece uma interface comum sobre muitos adaptadores (como Net :: HTTP) e adota o conceito de middleware Rack ao processar o ciclo de solicitação / resposta.&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-rspec_api_documentation&quot;&gt;Gem rspec_api_documentation&lt;/h3&gt;
-
-&lt;p&gt;Generate pretty API docs for your Rails APIs&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-apitome&quot;&gt;Gem apitome&lt;/h3&gt;
-
-&lt;p&gt;Apitome é uma ferramenta de documentação API para Rails construída sobre o excelente RSpec DSL incluído em rspec_api_documentation (RAD). Ele foi projetado para exibir a documentação gerada pelo RAD em uma única página ou em páginas individuais e usa Bootstrap para a maior parte do estilo básico e o highlight.js para realçar o código. Você pode fornecer um arquivo markdown que será exibido como a página README e, aproveitando a vantagem de sua estrutura de visualização modular, você pode substituir qualquer número de visualizações e parciais para personalizar a saída. Você também pode especificar CSS e javascript personalizados se quiser fazer coisas mais sofisticadas ou alterar sua aparência.&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-jwt&quot;&gt;Gem jwt&lt;/h3&gt;
-
-&lt;p&gt;A ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard.
-If you have further questions related to development or usage, join us: ruby-jwt google group.&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-devise_invitable&quot;&gt;Gem devise_invitable&lt;/h3&gt;
-&lt;p&gt;Adiciona suporte ao Devise para envio de convites por e-mail (requer autenticação) e aceita o convite configurando a senha.&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-devise-token-auth&quot;&gt;Gem devise token auth&lt;/h3&gt;
-
-&lt;p&gt;Autenticação simples, multi-cliente e segura baseada em tokens para Rails.
-Se você estiver criando um SPA ou um aplicativo móvel e quiser autenticação, precisará de tokens, não de cookies. Esta gema atualiza os tokens em cada solicitação e os expira em um curto período de tempo, para que o aplicativo esteja seguro. Além disso, ele mantém uma sessão para cada cliente / dispositivo, para que você possa ter quantas sessões quiser.&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-sentry-ruby&quot;&gt;Gem sentry-ruby&lt;/h3&gt;
-
-&lt;p&gt;O software ruim está em toda parte, e estamos cansados ​​disso. O Sentry tem a missão de ajudar os desenvolvedores a escrever software melhor com mais rapidez, para que possamos voltar a aproveitar a tecnologia. Se você quiser se juntar a nósCheck out our open positions&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-sentry-rails&quot;&gt;Gem sentry-rails&lt;/h3&gt;
-&lt;p&gt;O SDK Ruby do Sentry permite que os usuários relatem mensagens, exceções e eventos de rastreamento.
-O SDK suporta Ruby 2.4+ e as versões mais recentes do JRuby. Ele também se integra a estruturas e bibliotecas populares por meio de gemas específicas da biblioteca.&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-redis&quot;&gt;Gem redis&lt;/h3&gt;
-&lt;p&gt;Um cliente Ruby que tenta corresponder à API do Redis um a um, ao mesmo tempo que fornece uma interface idiomática.
-Veja RubyDoc.info para a documentação da API da última gem publicada.&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-groupdate&quot;&gt;Gem groupdate&lt;/h3&gt;
-&lt;p&gt;A maneira mais simples de agrupar por:
-Dia, semana, hora do dia, e mais (lista completa abaixo)
-Fusos horários - incluindo horário de verão - com suporte !! a melhor parte
-Obtenha a série inteira - a outra melhor parte
-Suporta PostgreSQL, MySQL e Redshift, além de matrizes e hashes (e suporte limitado para SQLite )
-Anda de mãos dadas com o Chartkick&lt;/p&gt;
-
-&lt;h1 id=&quot;desenvolvimento&quot;&gt;Desenvolvimento&lt;/h1&gt;
-
-&lt;h3 id=&quot;gem-rspec-rails&quot;&gt;Gem rspec-rails&lt;/h3&gt;
-
-&lt;p&gt;rspec-railstraz a estrutura de teste RSpec para Ruby on Rails como uma alternativa drop-in para sua estrutura de teste padrão, Minitest.
-No RSpec, os testes não são apenas scripts que verificam o código do seu aplicativo. Eles também são especificações (ou especificações, para abreviar): explicações detalhadas de como o aplicativo deve se comportar, expressas em inglês simples.
-De acordo com o uso da nova estratégia de versão do RSpec Rails :&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-shoulda&quot;&gt;Gem shoulda&lt;/h3&gt;
-&lt;p&gt;O Shoulda ajuda você a escrever testes específicos de Rails mais compreensíveis e fáceis de manter em Minitest e Test :: Unit.&lt;/p&gt;
-
-&lt;h3 id=&quot;gem-shoulda-matchers&quot;&gt;Gem shoulda-matchers&lt;/h3&gt;
-
-&lt;p&gt;O Shoulda Matchers fornece uma linha compatível com RSpec e Minitest para testar a funcionalidade Rails comum que, se escrita à mão, seria muito mais longa, mais complexa e sujeita a erros.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 21 Jan 2023 14:24:17 -0300</pubDate>
-        <link>/gem-para-projetos</link>
-        <guid isPermaLink="true">/gem-para-projetos</guid>
         
         <category>rails</category>
         

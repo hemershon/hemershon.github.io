@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Active Record</title>
+<meta name="description" content="Entenda a teoria do Active Record no Ruby on Rails é um padrão de design que facilita a interação entre a aplicação e o banco de dados. Ele é parte da arquit...">
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="/active-record">
+<link rel="alternate" type="application/rss+xml" title="Hemershon" href="/feed.xml" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-111493883-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Hemershon<span>Silva</span> <small></small></a></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="Sobre">Sobre</a></li>
+        
+          <li><a href="/projects" title="Projeto">Projeto</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+      <article role="article" class="post">
+
+    <div class="card">
+      <header class="post-header">
+        <h1 class="post-title">Active Record</h1>
+        <em class="post-meta">
+          <time>Oct 3, 2024</time>
+        </em>
+      </header>
+
+      <div class="post-content">
+        
+          <figure class="post-thumbnail ">
+            <img src="/images/post/orm.jpg" alt="Active Record">
+          </figure>
+        
+        <p>Entenda a teoria do Active Record no Ruby on Rails é um padrão de design que facilita a interação entre a aplicação e o banco de dados. Ele é parte da arquitetura MVC (Model-View-Controller) do Rails e serve como uma camada de abstração para o acesso a dados. Aqui estão os principais conceitos e características do Active Record:</p>
+
+<h3 id="1-modelo-como-representação-de-dados">1. <strong>Modelo como Representação de Dados</strong></h3>
+<ul>
+  <li>Cada classe de modelo no Rails representa uma tabela no banco de dados. Por exemplo, uma classe <code>User</code> representa a tabela <code>users</code>.</li>
+  <li>Os atributos da classe correspondem às colunas da tabela.</li>
+</ul>
+
+<h3 id="2-crud-simplificado">2. <strong>CRUD Simplificado</strong></h3>
+<ul>
+  <li>O Active Record fornece métodos para realizar operações CRUD (Create, Read, Update, Delete) de forma simples e intuitiva:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="no">Create</span><span class="o">**</span><span class="p">:</span><span class="w"> </span><span class="sb">`User.create(name: &quot;John Doe&quot;)`</span>
+<span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="no">Read</span><span class="o">**</span><span class="p">:</span><span class="w"> </span><span class="sb">`User.find(1)`</span><span class="w"> </span><span class="n">ou</span><span class="w"> </span><span class="sb">`User.where(active: true)`</span>
+<span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="no">Update</span><span class="o">**</span><span class="p">:</span><span class="w"> </span><span class="sb">`user.update(name: &quot;Jane Doe&quot;)`</span>
+<span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="no">Delete</span><span class="o">**</span><span class="p">:</span><span class="w"> </span><span class="sb">`user.destroy`</span></code></pre></figure>
+
+<h3 id="3-associations-associações">3. <strong>Associations (Associações)</strong></h3>
+<ul>
+  <li>Active Record permite definir relações entre diferentes modelos, como <code>belongs_to</code>, <code>has_many</code> e <code>has_one</code>. Essas associações facilitam a recuperação de dados relacionados.</li>
+  <li>Exemplo:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">     </span><span class="k">class</span><span class="w"> </span><span class="nc">Post</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">       </span><span class="n">belongs_to</span><span class="w"> </span><span class="ss">:user</span>
+<span class="w">     </span><span class="k">end</span>
+
+<span class="w">     </span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">       </span><span class="n">has_many</span><span class="w"> </span><span class="ss">:posts</span>
+<span class="w">     </span><span class="k">end</span>
+
+<span class="w">    </span></code></pre></figure>
+
+<h3 id="4-validations-validações">4. <strong>Validations (Validações)</strong></h3>
+<ul>
+  <li>O Active Record permite adicionar validações para garantir que os dados atendam a certos critérios antes de serem salvos no banco de dados.</li>
+  <li>Exemplo:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">     </span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">       </span><span class="n">validates</span><span class="w"> </span><span class="ss">:email</span><span class="p">,</span><span class="w"> </span><span class="ss">presence</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span><span class="p">,</span><span class="w"> </span><span class="ss">uniqueness</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span>
+<span class="w">     </span><span class="k">end</span>
+<span class="w">     </span></code></pre></figure>
+
+<h3 id="5-callbacks">5. <strong>Callbacks</strong></h3>
+<ul>
+  <li>Active Record permite definir métodos que são executados em pontos específicos do ciclo de vida do modelo, como antes ou depois de criar, atualizar ou destruir registros.</li>
+  <li>Exemplo:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">     </span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">       </span><span class="n">before_save</span><span class="w"> </span><span class="ss">:capitalize_name</span>
+
+<span class="w">       </span><span class="kp">private</span>
+
+<span class="w">       </span><span class="k">def</span><span class="w"> </span><span class="nf">capitalize_name</span>
+<span class="w">         </span><span class="nb">self</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">name</span><span class="o">.</span><span class="n">capitalize</span>
+<span class="w">       </span><span class="k">end</span>
+<span class="w">     </span><span class="k">end</span>
+<span class="w">     </span></code></pre></figure>
+
+<h3 id="6-migrations">6. <strong>Migrations</strong></h3>
+<ul>
+  <li>As migrações são scripts que ajudam a modificar o esquema do banco de dados de forma controlada. O Active Record fornece um sistema de migrações que facilita a criação e alteração de tabelas.</li>
+  <li>Exemplo:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">     </span><span class="k">class</span><span class="w"> </span><span class="nc">CreateUsers</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="o">[</span><span class="mi">6</span><span class="o">.</span><span class="mi">0</span><span class="o">]</span>
+<span class="w">       </span><span class="k">def</span><span class="w"> </span><span class="nf">change</span>
+<span class="w">         </span><span class="n">create_table</span><span class="w"> </span><span class="ss">:users</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">t</span><span class="o">|</span>
+<span class="w">           </span><span class="n">t</span><span class="o">.</span><span class="n">string</span><span class="w"> </span><span class="ss">:name</span>
+<span class="w">           </span><span class="n">t</span><span class="o">.</span><span class="n">string</span><span class="w"> </span><span class="ss">:email</span>
+<span class="w">           </span><span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+<span class="w">         </span><span class="k">end</span>
+<span class="w">       </span><span class="k">end</span>
+<span class="w">     </span><span class="k">end</span>
+<span class="w">     </span></code></pre></figure>
+
+<h3 id="7-scopes">7. <strong>Scopes</strong></h3>
+<ul>
+  <li>Scopes são métodos que permitem definir consultas reutilizáveis que podem ser encadeadas.</li>
+  <li>Exemplo:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">     </span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">       </span><span class="n">scope</span><span class="w"> </span><span class="ss">:active</span><span class="p">,</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">where</span><span class="p">(</span><span class="ss">active</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">     </span><span class="k">end</span>
+<span class="w">     </span></code></pre></figure>
+
+<p><strong>Scopes</strong> são uma funcionalidade do Active Record no Ruby on Rails que permitem definir consultas (queries) reutilizáveis e legíveis de maneira simples e eficaz. Eles são usados para encapsular lógicas de filtragem, tornando o código mais organizado e fácil de entender.</p>
+
+<h3 id="vantagens-dos-scopes">Vantagens dos Scopes</h3>
+
+<ol>
+  <li><strong>Reutilização de Código</strong>: Se você precisa repetir uma consulta específica várias vezes em seu código, um scope encapsula essa lógica para que você não tenha que escrever a mesma consulta repetidamente.</li>
+  <li><strong>Composição de Consultas</strong>: Scopes podem ser encadeados, permitindo compor consultas complexas a partir de várias consultas menores.</li>
+  <li><strong>Legibilidade</strong>: Utilizar scopes torna o código mais legível, especialmente em projetos grandes.</li>
+</ol>
+
+<h3 id="definição-de-scopes">Definição de Scopes</h3>
+
+<p>Os <strong>scopes</strong> são definidos no modelo (<code>app/models/</code>) e têm a seguinte estrutura básica:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ModelName</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">  </span><span class="n">scope</span><span class="w"> </span><span class="ss">:name_of_scope</span><span class="p">,</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">where</span><span class="p">(</span><span class="n">condition</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>O scope é definido com <code>scope :name, -&gt; { query }</code>, onde <code>:name</code> é o nome do scope, e <code>query</code> é a condição que define a consulta.</p>
+
+<h3 id="exemplo-básico">Exemplo Básico</h3>
+
+<p>Vamos supor que temos um modelo <code>User</code> com atributos <code>active</code> e <code>created_at</code>. Aqui estão alguns exemplos de como criar scopes para esse modelo:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">  </span><span class="c1"># Scope para encontrar usuários ativos</span>
+<span class="w">  </span><span class="n">scope</span><span class="w"> </span><span class="ss">:active</span><span class="p">,</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">where</span><span class="p">(</span><span class="ss">active</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1"># Scope para encontrar usuários criados no último mês</span>
+<span class="w">  </span><span class="n">scope</span><span class="w"> </span><span class="ss">:created_last_month</span><span class="p">,</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;created_at &gt;= ?&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1"># Scope para encontrar usuários com um email específico</span>
+<span class="w">  </span><span class="n">scope</span><span class="w"> </span><span class="ss">:with_email</span><span class="p">,</span><span class="w"> </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">where</span><span class="p">(</span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="n">email</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="k">end</span></code></pre></figure>
+
+<h4 id="como-usar-scopes">Como Usar Scopes</h4>
+
+<p>Depois de definir os scopes no modelo, você pode usá-los nas consultas. Aqui estão alguns exemplos de uso:</p>
+
+<ul>
+  <li>Para listar todos os usuários ativos:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">active</span>
+<span class="w">  </span></code></pre></figure>
+
+<ul>
+  <li>Para encontrar usuários que foram criados no último mês:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">created_last_month</span>
+<span class="w">  </span></code></pre></figure>
+
+<ul>
+  <li>Para encontrar usuários com um email específico:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">with_email</span><span class="p">(</span><span class="s1">&#39;example@example.com&#39;</span><span class="p">)</span>
+<span class="w">  </span></code></pre></figure>
+
+<ul>
+  <li><strong>Encadeando Scopes</strong>:
+Você pode combinar vários scopes juntos, o que resulta em consultas mais poderosas:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">active</span><span class="o">.</span><span class="n">created_last_month</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Neste exemplo, o Rails gera uma consulta que encontra usuários ativos que também foram criados no último mês.</p>
+
+<h3 id="scopes-dinâmicos">Scopes Dinâmicos</h3>
+
+<p>Um scope pode receber parâmetros para tornar a consulta mais flexível. Por exemplo, podemos criar um scope que filtre usuários criados há mais de <code>n</code> dias:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">  </span><span class="c1"># Scope dinâmico com parâmetro</span>
+<span class="w">  </span><span class="n">scope</span><span class="w"> </span><span class="ss">:created_more_than</span><span class="p">,</span><span class="w"> </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">days</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;created_at &lt;= ?&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">days</span><span class="o">.</span><span class="n">days</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Agora, podemos usá-lo passando um valor como argumento:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="no">User</span><span class="o">.</span><span class="n">created_more_than</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span></code></pre></figure>
+
+<p>Isso retornaria todos os usuários criados há mais de 30 dias.</p>
+
+<h3 id="boas-práticas">Boas Práticas</h3>
+
+<ol>
+  <li>
+    <p><strong>Usar lambdas (<code>-&gt;</code>)</strong>: Sempre defina scopes com lambdas para garantir que eles sejam avaliados no momento da execução, e não no momento da definição do código. Isso evita problemas com consultas que usam variáveis dinâmicas ou dependem de dados atuais.</p>
+  </li>
+  <li>
+    <p><strong>Encadeamento de Scopes</strong>: Aproveite o encadeamento de scopes para criar consultas mais refinadas de forma progressiva, mantendo cada scope simples e direto.</p>
+  </li>
+  <li>
+    <p><strong>Evitar Lógica Complexa</strong>: Se a consulta precisa de muita lógica condicional, considere se um <strong>método de classe</strong> não seria mais adequado, uma vez que a intenção dos scopes é manter as consultas simples e reutilizáveis.</p>
+  </li>
+</ol>
+
+<h3 id="métodos-de-classe-vs-scopes">Métodos de Classe vs. Scopes</h3>
+
+<p>Embora os scopes sejam convenientes, métodos de classe também podem ser usados quando há necessidade de consultas mais complexas ou quando a lógica não é facilmente expressa com Active Record:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nc">self</span><span class="o">.</span><span class="nf">created_last_week</span>
+<span class="w">    </span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;created_at &gt;= ? AND created_at &lt;= ?&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">.</span><span class="n">week</span><span class="o">.</span><span class="n">ago</span><span class="o">.</span><span class="n">beginning_of_week</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">.</span><span class="n">week</span><span class="o">.</span><span class="n">ago</span><span class="o">.</span><span class="n">end_of_week</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Se a lógica condicional for muito grande, o uso de métodos de classe pode ser mais apropriado do que um scope.</p>
+
+<h3 id="scopes-com-ordens-e-limites">Scopes Com Ordens e Limites</h3>
+
+<p>Scopes também podem incluir ordenações e limites:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Post</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">  </span><span class="c1"># Scope que retorna os 5 posts mais recentes</span>
+<span class="w">  </span><span class="n">scope</span><span class="w"> </span><span class="ss">:recent</span><span class="p">,</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">order</span><span class="p">(</span><span class="ss">created_at</span><span class="p">:</span><span class="w"> </span><span class="ss">:desc</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Agora, podemos chamar <code>Post.recent</code> para obter os 5 posts mais recentes.</p>
+
+<p>Scopes no Active Record são uma forma eficiente de encapsular consultas comuns e reutilizáveis no Rails. Eles tornam o código mais organizado e legível, permitindo consultas flexíveis e poderosas. Quando a lógica é mais complexa, métodos de classe podem ser usados para complementar o uso de scopes.</p>
+
+<h3 id="8-integração-com-sql">8. <strong>Integração com SQL</strong></h3>
+<ul>
+  <li>Embora o Active Record forneça uma abstração, ele ainda permite que os desenvolvedores escrevam consultas SQL quando necessário, usando o método <code>find_by_sql</code> ou passando instruções SQL diretamente.
+A integração do <strong>Active Record</strong> com SQL no Ruby on Rails oferece uma camada de abstração que permite realizar operações no banco de dados de forma simples, usando métodos Ruby. No entanto, o Active Record também fornece maneiras de interagir diretamente com SQL quando há necessidade de consultas mais complexas ou específicas.</li>
+</ul>
+
+<p>Aqui estão alguns detalhes sobre como essa integração funciona:</p>
+
+<h3 id="1-consultas-básicas-com-active-record">1. <strong>Consultas Básicas com Active Record</strong></h3>
+<p>Active Record permite executar operações SQL comuns (SELECT, INSERT, UPDATE, DELETE) de forma transparente. Alguns exemplos incluem:</p>
+
+<ul>
+  <li><strong>SELECT</strong> (leitura de dados):</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">active</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span><span class="p">)</span><span class="w"> </span><span class="c1"># SELECT * FROM users WHERE active = true;</span>
+<span class="w">  </span></code></pre></figure>
+
+<ul>
+  <li><strong>INSERT</strong> (inserção de dados):</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;John Doe&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">email</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;john@example.com&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="c1"># INSERT INTO users (name, email) VALUES (&#39;John Doe&#39;, &#39;john@example.com&#39;);</span>
+<span class="w">  </span></code></pre></figure>
+
+<ul>
+  <li><strong>UPDATE</strong> (atualização de dados):</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">  </span><span class="n">user</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Jane Doe&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="c1"># UPDATE users SET name = &#39;Jane Doe&#39; WHERE id = 1;</span>
+<span class="w">  </span></code></pre></figure>
+
+<ul>
+  <li><strong>DELETE</strong> (remoção de dados):</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">  </span><span class="n">user</span><span class="o">.</span><span class="n">destroy</span>
+<span class="w">  </span><span class="c1"># DELETE FROM users WHERE id = 1;</span>
+<span class="w">  </span></code></pre></figure>
+
+<h3 id="2-consultas-sql-personalizadas-com-active-record">2. <strong>Consultas SQL Personalizadas com Active Record</strong></h3>
+<p>Embora o Active Record permita realizar consultas usando métodos Ruby, às vezes você pode precisar de uma consulta SQL mais complexa ou personalizada. O Active Record permite que você execute SQL bruto diretamente:</p>
+
+<ul>
+  <li><strong><code>find_by_sql</code></strong>: Permite executar consultas SQL completas e retornar objetos do modelo correspondente.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">find_by_sql</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE active = true AND created_at &gt;= &#39;</span><span class="si">#{</span><span class="mi">1</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">ago</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Isso executa a consulta SQL e retorna uma coleção de objetos <code>User</code>.</p>
+
+<ul>
+  <li><strong><code>connection.execute</code></strong>: Permite executar consultas SQL que não retornam objetos do modelo, como consultas DDL (Data Definition Language), que criam ou alteram tabelas.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM users WHERE last_login IS NULL&quot;</span><span class="p">)</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Esse exemplo executa uma query <code>DELETE</code> diretamente no banco de dados.</p>
+
+<h3 id="3-raw-sql-com-where-e-order">3. <strong>Raw SQL com <code>where</code> e <code>order</code></strong></h3>
+<p>Você pode utilizar SQL bruto dentro dos métodos Active Record, como <code>where</code> e <code>order</code>, quando precisar de mais flexibilidade.</p>
+
+<ul>
+  <li><strong><code>where</code> com SQL bruto</strong>:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;created_at &gt;= ?&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">.</span><span class="n">week</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Aqui, o Active Record permite o uso de SQL no método <code>where</code>, substituindo o <code>?</code> pelo valor fornecido (<code>1.week.ago</code>), protegendo automaticamente contra injeção de SQL.</p>
+
+<ul>
+  <li><strong><code>order</code> com SQL bruto</strong>:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s2">&quot;LENGTH(name) DESC&quot;</span><span class="p">)</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Nesse caso, usamos uma função SQL (LENGTH) para ordenar os usuários pelo comprimento do nome.</p>
+
+<h3 id="4-joins-e-associação-com-sql">4. <strong>Joins e Associação com SQL</strong></h3>
+<p>O Active Record também facilita o uso de <strong>joins</strong> (uniões) de tabelas, mas quando necessário, você pode escrever SQL para unir tabelas diretamente.</p>
+
+<ul>
+  <li><strong><code>joins</code> com Active Record</strong>:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">joins</span><span class="p">(</span><span class="ss">:posts</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">posts</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">published</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span><span class="w"> </span><span class="p">})</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Isso gera uma consulta SQL com um <code>INNER JOIN</code> entre as tabelas <code>users</code> e <code>posts</code>.</p>
+
+<ul>
+  <li><strong>SQL personalizado em <code>joins</code></strong>:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">joins</span><span class="p">(</span><span class="s2">&quot;INNER JOIN posts ON posts.user_id = users.id AND posts.published = true&quot;</span><span class="p">)</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Você pode escrever um SQL <code>JOIN</code> mais específico, passando uma string SQL diretamente.</p>
+
+<h3 id="5-execução-de-sql-de-manipulação-direta">5. <strong>Execução de SQL de Manipulação Direta</strong></h3>
+<p>Se for necessário criar ou modificar diretamente o banco de dados (por exemplo, em scripts ou migrações), você pode usar SQL diretamente através da conexão do Active Record.</p>
+
+<ul>
+  <li><strong>Criação de tabelas</strong>:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;</span>
+<span class="s2">    CREATE TABLE archived_users AS</span>
+<span class="s2">    SELECT * FROM users WHERE active = false</span>
+<span class="s2">  &quot;</span><span class="p">)</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Esse comando executa SQL para criar uma nova tabela <code>archived_users</code>, copiando dados de <code>users</code>.</p>
+
+<h3 id="6-transações-com-sql">6. <strong>Transações com SQL</strong></h3>
+<p>O Active Record facilita o uso de transações, que garantem que uma série de operações SQL sejam executadas de maneira atômica (ou todas são bem-sucedidas, ou nenhuma é executada).</p>
+
+<ul>
+  <li><strong>Usando transações</strong>:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">transaction</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">User</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;John Doe&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="no">Payment</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="ss">user</span><span class="p">:</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="ss">amount</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Se qualquer uma das operações falhar (por exemplo, <code>Payment.create!</code> lançar uma exceção), o Active Record reverte a transação, garantindo que nenhum dado seja inserido ou alterado.</p>
+
+<h3 id="7-scopes-e-sql">7. <strong>Scopes e SQL</strong></h3>
+<p>Você pode combinar SQL personalizado dentro de <strong>scopes</strong> no Active Record para criar consultas reutilizáveis e flexíveis.</p>
+
+<ul>
+  <li><strong>Exemplo de scope com SQL</strong>:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">    </span><span class="n">scope</span><span class="w"> </span><span class="ss">:recent</span><span class="p">,</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;created_at &gt;= ?&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">scope</span><span class="w"> </span><span class="ss">:active</span><span class="p">,</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">where</span><span class="p">(</span><span class="ss">active</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="k">end</span>
+
+<span class="w">  </span><span class="c1"># Encadeando scopes</span>
+<span class="w">  </span><span class="no">User</span><span class="o">.</span><span class="n">recent</span><span class="o">.</span><span class="n">active</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Esse código combina um scope que retorna usuários recentes com outro que retorna apenas os usuários ativos, usando SQL bruto dentro do scope.</p>
+
+<h3 id="8-injeção-de-sql-segura">8. <strong>Injeção de SQL Segura</strong></h3>
+<p>Rails protege automaticamente contra <strong>injeção de SQL</strong> ao substituir os valores nos métodos como <code>where</code> ou <code>find_by</code>. Por exemplo:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;email = ?&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="o">[</span><span class="ss">:email</span><span class="o">]</span><span class="p">)</span></code></pre></figure>
+
+<p>Aqui, o Rails escapa e formata corretamente o valor de <code>params[:email]</code>, evitando que comandos maliciosos sejam executados.</p>
+
+<h3 id="9-consultas-complexas-com-arel">9. <strong>Consultas Complexas com <code>Arel</code></strong></h3>
+<p>Para consultas mais complexas, você pode usar o <strong>Arel</strong>, que é a biblioteca por trás do Active Record que gera SQL. Ele permite criar consultas dinâmicas mais poderosas, mantendo a segurança e legibilidade.</p>
+
+<ul>
+  <li><strong>Exemplo básico de Arel</strong>:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="w">  </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">User</span><span class="o">.</span><span class="n">arel_table</span>
+<span class="w">  </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">users</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">users</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">users</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span><span class="p">)</span>
+<span class="w">                </span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">users</span><span class="o">[</span><span class="ss">:active</span><span class="o">].</span><span class="n">eq</span><span class="p">(</span><span class="kp">true</span><span class="p">))</span>
+<span class="w">  </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">to_sql</span><span class="p">)</span>
+<span class="w">  </span></code></pre></figure>
+
+<p>Com o Arel, você tem mais controle sobre a construção das consultas SQL diretamente no Ruby, sem perder a abstração fornecida pelo Active Record.</p>
+
+<h3 id="integração">integração</h3>
+
+<p>A integração do Active Record com SQL é altamente flexível e permite que você trabalhe com abstrações de alto nível para a maioria das operações de banco de dados. Quando necessário, você também pode escrever consultas SQL personalizadas ou diretas, garantindo que tenha o controle total sobre as consultas mais complexas e específicas, sem abrir mão da segurança contra injeção de SQL.</p>
+
+<h3 id="9-convenções-sobre-configuração">9. <strong>Convenções sobre Configuração</strong></h3>
+<ul>
+  <li>O Active Record segue a filosofia de “convenções sobre configuração”, o que significa que ele funciona automaticamente com base em convenções predefinidas (como nomes de tabelas e colunas), minimizando a necessidade de configuração adicional.
+Em Ruby on Rails, o princípio de “Convenção sobre Configuração” (Convention over Configuration, ou <strong>CoC</strong>) é uma das filosofias centrais que torna o framework tão popular e eficiente. Ele se baseia na ideia de que, se o desenvolvedor seguir as convenções estabelecidas pelo Rails, não será necessário especificar muitos detalhes de configuração, pois o Rails já saberá como interpretar o código e suas intenções. Isso ajuda a reduzir o número de decisões que o desenvolvedor precisa tomar, o que resulta em maior produtividade e um código mais limpo e padronizado.</li>
+</ul>
+
+<h3 id="como-funciona-o-convenção-sobre-configuração-no-rails">Como Funciona o “Convenção sobre Configuração” no Rails?</h3>
+
+<p>Ao invés de exigir que o desenvolvedor configure explicitamente todos os aspectos de uma aplicação, o Rails adota um conjunto de padrões e convenções predefinidos. Se você seguir essas convenções, o Rails cuidará automaticamente de muitas coisas nos bastidores. Caso você precise desviar dessas convenções, é possível configurar manualmente, mas o Rails assume que a maioria dos casos usará os padrões.</p>
+
+<p>Aqui estão os principais exemplos de como o Rails aplica <strong>Convenção sobre Configuração</strong>:</p>
+
+<hr />
+
+<h3 id="1-nomeação-de-arquivos-e-pastas">1. <strong>Nomeação de Arquivos e Pastas</strong></h3>
+
+<p>O Rails segue uma convenção rígida sobre onde os arquivos devem estar localizados e como eles devem ser nomeados. Ao seguir essas convenções, o Rails pode automaticamente carregar e associar classes, modelos, controladores e outros componentes sem necessidade de configurações extras.</p>
+
+<h4 id="exemplo">Exemplo:</h4>
+<ul>
+  <li>Modelos ficam em <code>app/models</code>.</li>
+  <li>Controladores ficam em <code>app/controllers</code>.</li>
+  <li>Arquivos de views (visões) ficam em <code>app/views</code>.</li>
+</ul>
+
+<p>Se você tem um controlador chamado <code>UsersController</code>, o Rails automaticamente espera que:</p>
+<ul>
+  <li>O arquivo do controlador seja chamado <code>users_controller.rb</code>.</li>
+  <li>O arquivo esteja localizado em <code>app/controllers/</code>.</li>
+  <li>O modelo associado seja <code>User</code> (singular).</li>
+  <li>O modelo esteja em <code>app/models/user.rb</code>.</li>
+</ul>
+
+<p>Essa convenção simplifica o fluxo de trabalho, porque o Rails já sabe onde procurar pelas classes e arquivos.</p>
+
+<hr />
+
+<h3 id="2-nomenclatura-de-modelos-e-tabelas">2. <strong>Nomenclatura de Modelos e Tabelas</strong></h3>
+
+<p>No Rails, os modelos são nomeados no singular, enquanto as tabelas no banco de dados associadas a esses modelos são nomeadas no plural. Essa convenção elimina a necessidade de você configurar explicitamente o nome da tabela em um modelo, a menos que queira desviar dessa convenção.</p>
+
+<h4 id="exemplo-1">Exemplo:</h4>
+<ul>
+  <li>Um modelo chamado <code>User</code> se associa, por padrão, a uma tabela chamada <code>users</code>.</li>
+  <li>Um modelo chamado <code>ProductCategory</code> se associa, por padrão, a uma tabela chamada <code>product_categories</code>.</li>
+</ul>
+
+<p>Caso queira usar um nome de tabela diferente, você pode configurar isso manualmente no modelo:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">  </span><span class="nb">self</span><span class="o">.</span><span class="n">table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;my_custom_table&quot;</span>
+<span class="k">end</span></code></pre></figure>
+
+<hr />
+
+<h3 id="3-convenções-de-rotas">3. <strong>Convenções de Rotas</strong></h3>
+
+<p>O Rails utiliza convenções ao criar rotas RESTful (Representational State Transfer) para recursos (resources). Quando você define um recurso no arquivo <code>config/routes.rb</code>, o Rails automaticamente cria as rotas CRUD (Create, Read, Update, Delete) associadas ao recurso.</p>
+
+<h4 id="exemplo-2">Exemplo:</h4>
+
+<p>Ao adicionar uma linha no arquivo <code>config/routes.rb</code>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">resources</span><span class="w"> </span><span class="ss">:users</span></code></pre></figure>
+
+<p>O Rails automaticamente cria as seguintes rotas:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>HTTP Verbo</th>
+      <th>URL</th>
+      <th>Controller#Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>/users</td>
+      <td>users#index</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/users/:id</td>
+      <td>users#show</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/users</td>
+      <td>users#create</td>
+    </tr>
+    <tr>
+      <td>PATCH/PUT</td>
+      <td>/users/:id</td>
+      <td>users#update</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/users/:id</td>
+      <td>users#destroy</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/users/new</td>
+      <td>users#new</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/users/:id/edit</td>
+      <td>users#edit</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Essas rotas são geradas automaticamente seguindo as convenções RESTful, sem que o desenvolvedor precise definir cada rota manualmente.</p>
+
+<hr />
+
+<h3 id="4-conexão-de-modelos-com-o-banco-de-dados">4. <strong>Conexão de Modelos com o Banco de Dados</strong></h3>
+
+<p>Por convenção, os campos da tabela de um modelo devem seguir uma nomenclatura pré-determinada para que o Rails saiba como trabalhar com eles. Por exemplo, o Rails já espera campos como:</p>
+
+<ul>
+  <li><code>id</code>: campo de chave primária (gerado automaticamente).</li>
+  <li><code>created_at</code> e <code>updated_at</code>: campos de timestamp (gerados automaticamente).</li>
+  <li><code>user_id</code>: campo de chave estrangeira para associar com o modelo <code>User</code>.</li>
+</ul>
+
+<p>Ao usar convenções como essas, o Rails consegue automaticamente fazer associações (<code>has_many</code>, <code>belongs_to</code>), criar timestamps, e gerir chaves primárias e estrangeiras, sem configurações extras.</p>
+
+<h4 id="exemplo-3">Exemplo:</h4>
+<p>Se você criar uma tabela <code>posts</code> com uma coluna <code>user_id</code>, o Rails já sabe que <code>user_id</code> é a chave estrangeira que associa um <code>Post</code> ao modelo <code>User</code>. Então, você pode criar uma associação no modelo <code>Post</code>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Post</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">  </span><span class="n">belongs_to</span><span class="w"> </span><span class="ss">:user</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>O Rails automaticamente associa <code>user_id</code> à relação com o modelo <code>User</code>.</p>
+
+<hr />
+
+<h3 id="5-convenção-para-views-e-layouts">5. <strong>Convenção para Views e Layouts</strong></h3>
+
+<p>Rails segue convenções para organizar as views dentro da pasta <code>app/views</code>, baseando-se nos nomes dos controladores. Quando você cria um controlador chamado <code>UsersController</code>, o Rails espera que as views associadas a esse controlador estejam na pasta <code>app/views/users</code>.</p>
+
+<h4 id="exemplo-4">Exemplo:</h4>
+<p>Se você tem uma ação <code>index</code> no <code>UsersController</code>, o Rails espera encontrar o arquivo da view correspondente em <code>app/views/users/index.html.erb</code>.</p>
+
+<p>Além disso, o Rails também segue convenções para layouts. Se você tem um layout padrão chamado <code>application.html.erb</code> em <code>app/views/layouts/</code>, o Rails automaticamente aplicará esse layout a todas as páginas, a menos que seja especificado um layout diferente.</p>
+
+<hr />
+
+<h3 id="6-convenção-para-migrações">6. <strong>Convenção para Migrações</strong></h3>
+
+<p>As migrações no Rails seguem convenções para gerar mudanças no banco de dados. O Rails gera arquivos de migração nomeados de acordo com a tarefa que estão realizando. Além disso, o Rails usa nomes de tabelas e colunas baseados nos nomes dos modelos.</p>
+
+<h4 id="exemplo-5">Exemplo:</h4>
+
+<p>Ao rodar o comando:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">rails</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">migration</span><span class="w"> </span><span class="no">AddAgeToUsers</span><span class="w"> </span><span class="ss">age</span><span class="p">:</span><span class="n">integer</span></code></pre></figure>
+
+<p>O Rails gera uma migração com o nome <code>AddAgeToUsers</code>, e o arquivo de migração incluirá automaticamente a instrução para adicionar a coluna <code>age</code> do tipo <code>integer</code> à tabela <code>users</code>.</p>
+
+<p>Essa convenção facilita a compreensão de migrações, já que o nome do arquivo reflete diretamente o que a migração faz.</p>
+
+<hr />
+
+<h3 id="7-convenção-para-e-mails-e-mailers">7. <strong>Convenção para E-mails e Mailers</strong></h3>
+
+<p>Quando você gera um mailer no Rails, ele segue convenções tanto para a estrutura de diretórios quanto para o nome dos templates de e-mail.</p>
+
+<h4 id="exemplo-6">Exemplo:</h4>
+
+<p>Ao criar um mailer chamado <code>UserMailer</code> com uma ação <code>welcome_email</code>, o Rails espera que o template correspondente esteja em:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="n">app</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">user_mailer</span><span class="o">/</span><span class="n">welcome_email</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">erb</span></code></pre></figure>
+
+<p>E que o nome da classe <code>UserMailer</code> contenha um método chamado <code>welcome_email</code>.</p>
+
+<hr />
+
+<h3 id="8-convenção-de-testes">8. <strong>Convenção de Testes</strong></h3>
+
+<p>O Rails também impõe convenções sobre como os testes devem ser organizados. Testes de modelos ficam em <code>test/models</code>, testes de controladores ficam em <code>test/controllers</code>, e assim por diante. Além disso, Rails espera que os arquivos de teste correspondam aos seus respectivos modelos, controladores ou funcionalidades.</p>
+
+<h4 id="exemplo-7">Exemplo:</h4>
+
+<p>Se você tem um modelo chamado <code>User</code>, o Rails espera encontrar um arquivo de teste para ele em <code>test/models/user_test.rb</code>.</p>
+
+<hr />
+
+<h3 id="benefícios-da-convenção-sobre-configuração">Benefícios da Convenção sobre Configuração</h3>
+
+<ol>
+  <li><strong>Produtividade</strong>: O Rails elimina a necessidade de configurar manualmente muitos aspectos da aplicação, permitindo que o desenvolvedor foque mais na lógica do negócio.</li>
+  <li><strong>Facilidade de Manutenção</strong>: Seguindo convenções, o código Rails fica mais fácil de ler e manter, já que qualquer desenvolvedor familiar com Rails pode entender a estrutura e o fluxo da aplicação sem precisar de extensa documentação.</li>
+  <li><strong>Redução de Erros</strong>: Ao seguir padrões pré-definidos, o risco de introduzir erros de configuração é minimizado.</li>
+</ol>
+
+<h3 id="quando-personalizar">Quando Personalizar?</h3>
+
+<p>Embora o Rails siga convenções que cobrem a maioria dos casos, há situações em que você pode precisar personalizar o comportamento. Felizmente, o Rails é flexível o suficiente para permitir que você altere as convenções quando necessário, através de configurações manuais.</p>
+
+<p>Exemplo de personalização:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span></span><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationRecord</span>
+<span class="w">  </span><span class="nb">self</span><span class="o">.</span><span class="n">table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;usuarios&quot;</span>
+<span class="k">end</span></code></pre></figure>
+
+<hr />
+
+<p>O princípio de <strong>Convenção sobre Configuração</strong> em Rails torna o desenvolvimento mais rápido, organizado e fácil de entender. Ao aderir às convenções do Rails, você reduz a necessidade de configuração explícita, aproveitando o framework ao máximo. No entanto, quando necessário, o Rails permite configurações personalizadas para cenários específicos, sem comprometer a flexibilidade.
+O Active Record é uma ferramenta poderosa que simplifica o desenvolvimento de aplicações Ruby on Rails ao permitir uma interação fácil e intuitiva com o banco de dados, promovendo uma estrutura organizada e facilitando o desenvolvimento ágil.</p>
+
+      </div>
+
+      
+<hr>
+
+<aside id="comments" class="disqus">
+  <h3><i class="icon icon-comments-o"></i> Comments</h3>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = '/active-record';
+      this.page.identifier = '/active-record';
+    };
+    (function() {
+      var d = document,
+      s = d.createElement('script');
+      s.src = '//Hemershon.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+
+    </div>
+
+  </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/hemershon" target="_blank"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/ohemershon" target="_blank"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://facebook.com/" target="_blank"><i class="icon icon-facebook"></i></a></li>
+  <li><a href="https://linkedin.com/in/hemershon-silva" target="_blank"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2024 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+  <a href="https://github.com/hemershon" target="_blank" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#337ab7; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>
