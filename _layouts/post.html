@@ -1,0 +1,79 @@
+---
+layout: default
+---
+{% assign lang = page.lang | default: "pt" %}
+<article class="article-shell">
+  <header class="article-header">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a class="back-link" href="{% if lang == 'en' %}{{ '/en/articles/' | relative_url }}{% else %}{{ '/artigos/' | relative_url }}{% endif %}">← {% if lang == "en" %}Articles{% else %}Artigos{% endif %}</a>
+    </nav>
+    
+    <div class="article-meta">
+      {% if page.categories %}
+        <span class="article-category">{{ page.categories | first }}</span>
+        <span>•</span>
+      {% endif %}
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time>
+      <span>•</span>
+      <span>{% assign words = content | number_of_words %}{% if words < 360 %}1 min{% else %}{{ words | divided_by:180 }} min{% endif %} {% if lang == "en" %}read{% else %}leitura{% endif %}</span>
+    </div>
+    
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="article-description">{{ page.description }}</p>{% endif %}
+
+    {% if page.image %}
+      <div class="article-cover">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="article-layout">
+    <aside class="article-sidebar">
+      <div class="toc-container">
+        <h3 class="toc-title">{% if lang == "en" %}Table of Contents{% else %}Índice{% endif %}</h3>
+        <!-- TOC will be injected here via JavaScript if missing, or use kramdown's TOC -->
+        <div id="toc"></div>
+      </div>
+    </aside>
+    
+    <div class="prose prose--article">
+      {{ content }}
+    </div>
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-tags tag-list">
+      {% for tag in page.tags %}
+        <span class="tag">#{{ tag }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="social-share">
+      <p>{% if lang == "en" %}Share this article{% else %}Compartilhe este artigo{% endif %}</p>
+      <div class="share-buttons">
+        <button class="share-btn share-twitter" data-url="{{ site.url }}{{ page.url }}">Twitter</button>
+        <button class="share-btn share-linkedin" data-url="{{ site.url }}{{ page.url }}">LinkedIn</button>
+        <button class="share-btn share-copy" data-url="{{ site.url }}{{ page.url }}">{% if lang == "en" %}Copy link{% else %}Copiar link{% endif %}</button>
+      </div>
+    </div>
+
+    <hr>
+
+    <nav class="post-navigation">
+      {% if page.previous %}
+        <a class="nav-prev" href="{{ page.previous.url | relative_url }}">
+          <span class="nav-label">{% if lang == "en" %}Previous{% else %}Anterior{% endif %}</span>
+          <span class="nav-title">{{ page.previous.title }}</span>
+        </a>
+      {% endif %}
+      
+      {% if page.next %}
+        <a class="nav-next" href="{{ page.next.url | relative_url }}">
+          <span class="nav-label">{% if lang == "en" %}Next{% else %}Próximo{% endif %}</span>
+          <span class="nav-title">{{ page.next.title }}</span>
+        </a>
+      {% endif %}
+    </nav>
+  </footer>
+</article>

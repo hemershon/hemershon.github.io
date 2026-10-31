@@ -1,0 +1,35 @@
+pt:
+  intro: "Olá, eu sou Hemershon."
+  bio: "Sou desenvolvedor de software e este é meu espaço para registrar aprendizados, compartilhar experiências e documentar projetos. Escrevo sobre desenvolvimento, arquitetura de software, Ruby, infraestrutura, Linux e tecnologia."
+  experience:
+    - role: "Desenvolvedor de Software"
+      company: "Empresa Atual"
+      period: "Ano Início - Presente"
+      description: "Descrição das atividades, tecnologias utilizadas e impacto gerado (edite no arquivo _data/about.yml)."
+  skills: ["Ruby on Rails", "JavaScript", "SCSS", "Jekyll", "Git", "Linux"]
+  interests: ["Engenharia de Software", "DevOps", "Arquitetura", "Open Source"]
+  social_links:
+    - name: "GitHub"
+      url: "https://github.com/hemershon"
+    - name: "LinkedIn"
+      url: "https://linkedin.com/in/hemershon"
+    - name: "Email"
+      url: "mailto:contato@hemershon.com"
+
+en:
+  intro: "Hello, I'm Hemershon."
+  bio: "I'm a software developer. This is my space to document what I learn, share experiences, and write about projects. I write about software development, architecture, Ruby, infrastructure, Linux, and technology."
+  experience:
+    - role: "Software Developer"
+      company: "Current Company"
+      period: "Start Year - Present"
+      description: "Description of activities, technologies used, and impact (edit in _data/about.yml)."
+  skills: ["Ruby on Rails", "JavaScript", "SCSS", "Jekyll", "Git", "Linux"]
+  interests: ["Software Engineering", "DevOps", "Architecture", "Open Source"]
+  social_links:
+    - name: "GitHub"
+      url: "https://github.com/hemershon"
+    - name: "LinkedIn"
+      url: "https://linkedin.com/in/hemershon"
+    - name: "Email"
+      url: "mailto:contato@hemershon.com"

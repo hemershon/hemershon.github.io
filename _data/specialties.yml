@@ -1,0 +1,16 @@
+- id: web-development
+  icon: 🌐
+  name: Web Development
+  techs: [HTML5, SCSS, JavaScript, React, Jekyll]
+- id: devops
+  icon: ⚙️
+  name: DevOps
+  techs: [Docker, CI/CD, GitHub Actions]
+- id: cloud
+  icon: ☁️
+  name: Cloud
+  techs: [AWS, Linux, Nginx]
+- id: tools
+  icon: 🛠️
+  name: Tools
+  techs: [Git, Neovim, Figma]

@@ -1,0 +1,21 @@
+{% assign lang = page.lang | default: "pt" %}
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="{% if lang == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}" aria-label="Hemershon Silva — home">
+      <span class="brand-mark">HS</span>
+      <span class="brand-name">Hemershon Silva<span class="brand-dot">.</span></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+      <span></span><span></span><span class="sr-only">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-navigation" aria-label="Main navigation">
+      {% for item in site.data.navigation[lang] %}
+        <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a>
+      {% endfor %}
+      <div class="nav-tools">
+        <a class="language-switch" href="{% if lang == 'en' %}{{ '/' | relative_url }}{% else %}{{ '/en/' | relative_url }}{% endif %}" aria-label="{% if lang == 'en' %}Mudar para português{% else %}Switch to English{% endif %}">{% if lang == 'en' %}PT{% else %}EN{% endif %}</a>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema" title="Alternar tema"><span class="theme-icon">◐</span></button>
+      </div>
+    </nav>
+  </div>
+</header>

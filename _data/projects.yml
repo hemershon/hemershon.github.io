@@ -1,0 +1,15 @@
+- id: task-manager
+  name: TaskFlow
+  description: "A minimalist task management tool built for developers."
+  image: "/assets/images/project-1.jpg"
+  techs: [React, TypeScript, TailwindCSS]
+  link: "https://github.com/hemershon"
+  featured: true
+
+- id: dotfiles
+  name: Dev Dotfiles
+  description: "My personal dotfiles for development environments focusing on productivity."
+  image: "/assets/images/project-2.jpg"
+  techs: [Shell, Lua, Neovim]
+  link: "https://github.com/hemershon/dotfiles"
+  featured: true

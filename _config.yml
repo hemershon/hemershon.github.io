@@ -1,0 +1,57 @@
+title: "Hemershon Silva"
+description: "Desenvolvimento de software, tecnologia, Linux e experiências."
+url: "https://hemershon.github.io"
+baseurl: ""
+
+lang: "pt-BR"
+timezone: "America/Fortaleza"
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+author:
+  name: "Hemershon Silva"
+  email: ""
+  bio:
+    pt: "Desenvolvedor de software. Compartilhando experiências, estudos e projetos."
+    en: "Software developer. Sharing experiences, learning, and projects."
+
+languages:
+  - code: pt
+    label: Português
+    html_lang: pt-BR
+  - code: en
+    label: English
+    html_lang: en
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      lang: pt
+  - scope:
+      path: ""
+    values:
+      layout: page
+      lang: pt
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: /feed.xml
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+  - vendor
+  - node_modules
+  - scripts
+  - "*.gem"
+  - "*.gemspec"

@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<article class="page-shell">
+  <header class="page-header">
+    <p class="eyebrow">{% if page.lang == "en" %}ON THIS SITE{% else %}NESTE ESPAÇO{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}<p class="page-description">{{ page.description }}</p>{% endif %}
+  </header>
+  <div class="prose">
+    {{ content }}
+  </div>
+</article>

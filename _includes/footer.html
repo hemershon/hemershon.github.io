@@ -1,0 +1,35 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-main">
+      <div class="footer-brand-section">
+        <a class="brand brand--footer" href="{{ '/' | relative_url }}">
+          <span class="brand-mark">HS</span>
+          <span class="brand-name">Hemershon Silva<span class="brand-dot">.</span></span>
+        </a>
+        <p class="footer-description">{% if page.lang == "en" %}Software developer. Sharing experiences, learning, and projects.{% else %}Desenvolvedor de software. Compartilhando experiências, estudos e projetos.{% endif %}</p>
+      </div>
+      <div class="footer-links-section">
+        <div class="footer-nav">
+          <h4 class="footer-heading">{% if page.lang == "en" %}Navigation{% else %}Navegação{% endif %}</h4>
+          <nav aria-label="Footer navigation">
+            {% for item in site.data.navigation[lang] %}
+              <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            {% endfor %}
+          </nav>
+        </div>
+        <div class="footer-social">
+          <h4 class="footer-heading">Social</h4>
+          <nav aria-label="Social media">
+            <a href="https://github.com/hemershon" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://linkedin.com/in/hemershon" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:contato@hemershon.com">Email</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {{ site.time | date: "%Y" }} Hemershon Silva. {% if page.lang == "en" %}All rights reserved.{% else %}Todos os direitos reservados.{% endif %}</span>
+      <span>{% if page.lang == "en" %}Designed & built with Jekyll.{% else %}Projetado e construído com Jekyll.{% endif %}</span>
+    </div>
+  </div>
+</footer>

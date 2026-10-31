@@ -1,0 +1,27 @@
+<article class="post-card">
+  <a class="post-card__link" href="{{ include.post.url | relative_url }}">
+    <div class="post-card__image-wrapper">
+      {% if include.post.image %}
+        <img src="{{ include.post.image | relative_url }}" alt="{{ include.post.title }}" loading="lazy">
+      {% else %}
+        <div class="post-image-placeholder"></div>
+      {% endif %}
+    </div>
+    <div class="post-card__content">
+      <div class="post-card__meta">
+        {% if include.post.categories %}<span>{{ include.post.categories | first }}</span>{% endif %}
+        <span>•</span>
+        <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%d %b %Y" }}</time>
+        <span>•</span>
+        <span>{% assign words = include.post.content | number_of_words %}{% if words < 360 %}1 min{% else %}{{ words | divided_by:180 }} min{% endif %}</span>
+      </div>
+      <h3>{{ include.post.title }}</h3>
+      {% if include.post.description %}<p>{{ include.post.description }}</p>{% endif %}
+      <div class="post-card__tags tag-list">
+        {% for tag in include.post.tags limit:3 %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </a>
+</article>

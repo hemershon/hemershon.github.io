@@ -1,0 +1,23 @@
+pt:
+  - title: Início
+    url: /
+  - title: Artigos
+    url: /artigos/
+  - title: Projetos
+    url: /projetos/
+  - title: Sobre
+    url: /sobre/
+  - title: Contato
+    url: /contato/
+
+en:
+  - title: Home
+    url: /en/
+  - title: Articles
+    url: /en/articles/
+  - title: Projects
+    url: /en/projects/
+  - title: About
+    url: /en/about/
+  - title: Contact
+    url: /en/contact/

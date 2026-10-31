@@ -1,0 +1,123 @@
+---
+layout: default
+---
+{% assign lang = page.lang | default: "pt" %}
+{% if lang == "en" %}
+  {% assign intro_title = "Hello, I'm Hemershon Silva." %}
+  {% assign intro_text = "Software developer passionate about technology, good ideas, and simple solutions for complex problems." %}
+  {% assign btn_projects = "View my projects" %}
+  {% assign btn_blog = "Read the blog" %}
+  {% assign spec_title = "Specialties" %}
+  {% assign latest_title = "Recent articles" %}
+  {% assign proj_title = "Featured projects" %}
+  {% assign all_label = "View all" %}
+  {% assign contact_title = "Shall we build something amazing?" %}
+  {% assign contact_text = "I'm always open to new ideas, collaborations, and opportunities." %}
+  {% assign empty_text = "Content coming soon." %}
+{% else %}
+  {% assign intro_title = "Olá, eu sou Hemershon Silva." %}
+  {% assign intro_text = "Desenvolvedor de software, apaixonado por tecnologia, boas ideias e soluções simples para problemas complexos." %}
+  {% assign btn_projects = "Ver meus projetos" %}
+  {% assign btn_blog = "Leia o blog" %}
+  {% assign spec_title = "Especialidades" %}
+  {% assign latest_title = "Artigos recentes" %}
+  {% assign proj_title = "Projetos em destaque" %}
+  {% assign all_label = "Ver todos" %}
+  {% assign contact_title = "Vamos construir algo incrível?" %}
+  {% assign contact_text = "Estou sempre aberto a novas ideias, colaborações e oportunidades." %}
+  {% assign empty_text = "Em breve, novos conteúdos por aqui." %}
+{% endif %}
+
+<section class="hero hero--home">
+  <div class="hero__content">
+    <p class="eyebrow">{% if lang == "en" %}SOFTWARE DEVELOPER{% else %}DESENVOLVEDOR DE SOFTWARE{% endif %}</p>
+    <h1>{{ intro_title }}</h1>
+    <p class="hero__description">{{ intro_text }}</p>
+    <div class="hero__actions">
+      <a class="button button--primary" href="{% if lang == 'en' %}{{ '/en/projects/' | relative_url }}{% else %}{{ '/projetos/' | relative_url }}{% endif %}">{{ btn_projects }}</a>
+      <a class="button button--secondary" href="{% if lang == 'en' %}{{ '/en/articles/' | relative_url }}{% else %}{{ '/artigos/' | relative_url }}{% endif %}">{{ btn_blog }}</a>
+    </div>
+  </div>
+  <div class="hero__photo-wrapper">
+    <div class="hero__photo-placeholder" aria-hidden="true">
+      <span class="sr-only">Photo of Hemershon Silva</span>
+    </div>
+  </div>
+</section>
+
+<section class="content-section specialties-section">
+  <div class="section-heading">
+    <h2>{{ spec_title }}</h2>
+  </div>
+  <div class="specialties-grid">
+    {% for spec in site.data.specialties %}
+      <div class="specialty-card">
+        <div class="specialty-icon">{{ spec.icon }}</div>
+        <h3 class="specialty-name">{{ spec.name }}</h3>
+        <p class="specialty-techs">{{ spec.techs | join: ", " }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="section-heading">
+    <div>
+      <h2>{{ latest_title }}</h2>
+    </div>
+    <a class="text-link" href="{% if lang == 'en' %}{{ '/en/articles/' | relative_url }}{% else %}{{ '/artigos/' | relative_url }}{% endif %}">{{ all_label }} →</a>
+  </div>
+  {% assign articles = site.posts | where: "lang", lang %}
+  <div class="post-grid post-grid--home">
+    {% for post in articles limit:3 %}
+      {% include post-card.html post=post lang=lang %}
+    {% endfor %}
+  </div>
+  {% if articles.size == 0 %}
+    <p class="empty-state">{{ empty_text }}</p>
+  {% endif %}
+</section>
+
+<section class="content-section">
+  <div class="section-heading">
+    <div>
+      <h2>{{ proj_title }}</h2>
+    </div>
+    <a class="text-link" href="{% if lang == 'en' %}{{ '/en/projects/' | relative_url }}{% else %}{{ '/projetos/' | relative_url }}{% endif %}">{{ all_label }} →</a>
+  </div>
+  <div class="project-grid">
+    {% assign featured_projects = site.data.projects | where: "featured", true %}
+    {% for project in featured_projects limit:2 %}
+      <article class="project-card">
+        <div class="project-card__image-wrapper">
+          <!-- Placeholder or actual image -->
+          <div class="project-image-placeholder"></div>
+        </div>
+        <div class="project-card__content">
+          <h3 class="project-card__title">{{ project.name }}</h3>
+          <p class="project-card__desc">{{ project.description }}</p>
+          <div class="project-card__techs">
+            {% for tech in project.techs %}
+              <span class="tag">{{ tech }}</span>
+            {% endfor %}
+          </div>
+          <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="project-card__link">
+            {% if lang == "en" %}View project{% else %}Ver projeto{% endif %} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="content-section contact-section">
+  <div class="contact-box">
+    <h2>{{ contact_title }}</h2>
+    <p>{{ contact_text }}</p>
+    <div class="contact-links">
+      <a href="https://github.com/hemershon" target="_blank" rel="noopener noreferrer" class="button button--secondary">GitHub</a>
+      <a href="https://linkedin.com/in/hemershon" target="_blank" rel="noopener noreferrer" class="button button--secondary">LinkedIn</a>
+      <a href="mailto:contato@hemershon.com" class="button button--primary">Email</a>
+    </div>
+  </div>
+</section>
