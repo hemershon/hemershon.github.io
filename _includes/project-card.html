@@ -1,0 +1,39 @@
+{% comment %}
+  Uso: {% include project-card.html project=project lang="pt" full=true %}
+  full=true mostra descrição, funcionalidades e proposta de valor (página de projetos).
+{% endcomment %}
+{% assign p = include.project %}
+{% if include.lang == "en" %}{% assign t = p.en %}{% else %}{% assign t = p.pt %}{% endif %}
+<article class="project-card{% if include.full %} project-card--full{% endif %}">
+  <div class="project-card__banner">
+    <span class="project-card__status">{{ t.status }}</span>
+    <span class="project-card__banner-name">{{ p.name }}</span>
+    <div class="project-card__techs">
+      {% for category in t.categories %}
+        <span class="tag">{{ category }}</span>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="project-card__content">
+    <h3 class="project-card__title">{{ p.name }}</h3>
+    <p class="project-card__desc">{{ t.summary }}</p>
+
+    {% if include.full %}
+      <p class="project-card__text">{{ t.description }}</p>
+      <h4 class="project-card__subtitle">{% if include.lang == "en" %}Key features{% else %}Principais funcionalidades{% endif %}</h4>
+      <ul class="project-card__features">
+        {% for feature in t.features %}
+          <li>{{ feature }}</li>
+        {% endfor %}
+      </ul>
+      <h4 class="project-card__subtitle">{% if include.lang == "en" %}Value proposition{% else %}Proposta de valor{% endif %}</h4>
+      <p class="project-card__text">{{ t.value }}</p>
+    {% endif %}
+
+    {% if p.link and p.link != "" %}
+      <a href="{{ p.link }}" target="_blank" rel="noopener noreferrer" class="project-card__link">
+        {% if include.lang == "en" %}Visit website{% else %}Acessar site{% endif %} <span aria-hidden="true">↗</span>
+      </a>
+    {% endif %}
+  </div>
+</article>

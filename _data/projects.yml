@@ -1,15 +1,78 @@
-- id: task-manager
-  name: TaskFlow
-  description: "A minimalist task management tool built for developers."
-  image: "/assets/images/project-1.jpg"
-  techs: [React, TypeScript, TailwindCSS]
-  link: "https://github.com/hemershon"
-  featured: true
+# Projetos exibidos em /projetos/, /en/projects/ e na home (featured: true).
+# Campos traduzíveis ficam em pt/en; link é opcional.
 
-- id: dotfiles
-  name: Dev Dotfiles
-  description: "My personal dotfiles for development environments focusing on productivity."
-  image: "/assets/images/project-2.jpg"
-  techs: [Shell, Lua, Neovim]
-  link: "https://github.com/hemershon/dotfiles"
+- id: aury-software
+  name: Aury Software
+  link: "https://www.aury.com.br"
   featured: true
+  pt:
+    status: "Em produção"
+    categories: ["SaaS", "Gestão de negócios", "Multi-tenant"]
+    summary: "Plataforma SaaS de gestão para salões de beleza, barbearias, esmalterias e profissionais de estética."
+    description: "A plataforma centraliza a operação do negócio em um único lugar, permitindo gerenciar agendamentos, serviços, produtos, colaboradores, vendas e finanças."
+    features:
+      - "Agendamento e gestão de horários"
+      - "Cadastro de serviços e produtos"
+      - "Gestão de clientes e colaboradores"
+      - "Comandas e controle de vendas"
+      - "Comissões por colaborador e serviço"
+      - "Controle de caixa (PDV)"
+      - "Gestão de estoque"
+      - "Relatórios gerenciais"
+      - "Administração de assinaturas e planos SaaS"
+    value: "Simplificar a gestão de negócios de beleza, automatizar processos operacionais e oferecer mais controle sobre a operação e os resultados."
+  en:
+    status: "In production"
+    categories: ["SaaS", "Business management", "Multi-tenant"]
+    summary: "SaaS management platform for beauty salons, barbershops, nail salons, and beauty professionals."
+    description: "The platform centralizes business operations in one place, making it possible to manage appointments, services, products, staff, sales, and finances."
+    features:
+      - "Appointment scheduling and calendar management"
+      - "Service and product catalog"
+      - "Client and staff management"
+      - "Order tabs and sales tracking"
+      - "Commissions per staff member and service"
+      - "Cash register (POS)"
+      - "Inventory management"
+      - "Management reports"
+      - "SaaS subscription and plan administration"
+    value: "Simplify beauty business management, automate operational processes, and provide more control over operations and results."
+
+- id: aury-imob
+  name: Aury Imob
+  link: "https://www.auryimob.com.br"
+  featured: true
+  pt:
+    status: "Em produção"
+    categories: ["PropTech", "Real Estate SaaS", "Multi-tenant"]
+    summary: "Plataforma SaaS para corretores de imóveis e imobiliárias que desejam digitalizar e centralizar suas operações."
+    description: "A solução permite gerenciar imóveis, clientes, negociações, contratos e processos financeiros, além de disponibilizar uma vitrine digital para divulgação de propriedades."
+    features:
+      - "Cadastro e gerenciamento de imóveis"
+      - "Vitrine imobiliária pública"
+      - "Divulgação de imóveis para venda e locação"
+      - "Gestão de clientes e interessados"
+      - "Gestão de propostas e contrapropostas"
+      - "Contratos de aluguel e venda"
+      - "Controle de garantias locatícias"
+      - "Gestão de parcelas, encargos e comissões"
+      - "Gestão de locações e encerramento de contratos"
+      - "Painel administrativo e indicadores financeiros"
+    value: "Conectar a gestão imobiliária à presença digital, ajudando corretores e imobiliárias a organizar seus negócios, divulgar propriedades e administrar negociações e contratos em uma única plataforma."
+  en:
+    status: "In production"
+    categories: ["PropTech", "Real Estate SaaS", "Multi-tenant"]
+    summary: "SaaS platform for real estate agents and agencies looking to digitize and centralize their operations."
+    description: "The solution manages properties, clients, negotiations, contracts, and financial processes, and provides a digital showcase for listing properties."
+    features:
+      - "Property registration and management"
+      - "Public property showcase"
+      - "Listings for sale and rent"
+      - "Client and lead management"
+      - "Proposals and counter-proposals"
+      - "Rental and sale contracts"
+      - "Rental guarantee tracking"
+      - "Installments, fees, and commissions"
+      - "Lease management and contract termination"
+      - "Admin dashboard and financial indicators"
+    value: "Connect real estate management with digital presence, helping agents and agencies organize their business, promote properties, and manage negotiations and contracts in a single platform."

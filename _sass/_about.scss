@@ -88,3 +88,22 @@
 .social-links-list a:hover {
   color: var(--accent);
 }
+
+.about-summary p {
+  margin: 0 0 18px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.skill-group {
+  margin-bottom: 22px;
+}
+.skill-group h3 {
+  margin: 0 0 10px;
+  font-family: $font-mono;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

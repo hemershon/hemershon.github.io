@@ -88,24 +88,7 @@ layout: default
   <div class="project-grid">
     {% assign featured_projects = site.data.projects | where: "featured", true %}
     {% for project in featured_projects limit:2 %}
-      <article class="project-card">
-        <div class="project-card__image-wrapper">
-          <!-- Placeholder or actual image -->
-          <div class="project-image-placeholder"></div>
-        </div>
-        <div class="project-card__content">
-          <h3 class="project-card__title">{{ project.name }}</h3>
-          <p class="project-card__desc">{{ project.description }}</p>
-          <div class="project-card__techs">
-            {% for tech in project.techs %}
-              <span class="tag">{{ tech }}</span>
-            {% endfor %}
-          </div>
-          <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="project-card__link">
-            {% if lang == "en" %}View project{% else %}Ver projeto{% endif %} <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </article>
+      {% include project-card.html project=project lang=lang %}
     {% endfor %}
   </div>
 </section>

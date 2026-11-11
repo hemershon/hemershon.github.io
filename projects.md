@@ -13,21 +13,7 @@ description: "Projetos e experiências com software."
 
   <div class="project-grid">
     {% for project in site.data.projects %}
-      <article class="project-card">
-        <div class="project-card__image-wrapper">
-          <div class="project-image-placeholder"></div>
-        </div>
-        <div class="project-card__content">
-          <h3 class="project-card__title">{{ project.name }}</h3>
-          <p class="project-card__desc">{{ project.description }}</p>
-          <div class="project-card__techs">
-            {% for tech in project.techs %}
-              <span class="tag">{{ tech }}</span>
-            {% endfor %}
-          </div>
-          <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="project-card__link">Ver projeto <span aria-hidden="true">↗</span></a>
-        </div>
-      </article>
+      {% include project-card.html project=project lang="pt" full=true %}
     {% endfor %}
   </div>
 </div>

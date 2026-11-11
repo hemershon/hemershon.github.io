@@ -14,32 +14,31 @@ description: "Conheça Hemershon Silva."
 
   <div class="about-grid">
     <div class="about-main">
-      <section class="about-section">
-        <h2>Experiência Profissional</h2>
-        <div class="experience-list">
-          {% for exp in data.experience %}
-            <div class="experience-item">
-              <h3>{{ exp.role }} <span class="at-company">@ {{ exp.company }}</span></h3>
-              <p class="period">{{ exp.period }}</p>
-              <p>{{ exp.description }}</p>
-            </div>
-          {% endfor %}
-        </div>
+      <section class="about-section about-summary">
+        <h2>Sobre mim</h2>
+        {% for paragraph in data.summary %}
+          <p>{{ paragraph }}</p>
+        {% endfor %}
       </section>
     </div>
 
     <aside class="about-sidebar">
       <section class="about-section">
-        <h2>Habilidades</h2>
-        <div class="tag-list">
-          {% for skill in data.skills %}
-            <span class="tag">{{ skill }}</span>
-          {% endfor %}
-        </div>
+        <h2>Competências Técnicas</h2>
+        {% for group in data.skill_groups %}
+          <div class="skill-group">
+            <h3>{{ group.name }}</h3>
+            <div class="tag-list">
+              {% for skill in group.items %}
+                <span class="tag">{{ skill }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
       </section>
 
       <section class="about-section">
-        <h2>Interesses</h2>
+        <h2>Busco desafios em</h2>
         <ul class="interest-list">
           {% for interest in data.interests %}
             <li>{{ interest }}</li>
