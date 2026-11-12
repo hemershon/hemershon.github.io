@@ -1,16 +1,31 @@
-- id: web-development
-  icon: 🌐
-  name: Web Development
-  techs: [HTML5, SCSS, JavaScript, React, Jekyll]
-- id: devops
-  icon: ⚙️
-  name: DevOps
-  techs: [Docker, CI/CD, GitHub Actions]
-- id: cloud
+# Especialidades exibidas na home (pt/en).
+- id: backend
+  icon: 🧩
+  name: { pt: "Backend", en: "Backend" }
+  techs: [Ruby on Rails, PHP (Laravel), Golang, Elixir, Python]
+- id: frontend
+  icon: 🎨
+  name: { pt: "Frontend", en: "Frontend" }
+  techs: [Vue.js, React.js, JavaScript, TypeScript]
+- id: cloud-devops
   icon: ☁️
-  name: Cloud
-  techs: [AWS, Linux, Nginx]
-- id: tools
-  icon: 🛠️
-  name: Tools
-  techs: [Git, Neovim, Figma]
+  name: { pt: "Cloud & DevOps", en: "Cloud & DevOps" }
+  techs: [AWS, Docker, Kubernetes, Terraform, Heroku, DigitalOcean]
+- id: ci-cd
+  icon: 🔁
+  name: { pt: "CI/CD", en: "CI/CD" }
+  techs: [GitLab CI/CD, GitHub Actions]
+- id: observability
+  icon: 📈
+  name: { pt: "Observabilidade", en: "Observability" }
+  techs: [NewRelic, Datadog, Dynatrace]
+- id: databases
+  icon: 🗄️
+  name: { pt: "Bancos de Dados", en: "Databases" }
+  techs: [PostgreSQL, MySQL, MariaDB, Redis]
+- id: architecture
+  icon: 🏗️
+  name: { pt: "Arquitetura", en: "Architecture" }
+  techs:
+    pt: [APIs REST, Microsserviços, Sistemas SaaS, Arquitetura Escalável]
+    en: [REST APIs, Microservices, SaaS Systems, Scalable Architecture]

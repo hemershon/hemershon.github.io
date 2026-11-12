@@ -56,6 +56,10 @@
   .specialties-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  /* Com número ímpar de cards, o último ocupa duas colunas e fecha a linha. */
+  .specialty-card:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
 }
 @media (min-width: 900px) {
   .specialties-grid {

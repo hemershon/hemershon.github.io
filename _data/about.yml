@@ -23,6 +23,21 @@ pt:
     - name: "Arquitetura"
       items: ["APIs REST", "Microsserviços", "Sistemas SaaS", "Arquitetura Escalável"]
   interests: ["Engenharia Backend", "Arquitetura de Software", "Cloud Computing", "Plataformas Escaláveis"]
+  education:
+    - course: "Engenharia de Software"
+      institution: "Estácio"
+      period: "jan. 2019 – dez. 2022"
+      description:
+        - "Formação que equilibrou teoria e prática, com foco nos princípios fundamentais do desenvolvimento de software: design, análise e implementação eficiente de sistemas."
+        - "Participei ativamente de projetos práticos, do desenvolvimento de aplicativos à gestão do ciclo de vida de software, aprimorando metodologias ágeis, boas práticas de codificação e testes, sempre trabalhando em equipe para resolver desafios reais."
+      activities: "Atividades extracurriculares, hackathons e projetos colaborativos."
+    - course: "Bacharelado em Ciência da Computação"
+      institution: "Estácio"
+      period: "jul. 2017 – nov. 2021"
+      description:
+        - "Formação sólida em fundamentos teóricos e práticos da computação: programação, algoritmos, estruturas de dados, engenharia de software, banco de dados, sistemas operacionais, redes, inteligência artificial e arquitetura de computadores."
+        - "Desenvolvimento de raciocínio lógico, pensamento computacional e resolução de problemas complexos, com estudos em DevOps, computação em nuvem e tecnologias emergentes."
+      activities: "Comunidades acadêmicas, grupos de tecnologia, eventos acadêmicos, hackathons e iniciativas Open Source."
   social_links:
     - name: "GitHub"
       url: "https://github.com/hemershon"
@@ -56,6 +71,21 @@ en:
     - name: "Architecture"
       items: ["REST APIs", "Microservices", "SaaS Systems", "Scalable Architecture"]
   interests: ["Backend Engineering", "Software Architecture", "Cloud Computing", "Scalable Platforms"]
+  education:
+    - course: "Software Engineering"
+      institution: "Estácio"
+      period: "Jan 2019 – Dec 2022"
+      description:
+        - "A program that balanced theory and practice, focused on the core principles of software development: design, analysis, and efficient system implementation."
+        - "I took an active part in hands-on projects, from application development to software lifecycle management, strengthening agile methodologies, good coding practices, and testing while working in teams to solve real-world challenges."
+      activities: "Extracurricular activities, hackathons, and collaborative projects."
+    - course: "Bachelor's Degree in Computer Science"
+      institution: "Estácio"
+      period: "Jul 2017 – Nov 2021"
+      description:
+        - "A solid foundation in the theory and practice of computing: programming, algorithms, data structures, software engineering, databases, operating systems, networks, artificial intelligence, and computer architecture."
+        - "Developed logical reasoning, computational thinking, and complex problem-solving skills, with studies in DevOps, cloud computing, and emerging technologies."
+      activities: "Academic communities, technology groups, academic events, hackathons, and Open Source initiatives."
   social_links:
     - name: "GitHub"
       url: "https://github.com/hemershon"

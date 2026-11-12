@@ -53,8 +53,9 @@ layout: default
     {% for spec in site.data.specialties %}
       <div class="specialty-card">
         <div class="specialty-icon">{{ spec.icon }}</div>
-        <h3 class="specialty-name">{{ spec.name }}</h3>
-        <p class="specialty-techs">{{ spec.techs | join: ", " }}</p>
+        <h3 class="specialty-name">{{ spec.name[lang] | default: spec.name }}</h3>
+        {% assign spec_techs = spec.techs[lang] | default: spec.techs %}
+        <p class="specialty-techs">{{ spec_techs | join: ", " }}</p>
       </div>
     {% endfor %}
   </div>

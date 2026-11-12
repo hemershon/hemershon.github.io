@@ -20,6 +20,22 @@ description: "Meet Hemershon Silva."
           <p>{{ paragraph }}</p>
         {% endfor %}
       </section>
+
+      <section class="about-section">
+        <h2>Education</h2>
+        <div class="experience-list">
+          {% for edu in data.education %}
+            <div class="experience-item education-item">
+              <h3>{{ edu.course }} <span class="at-company">@ {{ edu.institution }}</span></h3>
+              <p class="period">{{ edu.period }}</p>
+              {% for paragraph in edu.description %}
+                <p>{{ paragraph }}</p>
+              {% endfor %}
+              <p class="education-activities"><strong>Activities:</strong> {{ edu.activities }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
     </div>
 
     <aside class="about-sidebar">
