@@ -1,5 +1,5 @@
 title: "Hemershon Silva"
-description: "Desenvolvimento de software, tecnologia, Linux e experiências."
+description: "Engenheiro de Software Sênior: Ruby on Rails, arquitetura backend, cloud e plataformas SaaS escaláveis."
 url: "https://hemershon.github.io"
 baseurl: ""
 
@@ -13,8 +13,8 @@ author:
   name: "Hemershon Silva"
   email: ""
   bio:
-    pt: "Desenvolvedor de software. Compartilhando experiências, estudos e projetos."
-    en: "Software developer. Sharing experiences, learning, and projects."
+    pt: "Engenheiro de Software Sênior com mais de 14 anos de experiência, especializado em Ruby on Rails e arquitetura backend."
+    en: "Senior Software Engineer with 14+ years of experience, specialized in Ruby on Rails and backend architecture."
 
 languages:
   - code: pt

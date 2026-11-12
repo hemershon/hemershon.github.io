@@ -6,7 +6,7 @@
           <span class="brand-mark">HS</span>
           <span class="brand-name">Hemershon Silva<span class="brand-dot">.</span></span>
         </a>
-        <p class="footer-description">{% if page.lang == "en" %}Software developer. Sharing experiences, learning, and projects.{% else %}Desenvolvedor de software. Compartilhando experiências, estudos e projetos.{% endif %}</p>
+        <p class="footer-description">{% if page.lang == "en" %}Senior Software Engineer. Ruby on Rails, backend architecture, and scalable platforms.{% else %}Engenheiro de Software Sênior. Ruby on Rails, arquitetura backend e plataformas escaláveis.{% endif %}</p>
       </div>
       <div class="footer-links-section">
         <div class="footer-nav">
@@ -20,9 +20,11 @@
         <div class="footer-social">
           <h4 class="footer-heading">Social</h4>
           <nav aria-label="Social media">
-            <a href="https://github.com/hemershon" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://linkedin.com/in/hemershon" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="mailto:contato@hemershon.com">Email</a>
+            {% assign footer_lang = page.lang | default: "pt" %}
+            {% for link in site.data.about[footer_lang].social_links %}
+              {% assign is_mail = link.url | slice: 0, 7 %}
+              <a href="{{ link.url }}"{% if is_mail != "mailto:" %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.name }}</a>
+            {% endfor %}
           </nav>
         </div>
       </div>

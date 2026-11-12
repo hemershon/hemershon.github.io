@@ -4,33 +4,33 @@ layout: default
 {% assign lang = page.lang | default: "pt" %}
 {% if lang == "en" %}
   {% assign intro_title = "Hello, I'm Hemershon Silva." %}
-  {% assign intro_text = "Software developer passionate about technology, good ideas, and simple solutions for complex problems." %}
+  {% assign intro_text = "14+ years building web solutions, specialized in Ruby on Rails, backend architecture, and scalable SaaS platforms." %}
   {% assign btn_projects = "View my projects" %}
   {% assign btn_blog = "Read the blog" %}
   {% assign spec_title = "Specialties" %}
   {% assign latest_title = "Recent articles" %}
   {% assign proj_title = "Featured projects" %}
   {% assign all_label = "View all" %}
-  {% assign contact_title = "Shall we build something amazing?" %}
-  {% assign contact_text = "I'm always open to new ideas, collaborations, and opportunities." %}
+  {% assign contact_title = "Let's talk" %}
+  {% assign contact_text = "I'm looking for challenges in backend engineering, software architecture, cloud computing, and scalable platforms." %}
   {% assign empty_text = "Content coming soon." %}
 {% else %}
   {% assign intro_title = "Olá, eu sou Hemershon Silva." %}
-  {% assign intro_text = "Desenvolvedor de software, apaixonado por tecnologia, boas ideias e soluções simples para problemas complexos." %}
+  {% assign intro_text = "Mais de 14 anos construindo soluções web, com especialização em Ruby on Rails, arquitetura backend e plataformas SaaS escaláveis." %}
   {% assign btn_projects = "Ver meus projetos" %}
   {% assign btn_blog = "Leia o blog" %}
   {% assign spec_title = "Especialidades" %}
   {% assign latest_title = "Artigos recentes" %}
   {% assign proj_title = "Projetos em destaque" %}
   {% assign all_label = "Ver todos" %}
-  {% assign contact_title = "Vamos construir algo incrível?" %}
-  {% assign contact_text = "Estou sempre aberto a novas ideias, colaborações e oportunidades." %}
+  {% assign contact_title = "Vamos conversar?" %}
+  {% assign contact_text = "Busco desafios em engenharia backend, arquitetura de software, cloud computing e plataformas escaláveis." %}
   {% assign empty_text = "Em breve, novos conteúdos por aqui." %}
 {% endif %}
 
 <section class="hero hero--home">
   <div class="hero__content">
-    <p class="eyebrow">{% if lang == "en" %}SOFTWARE DEVELOPER{% else %}DESENVOLVEDOR DE SOFTWARE{% endif %}</p>
+    <p class="eyebrow">{% if lang == "en" %}SENIOR SOFTWARE ENGINEER{% else %}ENGENHEIRO DE SOFTWARE SÊNIOR{% endif %}</p>
     <h1>{{ intro_title }}</h1>
     <p class="hero__description">{{ intro_text }}</p>
     <div class="hero__actions">
@@ -99,9 +99,10 @@ layout: default
     <h2>{{ contact_title }}</h2>
     <p>{{ contact_text }}</p>
     <div class="contact-links">
-      <a href="https://github.com/hemershon" target="_blank" rel="noopener noreferrer" class="button button--secondary">GitHub</a>
-      <a href="https://linkedin.com/in/hemershon" target="_blank" rel="noopener noreferrer" class="button button--secondary">LinkedIn</a>
-      <a href="mailto:contato@hemershon.com" class="button button--primary">Email</a>
+      {% for link in site.data.about[lang].social_links %}
+        {% assign is_mail = link.url | slice: 0, 7 %}
+        <a href="{{ link.url }}"{% if is_mail != "mailto:" %} target="_blank" rel="noopener noreferrer"{% endif %} class="button {% if forloop.last %}button--primary{% else %}button--secondary{% endif %}">{{ link.name }}</a>
+      {% endfor %}
     </div>
   </div>
 </section>
