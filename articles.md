@@ -2,6 +2,7 @@
 layout: page
 title: Artigos
 lang: pt
+translation_key: articles
 permalink: /artigos/
 description: "Todos os artigos publicados."
 ---

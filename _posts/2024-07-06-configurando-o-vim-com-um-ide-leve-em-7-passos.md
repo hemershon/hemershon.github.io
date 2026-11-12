@@ -4,6 +4,7 @@ title: "Configurando o Vim como uma IDE leve em 7 passos"
 description: "Sete passos para transformar o Vim em uma IDE leve e portátil."
 date: 2024-07-06 08:39:46 -0300
 lang: pt
+translation_key: configurando-o-vim-com-um-ide-leve-em-7-passos
 categories: [Ferramentas]
 tags: [vim, produtividade, linux]
 image: /assets/images/posts/vim-logo.png

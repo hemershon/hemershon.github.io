@@ -4,6 +4,7 @@ title: "Fundamentos do RSpec"
 description: "Os conceitos básicos do RSpec para escrever testes legíveis em Ruby."
 date: 2023-05-29 14:17:51 -0300
 lang: pt
+translation_key: fundamentos-do-rspec
 categories: [Testes]
 tags: [rspec, tdd, ruby]
 image: /assets/images/posts/rspec.jpg

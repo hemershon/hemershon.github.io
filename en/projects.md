@@ -2,6 +2,7 @@
 layout: default
 title: Projects
 lang: en
+translation_key: projects
 permalink: /en/projects/
 description: "Software projects and experiments."
 ---

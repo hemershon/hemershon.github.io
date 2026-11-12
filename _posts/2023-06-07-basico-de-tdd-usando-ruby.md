@@ -4,6 +4,7 @@ title: "Básico de TDD usando Ruby"
 description: "Um exemplo passo a passo de Test-Driven Development em Ruby."
 date: 2023-06-07 10:21:50 -0300
 lang: pt
+translation_key: basico-de-tdd-usando-ruby
 categories: [Testes]
 tags: [tdd, rspec, ruby]
 image: /assets/images/posts/basicodetdd.png

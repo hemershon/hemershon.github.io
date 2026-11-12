@@ -4,6 +4,7 @@ title: "Active Record"
 description: "A teoria do Active Record no Ruby on Rails e como ele conecta modelos ao banco de dados."
 date: 2024-10-03 13:09:59 -0300
 lang: pt
+translation_key: active-record
 categories: [Rails]
 tags: [rails, active-record, orm]
 image: /assets/images/posts/orm.jpg

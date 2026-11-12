@@ -4,6 +4,7 @@ title: "Um olhar simples para a busca linear"
 description: "Como funciona o algoritmo de busca linear, com implementação em Ruby."
 date: 2023-04-11 16:22:55 -0300
 lang: pt
+translation_key: um-olhar-simples-para-a-buscar-linear
 categories: [Algoritmos]
 tags: [algoritmos, ruby, busca-linear]
 image: /assets/images/posts/linear_search.jpg
@@ -19,8 +20,6 @@ Dentro do bloco, verificamos se o elemento atual é igual ao valor de destino qu
 
 Se chegarmos ao final do laço sem encontrar o valor de destino, isso significa que o valor não está presente no array e a função retorna nil.
 
-Aqui está um exemplo de como usar a função linear_search para procurar o valor 42 no array [1, 2, 3, 4, 5, 42, 43, 44]:
-
 {% highlight ruby %}
 def linear_search(array, target)
   array.each_with_index do |item, index|
@@ -33,20 +32,18 @@ def linear_search(array, target)
 end
 {% endhighlight %}
 
-{% highlight javascript %}
-console.log('alert');
-{% endhighlight %}
+Aqui está um exemplo de como usar a função linear_search para procurar o valor 42 no array [1, 2, 3, 4, 5, 42, 43, 44]:
 
-```
-array = [2, 3, 4, 9, 19, 20]
-target = 20
+{% highlight ruby %}
+array = [1, 2, 3, 4, 5, 42, 43, 44]
+target = 42
 
 index = linear_search(array, target)
- if index 
-  puts "O valor #{target} foi encontrado no índece #{index} do array"
- else
+if index
+  puts "O valor #{target} foi encontrado no índice #{index} do array"
+else
   puts "O valor #{target} não foi encontrado no array"
- end
+end
+{% endhighlight %}
 
- ```
- Neste exemplo, a função linear_search é usada para procurar o valor 42 no array. A função retorna o índice 5, que é o índice do valor 42 no array. Em seguida, uma mensagem é exibida informando que o valor foi encontrado no índice 5 do array.
+Neste exemplo, a função linear_search é usada para procurar o valor 42 no array. A função retorna o índice 5, que é o índice do valor 42 no array. Em seguida, uma mensagem é exibida informando que o valor foi encontrado no índice 5 do array.

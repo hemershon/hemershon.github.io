@@ -4,6 +4,7 @@ title: "O básico de Ruby"
 description: "Os fundamentos da linguagem Ruby: tipos de dados e conceitos essenciais."
 date: 2023-01-21 16:57:32 -0300
 lang: pt
+translation_key: o-basico-de-ruby
 categories: [Ruby]
 tags: [ruby, iniciante, fundamentos]
 image: /assets/images/posts/obasicoderuby.png

@@ -4,6 +4,7 @@ title: "Docker para Rails"
 description: "Como dockerizar uma aplicação Ruby on Rails usando Dockerfile e docker-compose."
 date: 2020-04-17 13:44:04 -0300
 lang: pt
+translation_key: docker-para-rails
 categories: [DevOps]
 tags: [docker, docker-compose, rails]
 image: /assets/images/posts/docker.png

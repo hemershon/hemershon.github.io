@@ -2,6 +2,7 @@
 layout: page
 title: Contato
 lang: pt
+translation_key: contact
 permalink: /contato/
 description: "Entre em contato com Hemershon Silva."
 ---

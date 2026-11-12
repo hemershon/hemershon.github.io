@@ -13,7 +13,13 @@
         <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a>
       {% endfor %}
       <div class="nav-tools">
-        <a class="language-switch" href="{% if lang == 'en' %}{{ '/' | relative_url }}{% else %}{{ '/en/' | relative_url }}{% endif %}" aria-label="{% if lang == 'en' %}Mudar para português{% else %}Switch to English{% endif %}">{% if lang == 'en' %}PT{% else %}EN{% endif %}</a>
+        {% if lang == 'en' %}{% assign other_lang = 'pt' %}{% assign other_url = '/' %}{% else %}{% assign other_lang = 'en' %}{% assign other_url = '/en/' %}{% endif %}
+        {% if page.translation_key %}
+          {% assign translated = site.posts | where: "translation_key", page.translation_key | where: "lang", other_lang | first %}
+          {% unless translated %}{% assign translated = site.pages | where: "translation_key", page.translation_key | where: "lang", other_lang | first %}{% endunless %}
+          {% if translated %}{% assign other_url = translated.url %}{% endif %}
+        {% endif %}
+        <a class="language-switch" href="{{ other_url | relative_url }}" hreflang="{% if other_lang == 'en' %}en{% else %}pt-BR{% endif %}" aria-label="{% if lang == 'en' %}Mudar para português{% else %}Switch to English{% endif %}">{% if lang == 'en' %}PT{% else %}EN{% endif %}</a>
         <button class="theme-toggle" type="button" aria-label="Alternar tema" title="Alternar tema"><span class="theme-icon">◐</span></button>
       </div>
     </nav>

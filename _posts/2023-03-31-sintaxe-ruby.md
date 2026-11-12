@@ -4,6 +4,7 @@ title: "Sintaxe Ruby"
 description: "Exemplos da sintaxe Ruby: variáveis, métodos e expressões."
 date: 2023-03-31 16:49:00 -0300
 lang: pt
+translation_key: sintaxe-ruby
 categories: [Ruby]
 tags: [ruby, sintaxe, iniciante]
 permalink: /pt/artigos/sintaxe-ruby/
@@ -38,9 +39,10 @@ end
 10.times do |i|
   puts i
 end
+```
+
 Definindo funções:
-css
-Copy code
+```
 def somar(a, b)
   return a + b
 end

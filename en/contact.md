@@ -2,6 +2,7 @@
 layout: page
 title: Contact
 lang: en
+translation_key: contact
 permalink: /en/contact/
 description: "Get in touch with Hemershon Silva."
 ---

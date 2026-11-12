@@ -2,6 +2,7 @@
 layout: default
 title: Projetos
 lang: pt
+translation_key: projects
 permalink: /projetos/
 description: "Projetos e experiências com software."
 ---

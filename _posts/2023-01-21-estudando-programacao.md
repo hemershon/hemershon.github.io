@@ -4,6 +4,7 @@ title: "Estudando programação"
 description: "Como identifiquei que sempre estudei programação do jeito errado."
 date: 2023-01-21 17:33:52 -0300
 lang: pt
+translation_key: estudando-programacao
 categories: [Carreira]
 tags: [carreira, estudos, programação]
 permalink: /pt/artigos/estudando-programacao/

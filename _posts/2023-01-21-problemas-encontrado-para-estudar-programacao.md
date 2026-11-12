@@ -4,6 +4,7 @@ title: "Problemas encontrados para estudar programação"
 description: "Os problemas mais frequentes que enfrentei ao estudar programação."
 date: 2023-01-21 17:39:02 -0300
 lang: pt
+translation_key: problemas-encontrado-para-estudar-programacao
 categories: [Carreira]
 tags: [carreira, estudos, programação]
 permalink: /pt/artigos/problemas-encontrado-para-estudar-programacao/

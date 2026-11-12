@@ -60,18 +60,29 @@ layout: default
 
     <hr>
 
+    {% comment %} Anterior/Próximo apenas entre artigos do mesmo idioma {% endcomment %}
+    {% assign same_lang = site.posts | where: "lang", lang %}
+    {% assign prev_post = nil %}{% assign next_post = nil %}
+    {% for p in same_lang %}
+      {% if p.url == page.url %}
+        {% assign i_next = forloop.index0 | minus: 1 %}
+        {% assign i_prev = forloop.index0 | plus: 1 %}
+        {% if i_next >= 0 %}{% assign next_post = same_lang[i_next] %}{% endif %}
+        {% assign prev_post = same_lang[i_prev] %}
+      {% endif %}
+    {% endfor %}
     <nav class="post-navigation">
-      {% if page.previous %}
-        <a class="nav-prev" href="{{ page.previous.url | relative_url }}">
+      {% if prev_post %}
+        <a class="nav-prev" href="{{ prev_post.url | relative_url }}">
           <span class="nav-label">{% if lang == "en" %}Previous{% else %}Anterior{% endif %}</span>
-          <span class="nav-title">{{ page.previous.title }}</span>
+          <span class="nav-title">{{ prev_post.title }}</span>
         </a>
       {% endif %}
       
-      {% if page.next %}
-        <a class="nav-next" href="{{ page.next.url | relative_url }}">
+      {% if next_post %}
+        <a class="nav-next" href="{{ next_post.url | relative_url }}">
           <span class="nav-label">{% if lang == "en" %}Next{% else %}Próximo{% endif %}</span>
-          <span class="nav-title">{{ page.next.title }}</span>
+          <span class="nav-title">{{ next_post.title }}</span>
         </a>
       {% endif %}
     </nav>

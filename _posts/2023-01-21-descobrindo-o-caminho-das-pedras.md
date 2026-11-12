@@ -4,6 +4,7 @@ title: "Descobrindo o caminho das pedras"
 description: "Como melhorei meus estudos e meu desempenho na programação."
 date: 2023-01-21 17:30:40 -0300
 lang: pt
+translation_key: descobrindo-o-caminho-das-pedras
 categories: [Carreira]
 tags: [carreira, estudos, programação]
 permalink: /pt/artigos/descobrindo-o-caminho-das-pedras/

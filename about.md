@@ -2,6 +2,7 @@
 layout: default
 title: Sobre
 lang: pt
+translation_key: about
 permalink: /sobre/
 description: "Conheça Hemershon Silva."
 ---

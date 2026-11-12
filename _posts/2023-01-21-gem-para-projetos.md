@@ -4,6 +4,7 @@ title: "Gems para projetos"
 description: "Gems fundamentais para um projeto Rails, como Jbuilder e Rack::Cors."
 date: 2023-01-21 17:24:17 -0300
 lang: pt
+translation_key: gem-para-projetos
 categories: [Rails]
 tags: [rails, gems, ruby]
 permalink: /pt/artigos/gem-para-projetos/

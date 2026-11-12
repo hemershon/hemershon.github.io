@@ -4,6 +4,7 @@ title: "Métodos para tratar array"
 description: "Quando usar map, select e each em Ruby, com exemplos práticos."
 date: 2023-01-20 15:33:12 -0300
 lang: pt
+translation_key: metodos-para-tratar-array
 categories: [Ruby]
 tags: [ruby, array, map, select, each]
 image: /assets/images/posts/array.png
@@ -66,7 +67,7 @@ O **select** funciona de duas maneiras únicas; Primeiro: pega o bloco para que 
 Exemplo:
 
 {% highlight ruby %}
-[1, 2, 3, 4, 5].select { |num| num.event? } # [2, 4]
+[1, 2, 3, 4, 5].select { |num| num.even? } # [2, 4]
 {% endhighlight %}
 
 Exemplo 2:

@@ -4,6 +4,7 @@ title: "O que você precisa saber sobre Ruby"
 description: "Tópicos essenciais sobre a linguagem Ruby: orientação a objetos, sintaxe e mais."
 date: 2023-03-31 15:20:40 -0300
 lang: pt
+translation_key: o-que-voce-precisa-saber-sobre-ruby
 categories: [Ruby]
 tags: [ruby, fundamentos]
 image: /assets/images/posts/ruby.png
