@@ -36,6 +36,11 @@ defaults:
     values:
       layout: page
       lang: pt
+  - scope:
+      path: ""
+      type: pages
+    values:
+      image: /assets/images/hemershon.jpeg
 
 plugins:
   - jekyll-feed
